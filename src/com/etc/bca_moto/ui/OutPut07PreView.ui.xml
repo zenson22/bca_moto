@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<?xdevuiml version="1.0"?>
+<?template BROWSER_SXGA?>
+<?import com.xdev.ui.XdevBrowserFrame?>
+<?import com.xdev.ui.XdevGridLayout?>
+<?import com.xdev.ui.XdevView?>
+<XdevView xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="OutPut43PreView">
+    <x:constraints zpos="0" width="100%" height="100%" />
+    <XdevGridLayout x:name="gridLayout">
+        <x:constraints zpos="0" width="100%" height="100%" />
+        <XdevBrowserFrame x:name="browserFrame">
+            <x:constraints gridx="1" gridy="1" weighty="0.1" weightx="0.5" width="100%" height="100%" />
+        </XdevBrowserFrame>
+    </XdevGridLayout>
+</XdevView>
+

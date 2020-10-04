@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QDTGGTTV18_A4" pageWidth="595" pageHeight="950" whenNoDataType="NoDataSection" columnWidth="525" leftMargin="42" rightMargin="28" topMargin="28" bottomMargin="28" whenResourceMissingType="Empty" uuid="64fec145-14f8-455d-acf6-8045ee4e2996">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="net.sf.jasperreports.print.create.bookmarks" value="true"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="noiCapCmnd" class="java.lang.String">
+		<fieldDescription><![CDATA[noiCapCmnd]]></fieldDescription>
+	</field>
+	<field name="diaDiemLapQd" class="java.lang.String">
+		<fieldDescription><![CDATA[diaDiemLapQd]]></fieldDescription>
+	</field>
+	<field name="tenDiaChiNganHangThuTien" class="java.lang.String">
+		<fieldDescription><![CDATA[tenDiaChiNganHangThuTien]]></fieldDescription>
+	</field>
+	<field name="nguoiTaoId" class="java.lang.Long">
+		<fieldDescription><![CDATA[nguoiTaoId]]></fieldDescription>
+	</field>
+	<field name="capbacChucvu" class="java.lang.String">
+		<fieldDescription><![CDATA[capbacChucvu]]></fieldDescription>
+	</field>
+	<field name="diachiNvp" class="java.lang.String">
+		<fieldDescription><![CDATA[diachiNvp]]></fieldDescription>
+	</field>
+	<field name="nguoiRaQuyetDinh" class="java.lang.Long">
+		<fieldDescription><![CDATA[nguoiRaQuyetDinh]]></fieldDescription>
+	</field>
+	<field name="ngayTao" class="java.util.Date">
+		<fieldDescription><![CDATA[ngayTao]]></fieldDescription>
+	</field>
+	<field name="soTaiKhoanNvp" class="java.lang.String">
+		<fieldDescription><![CDATA[soTaiKhoanNvp]]></fieldDescription>
+	</field>
+	<field name="nguoiKy" class="java.lang.String">
+		<fieldDescription><![CDATA[nguoiKy]]></fieldDescription>
+	</field>
+	<field name="quoctichNvp" class="java.lang.String">
+		<fieldDescription><![CDATA[quoctichNvp]]></fieldDescription>
+	</field>
+	<field name="tenDonViThiHanhQd" class="java.lang.String">
+		<fieldDescription><![CDATA[tenDonViThiHanhQd]]></fieldDescription>
+	</field>
+	<field name="nganHangNvp" class="java.lang.String">
+		<fieldDescription><![CDATA[nganHangNvp]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="ngayCapCmnd" class="java.util.Date">
+		<fieldDescription><![CDATA[ngayCapCmnd]]></fieldDescription>
+	</field>
+	<field name="ngaysinhNvp" class="java.lang.String">
+		<fieldDescription><![CDATA[ngaysinhNvp]]></fieldDescription>
+	</field>
+	<field name="tenCoQuanCapTren" class="java.lang.String">
+		<fieldDescription><![CDATA[tenCoQuanCapTren]]></fieldDescription>
+	</field>
+	<field name="canBoRaQd" class="java.lang.String">
+		<fieldDescription><![CDATA[canBoRaQd]]></fieldDescription>
+	</field>
+	<field name="active" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[active]]></fieldDescription>
+	</field>
+	<field name="ngayQdXphc" class="java.util.Date">
+		<fieldDescription><![CDATA[ngayQdXphc]]></fieldDescription>
+	</field>
+	<field name="soTienKhauTru" class="java.lang.Long">
+		<fieldDescription><![CDATA[soTienKhauTru]]></fieldDescription>
+	</field>
+	<field name="soTkKhoBac" class="java.lang.String">
+		<fieldDescription><![CDATA[soTkKhoBac]]></fieldDescription>
+	</field>
+	<field name="ngayLapQuyetDinh" class="java.util.Date">
+		<fieldDescription><![CDATA[ngayLapQuyetDinh]]></fieldDescription>
+	</field>
+	<field name="nghenghiepNvp" class="java.lang.String">
+		<fieldDescription><![CDATA[nghenghiepNvp]]></fieldDescription>
+	</field>
+	<field name="nguoiSuaId" class="java.lang.Long">
+		<fieldDescription><![CDATA[nguoiSuaId]]></fieldDescription>
+	</field>
+	<field name="thoiHan" class="java.lang.String">
+		<fieldDescription><![CDATA[thoiHan]]></fieldDescription>
+	</field>
+	<field name="ngaySua" class="java.util.Date">
+		<fieldDescription><![CDATA[ngaySua]]></fieldDescription>
+	</field>
+	<field name="khoBacId" class="java.lang.Long">
+		<fieldDescription><![CDATA[khoBacId]]></fieldDescription>
+	</field>
+	<field name="soCmndNvp" class="java.lang.String">
+		<fieldDescription><![CDATA[soCmndNvp]]></fieldDescription>
+	</field>
+	<field name="soTienBangChu" class="java.lang.String">
+		<fieldDescription><![CDATA[soTienBangChu]]></fieldDescription>
+	</field>
+	<field name="soQuyetDinh" class="java.lang.String">
+		<fieldDescription><![CDATA[soQuyetDinh]]></fieldDescription>
+	</field>
+	<field name="ngayHieuLuc" class="java.util.Date">
+		<fieldDescription><![CDATA[ngayHieuLuc]]></fieldDescription>
+	</field>
+	<field name="soQdXpvphc" class="java.lang.Long">
+		<fieldDescription><![CDATA[soQdXpvphc]]></fieldDescription>
+	</field>
+	<field name="donViThiHanhQd" class="java.lang.Long">
+		<fieldDescription><![CDATA[donViThiHanhQd]]></fieldDescription>
+	</field>
+	<field name="soQdXphc" class="java.lang.String">
+		<fieldDescription><![CDATA[soQdXphc]]></fieldDescription>
+	</field>
+	<field name="tenDonVi" class="java.lang.String">
+		<fieldDescription><![CDATA[tenDonVi]]></fieldDescription>
+	</field>
+	<field name="soCanCuQdGqcc" class="java.lang.Long">
+		<fieldDescription><![CDATA[soCanCuQdGqcc]]></fieldDescription>
+	</field>
+	<field name="tenNvp" class="java.lang.String">
+		<fieldDescription><![CDATA[tenNvp]]></fieldDescription>
+	</field>
+	<field name="tenDV2" class="java.lang.String">
+		<fieldDescription><![CDATA[tenDV2]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="156" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement positionType="Float" x="356" y="0" width="164" height="21" uuid="31e3101f-b15b-4854-a442-f1bb45180607">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="6"/>
+				</textElement>
+				<text><![CDATA[Mẫu số 07/QĐ-CCKTTTTK 
+Ban hành kèm theo Thông tư số 07/2019/TT-BCA
+ngày 20/3/2019 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="26" width="240" height="14" uuid="5e4a15b7-cbc7-46eb-b72b-9ddc142a2279">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="40" width="210" height="14" uuid="1293de51-59f3-4a49-8f09-38b487d2b406">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Độc lập - Tự do - Hạnh phúc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="359" y="42" width="127" height="12" uuid="48813097-9a0d-49c7-91f3-28045c494c41">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_______________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="90" width="470" height="20" uuid="0e397fb1-9e00-41b0-8487-e91d7fe817a2">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUYẾT ĐỊNH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="107" width="470" height="28" uuid="04ce2876-16ea-469e-bd56-34ff4788c314">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cưỡng chế khấu trừ tiền từ tài khoản]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="254" y="110" width="73" height="12" uuid="4bf4142b-636f-4927-8d1d-ab5b98862ddf">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[________________]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement key="" x="30" y="142" width="490" height="14" uuid="f2735b4f-47a2-4ba7-afe5-8708f3bef05b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+					<paragraph lineSpacingSize="0.0" firstLineIndent="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Căn cứ Điều 86, Điều 87 Luật xử lý vi phạm hành chính;"
++"<br>"+
+"Căn cứ Điều 15 Nghị định số 166/2013/NĐ-CP ngày 12/11/2013 của Chính phủ quy định về cưỡng chế thi hành quyết định xử phạt vi phạm hành chính;"
++"<br>"+
+"Căn cứ Quyết định về việc giao quyền cưỡng chế thi hành quyết định xử phạt vi phạm hành chính số "+($F{soCanCuQdGqcc} == null?
+	".................................................":$F{soCanCuQdGqcc} ) +" ngày " +"(nếu có);"
++"<br>"+
+"Để bảo đảm thi hành Quyết định xử phạt vi phạm hành chính số: "+($F{soQdXphc} == null? ".................................................":$F{soQdXphc})+" ngày "+($F{ngayQdXphc} == null?".................................................":new SimpleDateFormat("dd/MM/yyyy").format($F{ngayQdXphc}))+" do "+($F{nguoiKy} == null?".................................................":$F{nguoiKy})+" ký;"
++"<br>"+
+"Tôi: "+$F{canBoRaQd}+" Cấp bậc, Chức vụ: "+$F{capbacChucvu}+" Đơn vị: "+$F{tenDV2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="50" y="26" width="220" height="14" uuid="425f5dca-921e-4446-b29b-339a3f241077">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+					<paragraph lineSpacingSize="0.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tenCoQuanCapTren}
++"<br>"+
+"<b>"+$F{tenDonVi}+"</b>"
++"<br>"+
+$F{soQuyetDinh}+"/QĐ-CCKTTTTK"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="240" y="60" width="280" height="14" uuid="e4fd0751-3713-478a-9267-200aba2d41bc">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="html">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+					<paragraph lineSpacingSize="0.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diaDiemLapQd}+", ngày "+new SimpleDateFormat("dd").format($F{ngayLapQuyetDinh})+" tháng "+
+new SimpleDateFormat("MM").format($F{ngayLapQuyetDinh})+" năm "+
+new SimpleDateFormat("yyyy").format($F{ngayLapQuyetDinh})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25">
+			<staticText>
+				<reportElement x="50" y="4" width="470" height="20" uuid="d0c66487-e2bf-4e0f-b49e-046d4cf84ae3">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUYẾT ĐỊNH]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="14">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="30" y="0" width="490" height="14" uuid="91986956-c9be-4467-9581-5fa6225b3cf5">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph firstLineIndent="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Điều 1.</b> Cưỡng chế khấu trừ tiền từ tài khoản để thi hành Quyết định xử phạt vi phạm hành chính số "+$F{soQdXphc}+" ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{ngayQdXphc})+" do "+
+$F{nguoiKy}+" ký đối với:"
++"<br>"+
+"Ông(Bà)/Tổ chức(Tên tổ chức, người đại diện theo pháp luật): "+$F{tenNvp}
++"<br>"+
+"Sinh ngày: "+ ($F{ngaysinhNvp} == null?".........................":$F{ngaysinhNvp})+" , "+" Quốc tịch: "+($F{quoctichNvp} == null?".........................":$F{quoctichNvp})
++"<br>"+
+"Nghề nghiệp/Lĩnh vực hoạt động hoặc Mã số doanh nghiệp: "+($F{nghenghiepNvp}==null?".........................":$F{nghenghiepNvp})
++"<br>"+
+"Nơi ở hiện tại/Địa chỉ trụ sở: "+($F{diachiNvp} == null?".........................":$F{diachiNvp})
++"<br>"+
+"CMND hoặc CCCD hoặc hộ chiếu/GCN đăng ký hoặc GP thành lập số: "+($F{soCmndNvp} == null?".........................":$F{soCmndNvp})
++"<br>"+
+"Ngày cấp: "+($F{ngayCapCmnd} == null?".........................":new SimpleDateFormat("dd/MM/yyyy").format($F{ngayCapCmnd}))+" , "+" Nơi cấp: "+($F{noiCapCmnd} == null?".........................":$F{noiCapCmnd})
++"<br>"+
+"Số tài khoản: "+$F{soTaiKhoanNvp}+" , "+" Tại: "+$F{nganHangNvp}
++"<br>"+
+"- Số tiền bị khấu trừ: "+$F{soTienKhauTru}+" (Bằng chữ: "+$F{soTienBangChu}+" )"
++"<br>"+
+"Lý do khấu trừ: Không tự nguyện chấp hành Quyết định xử phạt vi phạm hành chính số: "+$F{soQdXphc}+" ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{ngayQdXphc})+" do "+ $F{nguoiKy}+" ký;"
++"<br>"+
+"- Ông(Bà)/Tổ chức "+$F{tenNvp}+" có trách nhiệm yêu cầu "+$F{nganHangNvp}+" chuyển tiền từ tài khoản "+$F{soTaiKhoanNvp}+" vào tài khoản: "+$F{soTkKhoBac}+" của "+$F{tenDiaChiNganHangThuTien}+" trong thời hạn "+$F{thoiHan}+" ngày, kể từ ngày nhận được Quyết định này."
++"<br>"+
+"- Trường hợp Ông(Bà)/Tổ chức "+$F{tenNvp}+" không tự nguyện thực hiện trong thời hạn quy định thì "+$F{nganHangNvp}+" có trách nhiệm trích chuyển từ tài khoản của cá nhân/tổ chức bị cưỡng chế số tiền bị khấu trừ nêu trên đến tài khoản "+$F{soTkKhoBac}+" của "+$F{tenDiaChiNganHangThuTien}
++"<br>"+
+"<b>Điều 2.</b> Quyết định này có hiệu lực thi hành kể từ ngày: "+ new SimpleDateFormat("dd/MM/yyyy").format($F{ngayHieuLuc})
++"<br>"+
+"<b>Điều 3.</b> Quyết định này được:"
++"<br>"+
+"1. Giao cho Ông(Bà)/Tổ chức bị áp dụng biện pháp cưỡng chế thi hành quyết định xử phạt vi phạm hành chính có tên tại Điều 1 để chấp hành Quyết định. Ông(Bà)/Tổ chức phải thực hiện Quyết định này và phải chịu mọi chi phí về việc tổ chức thực hiện cưỡng chế."
++"<br>"+
+"Ông(Bà)/Tổ chức "+ $F{tenNvp}+" có quyền khiếu nại hoặc khởi kiện hành chính đối với Quyết định này theo quy định của pháp luật."
++"<br>"+
+"2. Gửi cho "+ $F{nganHangNvp}+" để chuyển số tiền bị khấu trừ đến tài khoản của "+$F{tenDiaChiNganHangThuTien}
++"<br>"+
+"3. Gửi cho "+$F{tenDonViThiHanhQd}+" để tổ chức thực hiện Quyết định này./."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="61">
+			<staticText>
+				<reportElement x="31" y="10" width="100" height="51" uuid="eed0f3f2-619d-45bf-9845-c0946a0e1b2a"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[<b>Nơi nhận:</b><br>
+- Như Điều 3;<br>
+- Lưu: Hồ sơ.
+]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="268" y="10" width="250" height="14" uuid="4d3c5f69-98a3-438e-a977-cc85c111ade3">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+					<paragraph lineSpacingSize="0.0" firstLineIndent="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b><center>NGƯỜI RA QUYẾT ĐỊNH \n</center></b>"+
+
+"<center><i>(Ký, đóng dấu; ghi rõ chức vụ, họ tên)</i></center>"
++"<br>"
++"<br>"
++"<br>"
++"<br>"
++"<br>"
++"<br>"
++"<br>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

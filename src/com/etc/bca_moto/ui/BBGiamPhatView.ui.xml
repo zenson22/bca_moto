@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<?xdevuiml version="1.0"?>
+<?template BROWSER_WXGA?>
+<?import com.etc.bca_moto.entities.CanBo?>
+<?import com.etc.bca_moto.entities.QdGiamMienTienPhat04?>
+<?import com.vaadin.ui.AbsoluteLayout?>
+<?import com.vaadin.ui.CustomComponent?>
+<?import com.vaadin.ui.GridLayout?>
+<?import com.vaadin.ui.Label?>
+<?import com.vaadin.ui.PopupDateField?>
+<?import com.xdev.ui.XdevButton?>
+<?import com.xdev.ui.XdevFieldGroup?>
+<?import com.xdev.ui.XdevGridLayout?>
+<?import com.xdev.ui.XdevTextField?>
+<?import com.xdev.ui.XdevView?>
+<?import com.xdev.ui.entitycomponent.combobox.XdevComboBox?>
+<?import java.lang.String?>
+<XdevView xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="TestFieldGroup" primaryStyleName="v-font-ct">
+    <x:constraints zpos="0" width="100%" height="100%" />
+    <GridLayout x:name="gridLayout" primaryStyleName="v-gridlayout-scroll">
+        <x:constraints zpos="0" width="1300px" height="100%" />
+        <AbsoluteLayout x:name="absoluteLayoutTitle">
+            <x:constraints gridx="1" gridy="1" weighty="0.0" weightx="0.1" width="100%" height="250px" />
+            <Label x:name="lblQuocHieu" primaryStyleName="v-label-ct" value="&lt;b&gt;CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM&lt;br&gt; Độc lập - Tự do - Hạnh phúc&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="50px" left="822px" width="400px" height="50px" />
+            </Label>
+            <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" x:name="txtOne">
+                <x:constraints top="52px" left="28px" />
+            </XdevTextField>
+            <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" x:name="txtTwo">
+                <x:constraints top="87px" left="28px" />
+            </XdevTextField>
+            <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" x:name="txtThree">
+                <x:constraints top="122px" left="58px" />
+            </XdevTextField>
+            <Label x:name="label" value="(1)" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="57px" left="108px" width="30px" height="30px" />
+            </Label>
+            <Label x:name="label2" value="(2)" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="92px" left="108px" width="30px" height="30px" />
+            </Label>
+            <Label x:name="label3" value="Số:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="127px" left="28px" width="30px" height="30px" />
+            </Label>
+            <Label x:name="label4" primaryStyleName="v-label-ct" value="&lt;b&gt;QUYẾT ĐỊNH&lt;br&gt;Giảm/Miễn tiền phạt vi phạm hành chính&lt;/b&gt;&lt;hr style=&quot;width:100px;text-align:center;margin-top:-3px;&quot;&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="165px" left="0px" />
+            </Label>
+            <Label x:name="label5" value="/QĐ-GMTP" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="127px" left="138px" width="100px" height="30px" />
+            </Label>
+            <Label x:name="label7" value="(3)&amp;emsp; &amp;emsp; &amp;emsp; ,ngày" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="115px" left="835px" width="150px" height="30px" />
+            </Label>
+            <XdevTextField columns="5" inputPrompt="........................................" styleName="borderless" x:name="txtAddress">
+                <x:constraints top="109px" left="795px" width="100px" />
+            </XdevTextField>
+            <PopupDateField dateFormat="dd/MM/yyyy" x:name="popupDateFieldNgayLap">
+                <x:constraints top="109px" left="984px" />
+            </PopupDateField>
+            <XdevButton caption="In" x:name="cmdPrint" primaryStyleName="v-btnPrint">
+                <x:constraints top="41px" left="416px" weightx="0.0" alignment="TOP_CENTER" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <XdevButton caption="Lưu" x:name="cmdSave" primaryStyleName="v-btnLuu">
+                <x:constraints top="41px" left="339px" weightx="0.0" alignment="TOP_CENTER" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <XdevGridLayout x:name="form">
+                <x:constraints top="82px" left="600px" width="30px" height="30px" />
+                <XdevFieldGroup x:name="fieldGroup" x:entityType="QdGiamMienTienPhat04">
+                    <x:typeArguments>
+                        <typeArgument type="QdGiamMienTienPhat04" />
+                    </x:typeArguments>
+                </XdevFieldGroup>
+            </XdevGridLayout>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absoluteLayout">
+            <x:constraints gridx="1" gridy="2" weighty="0.0" weightx="0.1" width="100%" height="800px" />
+            <Label x:name="label6" value="Căn cứ Điều 77 Luật xử lý vi phạm hành chính;&lt;br&gt;Căn cứ Quyết định xử phạt vi phạm hành chính số:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="0px" left="70px" width="100%" height="50px" />
+            </Label>
+            <Label x:name="label8" value="Căn cứ Quyết định hoãn thi hành quyết định phạt tiền số">
+                <x:constraints top="80px" left="70px" width="100%" height="30px" />
+            </Label>
+            <Label x:name="label9" value="do:">
+                <x:constraints top="50px" left="30px" width="30px" height="30px" />
+            </Label>
+            <Label x:name="label10" value="ký;">
+                <x:constraints top="51px" left="1027px" width="30px" height="30px" />
+            </Label>
+            <Label x:name="label11" value="ngày" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="20px" left="780px" width="30px" height="30px" />
+            </Label>
+            <PopupDateField dateFormat="dd/MM/yyyy" x:name="popupDateFieldNgayXuPhatVPHC">
+                <x:constraints top="15px" left="815px" />
+            </PopupDateField>
+            <Label x:name="label12" value="ngày">
+                <x:constraints top="110px" left="30px" width="50px" height="30px" />
+            </Label>
+            <Label x:name="label13" value="ký (nếu có);" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="110px" left="928px" width="100px" height="30px" />
+            </Label>
+            <Label x:name="label14" value="ngày">
+                <x:constraints top="170px" left="30px" width="50px" height="30px" />
+            </Label>
+            <Label x:name="label15" value="(nếu có);">
+                <x:constraints top="170px" left="928px" width="100px" height="30px" />
+            </Label>
+            <Label x:name="label16" value="Căn cứ Quyết định về việc giao quyền xử phạt vi phạm hành chính số">
+                <x:constraints top="140px" left="70px" width="100%" height="30px" />
+            </Label>
+            <PopupDateField dateFormat="dd/MM/yyyy" x:name="popupDateFieldHoanTHQD">
+                <x:constraints top="104px" left="88px" />
+            </PopupDateField>
+            <PopupDateField dateFormat="dd/MM/yyyy" x:name="popupDateFieldNgayGQXP">
+                <x:constraints top="166px" left="88px" />
+            </PopupDateField>
+            <Label x:name="label17" value="do:">
+                <x:constraints top="110px" left="282px" width="30px" height="30px" />
+            </Label>
+            <Label x:name="label18" value="Xét đơn đề nghị giảm/miễn tiền phạt vi phạm hành chính ngày">
+                <x:constraints top="200px" left="70px" width="100%" height="30px" />
+            </Label>
+            <PopupDateField dateFormat="dd/MM/yyyy" x:name="popupDateFieldXetDon">
+                <x:constraints top="193px" left="480px" />
+            </PopupDateField>
+            <Label x:name="label19" value="của Ông(Bà)" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="199px" left="899px" width="100px" height="30px" />
+            </Label>
+            <Label x:name="label20" value="được&lt;sup&gt;(4)&lt;/sup&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="230px" left="183px" width="60px" height="30px" />
+            </Label>
+            <Label x:name="label21" value="xác nhận;">
+                <x:constraints top="228px" left="981px" width="100px" height="30px" />
+            </Label>
+            <Label x:name="label22" value="Tôi:">
+                <x:constraints top="261px" left="70px" width="40px" height="30px" />
+            </Label>
+            <Label x:name="label23" value="Cấp bậc, chức vụ: ">
+                <x:constraints top="259px" left="361px" width="120px" height="30px" />
+            </Label>
+            <Label x:name="label24" value="Đơn vị:">
+                <x:constraints top="260px" left="675px" width="70px" height="30px" />
+            </Label>
+            <Label x:name="label25" primaryStyleName="v-label-ct" value="&lt;b&gt;QUYẾT ĐỊNH:&lt;br&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="322px" left="0px" />
+            </Label>
+            <Label x:name="label26" value="&lt;b&gt;Điều 1.&lt;/b&gt; Giảm/Miễn tiền phạt vi phạm hành chính tại Quyết định xử phạt vi phạm hành chính số" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="355px" left="71px" width="100%" height="30px" />
+            </Label>
+            <PopupDateField dateFormat="dd/MM/yyyy" x:name="popupDateFieldHoanTHQD2">
+                <x:constraints top="384px" left="188px" />
+            </PopupDateField>
+            <Label x:name="label27" value="ngày">
+                <x:constraints top="390px" left="130px" width="50px" height="30px" />
+            </Label>
+            <Label x:name="label28" value="do:">
+                <x:constraints top="390px" left="382px" width="30px" height="30px" />
+            </Label>
+            <Label x:name="label29" value="ký.">
+                <x:constraints top="388px" left="1000px" width="30px" height="30px" />
+            </Label>
+            <Label x:name="label30" value="Số tiền phạt mà Ông(Bà)">
+                <x:constraints top="430px" left="72px" width="200px" height="30px" />
+            </Label>
+            <Label x:name="label31" value="được giảm/miễn là:">
+                <x:constraints top="460px" left="30px" width="150px" height="30px" />
+            </Label>
+            <Label x:name="label32" value="đồng (Bằng chữ:">
+                <x:constraints top="460px" left="400px" width="150px" height="30px" />
+            </Label>
+            <Label x:name="label33" value=").">
+                <x:constraints top="463px" left="1012px" width="30px" height="30px" />
+            </Label>
+            <Label x:name="label34" value="Số tiền sau khi giảm/miễn Ông(Bà) phải nộp là:">
+                <x:constraints top="490px" left="72px" width="330px" height="30px" />
+            </Label>
+            <Label x:name="label35" value="(Bằng chữ:">
+                <x:constraints top="520px" left="30px" width="100px" height="30px" />
+            </Label>
+            <Label x:name="label37" value=").">
+                <x:constraints top="524px" left="1012px" width="30px" height="30px" />
+            </Label>
+            <Label x:name="label38" value="đồng">
+                <x:constraints top="494px" left="1012px" width="50px" height="30px" />
+            </Label>
+            <Label x:name="label36" value="Lý do giảm/miễn:&lt;br&gt;Ông(Bà) được nhận lại&lt;sup&gt;(5)&lt;/sup&gt;&lt;br&gt;&lt;b&gt;Điều 2.&lt;/b&gt; Quyết định này có hiệu lực thi hành kể từ ngày ký.&lt;br&gt; &lt;b&gt;Điều 3.&lt;/b&gt; Quyết định này được: &lt;br&gt;1. Giao cho Ông(Bà)&lt;br&gt; 2. Gửi cho&lt;sup&gt;(6)&lt;/sup&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="550px" left="72px" width="100%" height="150px" />
+            </Label>
+            <Label x:name="label39" value="để chấp hành Quyết định.">
+                <x:constraints top="640px" left="900px" width="200px" height="30px" />
+            </Label>
+            <Label x:name="label40" value="để tổ chức thực hiện Quyết định này./.">
+                <x:constraints top="670px" left="832px" width="250px" height="30px" />
+            </Label>
+            <Label x:name="lblQuocHieu2" primaryStyleName="v-label-ct" value="&lt;b&gt;NGƯỜI RA QUYẾT ĐỊNH&lt;/b&gt;&lt;br&gt;&lt;i&gt;(Ký, đóng dấu, ghi rõ chức vụ, họ tên)&lt;/i&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="706px" left="854px" width="400px" height="50px" />
+            </Label>
+            <Label x:name="label41" value="&lt;b&gt;Nơi nhận:&lt;/b&gt;&lt;br&gt; - Như Điều 3;&lt;br&gt;- Lưu Hồ sơ. " contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="700px" left="30px" width="100px" height="100px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbQdVPHC" x:entity="CustomComponent" inputPrompt="Chọn đê">
+                <x:constraints top="0px" left="520px" />
+                <x:entityProperty>
+                    <entry type="String" property="so" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+                <x:data methodName="findById" />
+                <x:event>valueChange.valueChange</x:event>
+            </XdevComboBox>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbQdHoanThiHanh" x:entity="CustomComponent" inputPrompt=" Không chọn -&gt; lỗi">
+                <x:constraints top="73px" left="520px" />
+                <x:entityProperty>
+                    <entry type="String" property="so" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+                <x:event>valueChange.valueChange</x:event>
+            </XdevComboBox>
+            <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" enabled="false" x:name="txtQdVPHC" visible="false">
+                <x:constraints top="0px" left="401px" />
+            </XdevTextField>
+            <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" enabled="false" x:name="txtHoanTH" visible="false">
+                <x:constraints top="80px" left="730px" />
+            </XdevTextField>
+            <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" enabled="false" x:name="txtDvCSGTId" visible="false">
+                <x:constraints top="257px" left="928px" />
+            </XdevTextField>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbCanBo" x:entity="CanBo" inputPrompt="Phải chọn">
+                <x:constraints top="259px" left="139px" />
+                <x:entityProperty>
+                    <entry type="String" property="tenCanBo" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="CanBo" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+                <x:event>valueChange.valueChange</x:event>
+            </XdevComboBox>
+            <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" enabled="false" x:name="txtCapBac">
+                <x:constraints top="255px" left="490px" width="150px" />
+            </XdevTextField>
+            <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" enabled="false" x:name="txtDvCSGT">
+                <x:constraints top="255px" left="755px" width="150px" />
+            </XdevTextField>
+        </AbsoluteLayout>
+    </GridLayout>
+</XdevView>
+

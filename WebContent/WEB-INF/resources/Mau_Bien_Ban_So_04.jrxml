@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Mau_Bien_Ban_So_04" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1f815788-fb03-4c5c-b4e2-810524b70a96">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DB Oracle"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="388"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="598"/>
+	<parameter name="id" class="java.lang.String"/>
+	<parameter name="cbId" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT GM."SO",
+	GM."NGAY_LAP",
+	GM."GC_DE_BIET",
+	GM."GC_THUC_HIEN",
+	GM."GT_TV_NHAN_LAI",
+	GM."TONGTIEN_BANGCHU",
+	GM."TONGTIEN_PHAT",
+	GM."LY_DO_GIAM_MIEN",
+	NVP."TEN",
+	cb."TEN_CAN_BO",
+	dv_csgt."TEN_DON_VI",
+	dv_csgt."TEN_COQUAN_CHUQUAN",
+	dv_csgt."TEN_COQUAN_LAP",
+	bts."DIEN_GIAI",
+	ddhc."TEN" AS "DIA_CHI_LAP_BB",
+	vphc."SO" AS "QD_VPHC_SO",
+	hth."SO" AS "QD_HTH_SO"
+FROM "QD_GIAM_MIEN" GM
+	INNER JOIN "TC_NGUOI_VIPHAM" NVP ON 
+	 NVP."ID" = GM."TC_NGUOI_VIPHAM_ID" 
+	INNER JOIN "CAN_BO" cb ON 
+	 cb."DON_VI_CSGT_ID" = GM."DON_VI_CSGT_ID" 
+	INNER JOIN "DON_VI_CSGT" dv_csgt ON 
+	 dv_csgt."ID" = GM."DON_VI_CSGT_ID" 
+	INNER JOIN "BANG_THAMSO" bts ON 
+	 bts."MA_THAMSO" = cb."CAP_BAC" 
+	INNER JOIN "DIA_DANH_HANH_CHINH" ddhc ON 
+	 ddhc."ID" = GM."DIA_DANH_HANH_CHINH_ID" 
+	INNER JOIN "QUYETDINH_VPHC" vphc ON 
+	 vphc."ID" = GM."QUYETDINH_VPHC_ID" 
+	INNER JOIN "QD_HOAN_THIHANH" hth ON 
+	 hth."ID" = GM."QD_HOAN_THIHANH_ID" 
+WHERE 
+	 GM."ID" = $P{id} 
+	 AND cb."ID" = $P{cbId} 
+	 AND bts."VUNG_DULIEU" = 'CAP_BAC']]>
+	</queryString>
+	<field name="SO" class="java.lang.String">
+		<fieldDescription><![CDATA[so]]></fieldDescription>
+	</field>
+	<field name="NGAY_LAP" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[ngayLap]]></fieldDescription>
+	</field>
+	<field name="GC_DE_BIET" class="java.lang.String">
+		<fieldDescription><![CDATA[gcDeBiet]]></fieldDescription>
+	</field>
+	<field name="GC_THUC_HIEN" class="java.lang.String">
+		<fieldDescription><![CDATA[gcThucHien]]></fieldDescription>
+	</field>
+	<field name="GT_TV_NHAN_LAI" class="java.lang.String">
+		<fieldDescription><![CDATA[gtTVNhanLai]]></fieldDescription>
+	</field>
+	<field name="TONGTIEN_BANGCHU" class="java.lang.String">
+		<fieldDescription><![CDATA[tongtienBangchu]]></fieldDescription>
+	</field>
+	<field name="TONGTIEN_PHAT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[tongtienPhat]]></fieldDescription>
+	</field>
+	<field name="LY_DO_GIAM_MIEN" class="java.lang.String">
+		<fieldDescription><![CDATA[lyDoGiamMien]]></fieldDescription>
+	</field>
+	<field name="TEN" class="java.lang.String"/>
+	<field name="TEN_CAN_BO" class="java.lang.String"/>
+	<field name="TEN_DON_VI" class="java.lang.String"/>
+	<field name="TEN_COQUAN_CHUQUAN" class="java.lang.String"/>
+	<field name="TEN_COQUAN_LAP" class="java.lang.String"/>
+	<field name="DIEN_GIAI" class="java.lang.String"/>
+	<field name="DIA_CHI_LAP_BB" class="java.lang.String"/>
+	<field name="QD_VPHC_SO" class="java.lang.String"/>
+	<field name="QD_HTH_SO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="336" y="17" width="218" height="32" uuid="f5b721ae-9130-46c5-9744-6ac7ee38d144"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="27" width="150" height="30" uuid="a141cc74-394b-42eb-a468-b83af8982d1a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Độc lập - Tự do - Hạnh phúc]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="336" y="50" width="217" height="30" uuid="c5bb1e34-c589-413a-a62d-01d33710f6c6"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DIA_CHI_LAP_BB}+" , ngày "+
+$F{NGAY_LAP}.getDate()+
+" tháng"+
+($F{NGAY_LAP}.getMonth()+01)+
+" năm"+
+($F{NGAY_LAP}.getYear()+1900)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="80" y="18" width="200" height="38" uuid="16069047-2326-444a-a00c-9d1140be4d96"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TEN_COQUAN_LAP}+"<br>"+$F{TEN_DON_VI}+" <br>"+
+"Số:"+$F{SO}+"/QĐ-GMTP"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="474" height="42" uuid="20e6bedd-18ee-48b4-b4c6-59db491e055d"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="html">
+					<font fontName="Times New Roman" size="10" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[QUYẾT ĐỊNH<br>Giảm/Miến tiền phạt vi phạm hành chính<br><b>_________________</b>
+				]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="80" y="42" width="474" height="35" uuid="f77c8564-373d-4e60-a750-a4c57363b8e7">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="Times New Roman"/>
+					<paragraph firstLineIndent="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Căn cứ Điều 77 Luật xử lý vi phạm hành chính;"+
+"<br>Căn cứ Quyết định xử phạt vi phạm hành chính số: ....................."+$F{QD_VPHC_SO}+
+"..................................ngày"+$F{NGAY_LAP}.getDate()+
+"/"+($F{NGAY_LAP}.getMonth()+01)+"/"+($F{NGAY_LAP}.getYear()+1900)+"&emsp; do ........................................."+ $F{TEN_CAN_BO}+"....................................................ký;<br>"+
+"Căn cứ Quyết định hoãn thi hành quyết định phạt tiền "+ 
+"số............................."+$F{QD_HTH_SO}+"...............................ngày"+$F{NGAY_LAP}.getDate()+
+"/"+($F{NGAY_LAP}.getMonth()+01)+"/"+($F{NGAY_LAP}.getYear()+1900)+ " &emsp; do.........................................."+$F{TEN_CAN_BO}+"............................ký (nếu có);"+
+"<br>	Căn cứ Quyết định về việc giao quyền xử phạt vi phạm hành chính số ..................................." +
+$F{QD_VPHC_SO}+".............................."+$F{NGAY_LAP}.getDate()+
+"/"+($F{NGAY_LAP}.getMonth()+01)+"/"+($F{NGAY_LAP}.getYear()+1900)+"................................(nếu có);"+
+"<br>	Xét đơn đề nghị giảm/miễn tiền phạt vi phạm hành chính ngày "
++$F{NGAY_LAP}.getDate()+"/"+($F{NGAY_LAP}.getMonth()+01)+"/"+($F{NGAY_LAP}.getYear()+1900)+
+"&emsp;của Ông(Bà).........."+$F{TEN}+"................được(4)......"+$F{TEN_CAN_BO}
++".......xác nhận;"+
+"<br>	Tôi:..."+$F{TEN_CAN_BO}+".Cấp bậc, chức vụ:.............."+$F{DIEN_GIAI}+"............Đơn vị:......"+$F{TEN_DON_VI}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="6" width="474" height="24" uuid="dcd9c261-613e-4c53-97c1-bd8d6b657bf6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[QUYẾT ĐỊNH:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="80" y="30" width="474" height="30" isPrintWhenDetailOverflows="true" uuid="eda8857c-664c-4ae7-aee3-f896b67ebf1e"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Điều 1</b> Giảm/Miễn tiền phạt vi phạm hành chính tại Quyết định xử phạt vi phạm hành chính số....................."+$F{QD_HTH_SO}+
+"ngày"+$F{NGAY_LAP}.getDate()+"/"+($F{NGAY_LAP}.getMonth()+01)+"/"+($F{NGAY_LAP}.getYear()+1900)+" &emsp;do..........................."+$F{TEN_CAN_BO}+".........................ký."+
+"<br>Số tiền phạt mà Ông(Bà) ......"+$F{TEN}+"........ "+
+"được giảm/miễn là: ........................................đồng (Bằng chữ: ................................................................................................)."+
+"<br>Số tiền phạt sau khi giảm/miễn Ông(Bà) phải nộp là:..."+$F{TONGTIEN_PHAT}+"..đồng "+
+"(Bằng chữ: ..........................."+$F{TONGTIEN_BANGCHU}+"...............).<br>"+
+"Lý do giảm/miễn:..................................................."+ $F{LY_DO_GIAM_MIEN}+"............................................."+
+"<br>Ông(Bà) được nhận lại(5)......................"+$F{GT_TV_NHAN_LAI}+"...........................<br>"+
+"<b>Điều 2.</b> Quyết định này có hiệu lực thi hành kể từ ngày ký.<br>"+
+"<b>Điều 3.</b> Quyết định này được:<br>1. Giao cho Ông(Bà).........................."+ $F{TEN}+"........................ để chấp hành Quyết định."+
+"<br>2. Gửi cho(6)............."+$F{GC_THUC_HIEN}+"...........................để tổ chức thực hiện Quyết định này./.<br><br>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="96" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="70" width="474" height="25" uuid="b7658787-ddaa-47c4-8eaf-3c1ada885fdc"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="6" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[(1) Tên cơ quan chủ quản; (2) Tên đơn vị của người ra quyết định; (3) Ghi rõ địa danh hành chính; (4) Ghi rõ tên xã,  phường, thị trấn nơi cá nhân vi phạm cư trú hoặc cơ quan, tổ chức nơi người vi phạm học tập, làm việc đã thực hiện xác nhận; (5) Ghi giấy tờ, tăng vật, phương tiện vi phạm hành chính đã bị tạm giữ theo quy định tại khoản 6 Điều 125 Luật xử lý vi phạm hành chính; (6) Ghi tên cửa cá nhân/tổ chức có trách nhiệm chủ trì tổ chức thi hành Quyết định.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="128" height="60" uuid="08b01ca6-3419-4ee0-bea2-c60de12e3ba3"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[<B><i>Nơi nhận:</i></B>	
+<br>
+- Như Điều 3;
+<br>
+- Lưu: Hồ sơ.
+<br>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="380" y="0" width="174" height="30" uuid="c7fc82a0-fa83-4d53-8a03-4c9ab89ce0d9"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Times New Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b><style size=\'8'>NGƯỜI RA QUYẾT</style> ĐỊNH</b>"+
+"<br><i>(Ký, đóng dấu, ghi rõ chức vụ, họ tên)</i>"+
+"<br>"+$F{TEN_CAN_BO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

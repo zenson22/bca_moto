@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<?xdevuiml version="1.0"?>
+<?template BROWSER_XGA?>
+<?import com.vaadin.ui.AbsoluteLayout?>
+<?import com.vaadin.ui.Button?>
+<?import com.vaadin.ui.CheckBox?>
+<?import com.vaadin.ui.CustomComponent?>
+<?import com.vaadin.ui.Label?>
+<?import com.vaadin.ui.PopupDateField?>
+<?import com.vaadin.ui.TextField?>
+<?import com.xdev.ui.XdevAbsoluteLayout?>
+<?import com.xdev.ui.XdevGridLayout?>
+<?import com.xdev.ui.XdevView?>
+<?import com.xdev.ui.entitycomponent.combobox.XdevComboBox?>
+<XdevView xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="DemoTreeTable" primaryStyleName="v-font-ct">
+    <x:constraints zpos="0" width="100%" height="-1px" />
+    <XdevGridLayout x:name="gridLayout" primaryStyleName="v-gridlayout-scroll" autoFill="com.xdev.ui.XdevGridLayout.AutoFill.VERTICAL">
+        <x:constraints zpos="0" width="100%" height="-1px" />
+        <XdevAbsoluteLayout x:name="absoluteLayout">
+            <x:constraints gridx="1" gridy="1" weighty="0.1" weightx="0.1" width="100%" height="124px" />
+            <Label caption="" x:name="label" captionAsHtml="true" value="Chọn loại:">
+                <x:constraints gridHeight="1" gridx="1" gridy="1" top="10px" left="100px" weighty="0.0" weightx="0.0" alignment="TOP_LEFT" gridWidth="1" />
+            </Label>
+            <CheckBox caption="Phương Tiện" x:name="cbPhuongTien">
+                <x:constraints gridHeight="1" gridx="1" gridy="4" top="100px" left="300px" weighty="0.1" weightx="0.0" alignment="TOP_LEFT" gridWidth="1" />
+                <x:event>valueChange.valueChange</x:event>
+            </CheckBox>
+            <CheckBox caption="Đăng ký" x:name="cbDangKy">
+                <x:constraints gridHeight="1" gridx="1" gridy="3" top="70px" left="300px" weighty="0.1" weightx="0.0" alignment="TOP_LEFT" gridWidth="1" />
+                <x:event>valueChange.valueChange</x:event>
+            </CheckBox>
+            <CheckBox caption="GPLX" x:name="cbGPLX">
+                <x:constraints gridHeight="1" gridx="1" gridy="1" top="10px" left="300px" weighty="0.0" weightx="0.0" alignment="TOP_LEFT" gridWidth="1" />
+                <x:event>valueChange.valueChange</x:event>
+            </CheckBox>
+            <CheckBox caption="Kiểm định" x:name="cbKiemDinh">
+                <x:constraints top="40px" left="300px" />
+                <x:event>valueChange.valueChange</x:event>
+            </CheckBox>
+        </XdevAbsoluteLayout>
+        <AbsoluteLayout styleName="outside-range" x:name="absLayoutGPLX">
+            <x:constraints gridx="1" gridy="2" top="134px" left="0px" weighty="0.1" weightx="0.1" width="100%" height="70px" />
+            <Label x:name="label3" value="Hạng">
+                <x:constraints top="25px" left="50px" width="50px" />
+            </Label>
+            <Label x:name="label5" value="có giá trị đến:">
+                <x:constraints top="25px" left="353px" width="100px" />
+            </Label>
+            <PopupDateField x:name="popupDateField">
+                <x:constraints top="23px" left="452px" height="30px" />
+            </PopupDateField>
+            <Label x:name="label4" value="nơi cấp:">
+                <x:constraints top="25px" left="700px" width="80px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox" styleName="borderless" x:autoQuery="false">
+                <x:constraints top="25px" left="100px" width="40px" height="30px" />
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+            </XdevComboBox>
+            <Label caption="" x:name="label2" value="Tạm giữ 01 giáy phép lái xe:">
+                <x:constraints gridHeight="1" gridx="1" gridy="1" top="0px" left="50px" weighty="0.0" weightx="0.0" alignment="MIDDLE_CENTER" gridWidth="1" />
+            </Label>
+            <TextField columns="5" inputPrompt="..................................." styleName="borderless" x:name="textField4">
+                <x:constraints top="25px" left="212px" width="10%" height="25px" />
+            </TextField>
+            <Label x:name="label12" value="số:&lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="25px" left="163px" width="50px" />
+            </Label>
+            <TextField columns="5" inputPrompt="..................................." styleName="borderless" x:name="textField5">
+                <x:constraints top="25px" left="820px" height="25px" />
+            </TextField>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox2" styleName="borderless" x:autoQuery="false">
+                <x:constraints top="25px" left="781px" width="40px" height="30px" />
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+            </XdevComboBox>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absLayoutKiemDinh">
+            <x:constraints gridx="1" gridy="3" weighty="0.1" weightx="0.1" width="100%" height="70px" />
+            <Label x:name="label6" value="Tạm giữ 01 giấy chứng nhận kiểm định an toàn kỹ thuật bảo vệ môi trường">
+                <x:constraints top="1px" left="50px" width="100%" />
+            </Label>
+            <Label x:name="label7" value="Số:&lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="25px" left="50px" height="25px" />
+            </Label>
+            <TextField columns="5" inputPrompt="..................................." styleName="borderless" x:name="textField">
+                <x:constraints top="25px" left="50px" height="25px" />
+            </TextField>
+            <Label x:name="label8" value="có giá trị đến:">
+                <x:constraints top="25px" left="260px" />
+            </Label>
+            <PopupDateField x:name="popupDateField2">
+                <x:constraints top="25px" left="360px" height="30px" />
+            </PopupDateField>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absLayoutDangKy">
+            <x:constraints gridx="1" gridy="4" weighty="0.0" weightx="0.1" width="100%" height="50px" />
+            <Label x:name="label9" value="Tạm giữ 01 giấy đăng ký xe số:&lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="0px" left="50px" width="220px" />
+            </Label>
+            <TextField columns="5" inputPrompt="..............................................................." styleName="borderless" required="true" x:name="textField2">
+                <x:constraints top="0px" left="269px" width="30%" height="25px" />
+            </TextField>
+            <Label x:name="label10" value="nơi cấp:&amp;emsp;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="0px" left="520px" width="90px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox4" styleName="borderless" x:autoQuery="false">
+                <x:constraints top="0px" left="620px" width="40px" height="30px" />
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+            </XdevComboBox>
+            <TextField columns="5" inputPrompt=".............................................................." styleName="borderless" required="true" x:name="textField6">
+                <x:constraints top="0px" left="669px" width="80%" height="25px" />
+            </TextField>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absLayoutPhuongTien">
+            <x:constraints gridx="1" gridy="5" weighty="0.0" weightx="0.1" width="100%" height="50px" />
+            <Label x:name="label11" value="Tạm giữ phương tiện BKS &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="0px" left="50px" width="100%" />
+            </Label>
+            <TextField columns="5" inputPrompt="....................................." styleName="borderless" required="true" x:name="textField3">
+                <x:constraints top="0px" left="250px" width="60%" height="25px" />
+            </TextField>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absoluteLayout3">
+            <x:constraints gridx="1" gridy="6" weighty="0.1" weightx="0.1" width="100%" height="70px" />
+            <Button caption="Lưu" styleName="outside-range" x:name="btnSave">
+                <x:constraints gridHeight="1" gridx="1" gridy="5" top="10px" left="256px" weighty="0.0" weightx="0.0" alignment="MIDDLE_LEFT" gridWidth="1" />
+            </Button>
+            <Button caption="Đóng" styleName="outside-range" x:name="btnClose">
+                <x:constraints gridHeight="1" gridx="2" gridy="5" top="10px" left="362px" weighty="0.0" weightx="0.0" alignment="TOP_LEFT" gridWidth="1" />
+                <x:event>click.buttonClick</x:event>
+            </Button>
+        </AbsoluteLayout>
+    </XdevGridLayout>
+</XdevView>
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+
+<hibernate-reverse-engineering>
+    <type-mapping>
+        <sql-type jdbc-type="NUMERIC" name="number" not-null="true" precision="1" scale="0" hibernate-type="boolean" />
+        <sql-type jdbc-type="NUMERIC" name="number" precision="1" scale="0" hibernate-type="java.lang.Boolean" />
+        <sql-type jdbc-type="NUMERIC" name="number" not-null="true" precision="3" scale="0" hibernate-type="short" />
+        <sql-type jdbc-type="NUMERIC" name="number" precision="3" scale="0" hibernate-type="java.lang.Short" />
+        <sql-type jdbc-type="NUMERIC" name="number" not-null="true" scale="0" hibernate-type="long" />
+        <sql-type jdbc-type="NUMERIC" name="number" scale="0" hibernate-type="java.lang.Long" />
+        <sql-type jdbc-type="NUMERIC" name="number" not-null="true" hibernate-type="double" />
+        <sql-type jdbc-type="NUMERIC" name="number" hibernate-type="java.lang.Double" />
+        <sql-type jdbc-type="BLOB" hibernate-type="byte[]" />
+        <sql-type jdbc-type="CLOB" hibernate-type="java.lang.String" />
+        <sql-type jdbc-type="OTHER" hibernate-type="java.sql.Timestamp" />
+    </type-mapping>
+    <table-filter match-schema="BCA_MOTO" match-name="QD_GIAM_MIEN_TIEN_PHAT_04" />
+    <table schema="BCA_MOTO" name="QD_GIAM_MIEN_TIEN_PHAT_04" class="com.etc.bca_moto.entities.QdGiamMienTienPhat04" />
+</hibernate-reverse-engineering>
+

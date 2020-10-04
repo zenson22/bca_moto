@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<?xdevuiml version="1.0"?>
+<?template BROWSER_WXGA?>
+<?import com.vaadin.ui.AbsoluteLayout?>
+<?import com.vaadin.ui.Button?>
+<?import com.vaadin.ui.CustomComponent?>
+<?import com.vaadin.ui.GridLayout?>
+<?import com.vaadin.ui.Label?>
+<?import com.vaadin.ui.PopupDateField?>
+<?import com.vaadin.ui.TextArea?>
+<?import com.vaadin.ui.TextField?>
+<?import com.xdev.ui.XdevFieldGroup?>
+<?import com.xdev.ui.XdevGridLayout?>
+<?import com.xdev.ui.XdevView?>
+<?import com.xdev.ui.entitycomponent.combobox.XdevComboBox?>
+<XdevView xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="BBVPHCView" primaryStyleName="v-font-ct">
+    <x:constraints zpos="0" width="100%" height="100%" />
+    <GridLayout x:name="gridLayout" primaryStyleName="v-gridlayout-scroll" captionAsHtml="true">
+        <x:constraints zpos="0" width="1920px" height="-1px" />
+        <AbsoluteLayout caption="" x:name="absoluteLayout" captionAsHtml="true">
+            <x:constraints gridx="1" gridy="1" weighty="0.0" weightx="0.1" width="100%" height="50px" />
+            <Button icon="FontAwesome.SAVE" caption="Lưu" x:name="brnSave" primaryStyleName="v-btnLuu">
+                <x:constraints top="10px" left="360px" width="80px" />
+                <x:event>click.buttonClick</x:event>
+            </Button>
+            <Button icon="FontAwesome.PRINT" caption="In" x:name="btnPrint" primaryStyleName="v-btnPrint">
+                <x:constraints top="10px" left="465px" width="80px" />
+                <x:event>click.buttonClick</x:event>
+            </Button>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absoluteLayout2">
+            <x:constraints gridx="1" gridy="2" weighty="0.0" weightx="0.1" width="1300px" height="1000px" />
+            <Label x:name="label" value="&lt;b&gt;CỤC CẢNH SÁT GIAO THÔNG&lt;/b&gt;&lt;br&gt;PHÒNG CẢNH SÁT GIAO THÔNG&lt;br&gt;Số:&lt;br&gt;Nhập số BB:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="10px" left="50px" width="30%" height="100px" />
+            </Label>
+            <Label x:name="label2" primaryStyleName="v-label-ct" value="&lt;b&gt;CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM&lt;br&gt; Độc lập - Tự do - Hạnh phúc&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="10px" left="849px" width="400px" height="50px" />
+            </Label>
+            <Label x:name="label3" primaryStyleName="v-label-ct" value="&lt;b&gt;BIÊN BẢN VI PHẠM HÀNH CHÍNH&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="115px" left="50px" height="25px" />
+            </Label>
+            <Label x:name="label4" value="Căn cứ &amp;emsp;&lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="140px" left="50px" height="25px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox" styleName="borderless" x:autoQuery="false">
+                <x:constraints top="140px" left="140px" width="40px" height="25px" />
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+            </XdevComboBox>
+            <Label x:name="label6" value="Hồi&lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="170px" left="50px" height="25px" />
+            </Label>
+            <Label x:name="label7" value="Giờ&lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="170px" left="180px" width="50px" />
+            </Label>
+            <TextField columns="5" inputPrompt="............................................." styleName="borderless" x:name="txtFieldHoursNL">
+                <x:constraints top="170px" left="100px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="................" styleName="borderless" x:name="txtFieldMinuteNL">
+                <x:constraints top="170px" left="230px" width="50px" height="25px" />
+            </TextField>
+            <Label x:name="label8" value="phút, ngày&lt;b style=&quot;color:red&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="170px" left="280px" width="100px" />
+            </Label>
+            <PopupDateField dateFormat="dd/MM/yyyy" x:name="popupDateFieldNL">
+                <x:constraints top="170px" left="380px" height="25px" />
+            </PopupDateField>
+            <Label x:name="label9" value="Tại: &lt;b style=&quot;color:red&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="200px" left="50px" width="50px" height="25px" />
+            </Label>
+            <TextField columns="5" inputPrompt="........................................" styleName="borderless" x:name="txtFieldNoiLapBB">
+                <x:constraints top="200px" left="100px" width="150px" height="25px" />
+            </TextField>
+            <Label x:name="label10" value="Chúng tôi gồm:">
+                <x:constraints top="230px" left="50px" height="25px" />
+            </Label>
+            <Label x:name="label11" value="1.&lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="260px" left="50px" />
+            </Label>
+            <Label x:name="label12" value="2. Với sự chứng kiếm của:">
+                <x:constraints top="290px" left="50px" height="25px" />
+            </Label>
+            <Label x:name="label13" value="Tiến hành lập biên bản về vi phạm hành chính (VPHC) đối với Ông(Bà):">
+                <x:constraints top="320px" left="50px" height="25px" />
+            </Label>
+            <XdevComboBox caption="" itemCaptionFromAnnotation="false" x:name="cbChucVu" filteringMode="com.vaadin.shared.ui.combobox.FilteringMode.OFF" x:entity="CustomComponent" inputPrompt="Chọn gì đi " x:autoQuery="false">
+                <x:constraints top="260px" left="300px" height="25px" />
+                <x:entityProperty>
+                    <entry type="long" property="id" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+                <x:data methodName="findById" />
+            </XdevComboBox>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbDonViCSGT" x:entity="CustomComponent" inputPrompt="Chọn một giá trị" x:autoQuery="false">
+                <x:constraints top="260px" left="530px" height="25px" />
+                <x:entityProperty>
+                    <entry type="long" property="id" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+                <x:data methodName="findById" />
+            </XdevComboBox>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbNguoiChungKien" x:entity="CustomComponent" styleName="borderless">
+                <x:constraints top="290px" left="300px" width="100px" height="25px" />
+                <x:entityProperty>
+                    <entry type="long" property="id" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+                <x:data methodName="findByLevel" />
+            </XdevComboBox>
+            <Label x:name="label14" value="Sinh ngày: &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;Quốc tịch:&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;Nghề nhiệp:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="350px" left="50px" width="100%" height="25px" />
+            </Label>
+            <Label x:name="label15" value="Nơi ở hiện tại: &amp;emsp;&lt;b style=&quot;color:red&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="380px" left="50px" height="25px" />
+            </Label>
+            <Label x:name="label16" value="CMND hoặc CCCD hoặc hộ chiếu:">
+                <x:constraints top="410px" left="50px" height="25px" />
+            </Label>
+            <Label x:name="label17" value="Ngày cấp:">
+                <x:constraints top="440px" left="50px" width="100px" height="25px" />
+            </Label>
+            <XdevComboBox required="true" itemCaptionFromAnnotation="false" x:name="cbQuocTich" styleName="borderless" x:autoQuery="false">
+                <x:constraints top="350px" left="450px" width="40px" height="25px" />
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+            </XdevComboBox>
+            <XdevComboBox required="true" x:name="cbNgheNghiep" styleName="borderless" x:autoQuery="false">
+                <x:constraints top="350px" left="800px" width="40px" height="25px" />
+                <x:typeArguments>
+                    <typeArgument type="CustomComponent" />
+                </x:typeArguments>
+            </XdevComboBox>
+            <Label x:name="label18" value="Số điện thoại:">
+                <x:constraints top="410px" left="500px" />
+            </Label>
+            <PopupDateField x:name="popupDateFieldCCCD">
+                <x:constraints top="440px" left="150px" height="25px" />
+            </PopupDateField>
+            <Label x:name="label19" value="Nơi cấp: ">
+                <x:constraints top="440px" left="400px" width="100px" height="25px" />
+            </Label>
+            <TextField inputPrompt="......................................................" styleName="borderless" x:name="txtFieldTenCB">
+                <x:constraints top="260px" left="100px" width="150px" height="25px" />
+            </TextField>
+            <Button icon="FontAwesome.CARET_LEFT" caption="" x:name="btnNhapSoBB" primaryStyleName="v-btnLeft">
+                <x:constraints top="77px" left="170px" width="50px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </Button>
+            <Label x:name="label20" value="Nội dung VPHC (ghi rõ thời gian, địa điểm xảy ra vi phạm; hành vi vi phạm hành chính tại Điểm, Khoản, Điều của Nghị định về xử phạt VPHC trong lĩnh vực cụ thể và các tình tiết có liên quan):" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="470px" left="50px" height="60px" />
+            </Label>
+            <TextField columns="5" inputPrompt="...................................................." styleName="borderless" x:name="txtFiledNhapSoBB" visible="false">
+                <x:constraints top="80px" left="230px" width="150px" height="25px" />
+            </TextField>
+            <Label x:name="label21" value="Ý kiến của người vi phạm hoặc đại diện tổ chức vi phạm:&lt;br&gt;Tang vật, phương tiện VPHC, giấy tờ bị tạm giữ (nếu có):" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="580px" left="50px" height="60px" />
+            </Label>
+            <TextArea columns="5" x:name="taNdVPHC" rows="2">
+                <x:constraints top="530px" left="50px" width="100%" />
+            </TextArea>
+            <TextArea columns="5" x:name="taTVPTGT" rows="2">
+                <x:constraints top="640px" left="50px" width="100%" />
+            </TextArea>
+            <Label x:name="label22" value="Ngoài ra, chúng tôi không tạm giữ thêm thứ gì khác.&lt;br&gt;Yêu cầu Ông(Bà):&lt;br&gt;tại&lt;br&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="690px" left="50px" height="75px" />
+            </Label>
+            <TextField columns="5" inputPrompt="...................................." styleName="borderless" x:name="txtFieldTenNgBiLapBBYC">
+                <x:constraints top="710px" left="180px" width="150px" height="25px" />
+            </TextField>
+            <Label x:name="label23" value="có mặt lúc &amp;emsp;&lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;giờ &amp;emsp;&lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;phút, ngày &amp;emsp;&lt;b style=&quot;color:red&quot;&gt;*&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="710px" left="600px" height="25px" />
+            </Label>
+            <TextField columns="5" inputPrompt="................" styleName="borderless" x:name="txtFieldHourMeet">
+                <x:constraints top="710px" left="710px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="......................." styleName="borderless" x:name="txtFieldMinuteMeet">
+                <x:constraints top="710px" left="857px" width="50px" height="25px" />
+            </TextField>
+            <PopupDateField x:name="popupDateFieldMeet">
+                <x:constraints top="710px" left="1048px" height="25px" />
+            </PopupDateField>
+            <Label x:name="label24" value="để giải quyết vụ việc vi phạm." contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="740px" left="556px" height="25px" />
+            </Label>
+            <Label x:name="label25" value="Trong thời hạn &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; ngày làm việc, kể từ ngày lập biên bản này, Ông(Bà)&lt;br&gt;là cá nhân vi phạm/đại diện tổ chức vi phạm có quyền gửi văn bản yêu cầu được giải trình trực tiếp/văn bản giải trình đến Ông(Bà):" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="765px" left="50px" height="50px" />
+            </Label>
+            <Label x:name="label26" value="để thực hiện quyền giải trình.">
+                <x:constraints top="815px" left="406px" height="25px" />
+            </Label>
+            <Label x:name="label27" value="Biên bản lập xong hồi &lt;b style=&quot;color:red;&quot;&gt;*&lt;/b&gt; &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; giờ &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; phút, ngày &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; gồm 01 tờ, được lập thành 02 bản có nội dung, giá trị như nhau; 01 bản giao cho người vi phạm hoặc đại diện tổ chức vi phạm, 01 bản gửi cho cha, mẹ hoặc người giám hộ của người chưa thành niên vi phạm (nếu có), 01 bản lưu hồ sơ cơquan xử lý vi phạm hành chính và đọc lại cho những người có tên trong biên bản cùng nghe công nhận là đúng và cùng ký tên dưới đây." contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="840px" left="50px" height="75px" />
+            </Label>
+            <TextField columns="5" inputPrompt="...................." styleName="borderless" x:name="txtFieldMinute7">
+                <x:constraints top="840px" left="209px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="................" styleName="borderless" x:name="txtFieldHour3">
+                <x:constraints top="840px" left="329px" width="50px" height="25px" />
+            </TextField>
+            <PopupDateField x:name="popupDateField4">
+                <x:constraints top="840px" left="485px" height="25px" />
+            </PopupDateField>
+            <TextField columns="5" inputPrompt="............................................." styleName="borderless" x:name="txtFieldNoiOHienTai">
+                <x:constraints top="380px" left="200px" width="150px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="............................................." styleName="borderless" x:name="txtFieldCanCu">
+                <x:constraints top="140px" left="190px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="......../......./......." styleName="borderless" x:name="txtFieldDoBngBiLapBB">
+                <x:constraints top="350px" left="130px" width="120px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="............................................." styleName="borderless" x:name="txtFieldSDT">
+                <x:constraints top="410px" left="620px" width="150px" height="25px" />
+            </TextField>
+            <TextField columns="5" icon="" inputPrompt="............................................." styleName="borderless" x:name="txtFieldCCCD">
+                <x:constraints top="410px" left="310px" width="150px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="............................................." styleName="borderless" x:name="txtFieldNoiCapCCCD">
+                <x:constraints top="440px" left="520px" width="150px" height="25px" />
+            </TextField>
+            <TextField columns="5" caption="" inputPrompt="......................................................" styleName="borderless" x:name="txtFieldTenNguoiBiLapBB">
+                <x:constraints top="320px" left="580px" width="150px" height="25px" />
+            </TextField>
+            <XdevGridLayout x:name="form">
+                <x:constraints top="34px" left="738px" width="30px" height="30px" />
+                <XdevFieldGroup x:name="fieldGroup" x:entityType="CustomComponent">
+                    <x:typeArguments>
+                        <typeArgument type="CustomComponent" />
+                    </x:typeArguments>
+                    <x:fields>
+                        <entry name="popupDateFieldNL" property="ngayLap" />
+                        <entry name="cbDonViCSGT" property="donViCsgt" />
+                        <entry name="cbChucVu" property="tcNguoiVipham" />
+                        <entry name="txtFiledNhapSoBB" property="soBan" />
+                        <entry name="popupDateFieldMeet" property="ngayGiaiquyet" />
+                        <entry name="txtFieldNoiLapBB" property="diadiemLap" />
+                        <entry name="txtFieldHoursNL" property="trangthaiXuly" />
+                        <entry name="taNdVPHC" property="ghichuHanhvi" />
+                        <entry name="txtFieldNoiOHienTai" property="diadiemGiaiquyet" />
+                        <entry name="popupDateFieldCCCD" property="ngayTao" />
+                    </x:fields>
+                </XdevFieldGroup>
+            </XdevGridLayout>
+            <Button icon="FontAwesome.PLUS_CIRCLE" caption="Chọn hành vi vi phạm" x:name="btnChonHVVP" primaryStyleName="v-btnLeft">
+                <x:constraints top="492px" left="600px" width="200px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </Button>
+            <Button icon="FontAwesome.PLUS_CIRCLE" caption="Chọn TV/PT/GT bị tạm giữ" x:name="btnChonTVPTGT" primaryStyleName="v-btnLeft">
+                <x:constraints top="605px" left="500px" width="200px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </Button>
+            <TextField columns="5" inputPrompt="........................................................................................................" styleName="borderless" x:name="txtFieldNoiCapCCCD2">
+                <x:constraints top="580px" left="470px" width="50%" height="25px" />
+            </TextField>
+            <Button icon="FontAwesome.CARET_DOWN" caption="" x:name="btnShow" primaryStyleName="v-btnLeft">
+                <x:constraints top="586px" left="1203px" width="50px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </Button>
+        </AbsoluteLayout>
+    </GridLayout>
+</XdevView>
+

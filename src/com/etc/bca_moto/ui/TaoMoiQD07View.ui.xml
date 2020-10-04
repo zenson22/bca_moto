@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<?xdevuiml version="1.0"?>
+<?template BROWSER_XGA?>
+<?import com.etc.bca_moto.entities.AuthUser?>
+<?import com.etc.bca_moto.entities.QdCuongCheKhauTruTienTuTk07?>
+<?import com.vaadin.ui.AbsoluteLayout?>
+<?import com.vaadin.ui.GridLayout?>
+<?import com.vaadin.ui.Label?>
+<?import com.vaadin.ui.PopupDateField?>
+<?import com.vaadin.ui.TextField?>
+<?import com.xdev.ui.XdevButton?>
+<?import com.xdev.ui.XdevFieldGroup?>
+<?import com.xdev.ui.XdevGridLayout?>
+<?import com.xdev.ui.XdevView?>
+<?import com.xdev.ui.entitycomponent.combobox.XdevComboBox?>
+<?import java.lang.String?>
+<XdevView xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="TaoMoiQD28View">
+    <x:constraints zpos="0" width="100%" height="100%" />
+    <GridLayout x:name="gridLayout" margin="trbl">
+        <x:constraints zpos="0" width="100%" height="1200px" />
+        <XdevGridLayout x:name="gridLayout4">
+            <x:constraints gridx="1" gridy="1" weighty="0.0" weightx="0.0" width="1000px" height="70px" />
+            <XdevButton caption="LƯU" x:name="button">
+                <x:constraints gridx="1" gridy="1" weighty="0.0" weightx="0.0" width="77px" height="40px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <XdevButton caption="IN" x:name="button2">
+                <x:constraints gridx="2" gridy="1" weighty="0.0" weightx="0.0" width="77px" height="40px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+        </XdevGridLayout>
+        <GridLayout x:name="gridLayout2" margin="trbl">
+            <x:constraints gridx="1" gridy="2" weighty="0.0" weightx="0.0" width="1000px" height="110px" />
+            <AbsoluteLayout x:name="absoluteLayout">
+                <x:constraints gridx="1" gridy="1" weighty="0.0" weightx="0.0" width="1000px" height="120px" />
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtTenCQChuQuan" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="0px" left="10px" width="260px" height="25px" />
+                </TextField>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtTenDonVi" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="24px" left="10px" width="260px" height="25px" />
+                </TextField>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtSoQuyetDinh" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="48px" left="10px" width="260px" height="25px" />
+                </TextField>
+                <Label x:name="label" value="/QĐ-THMPQĐXP">
+                    <x:constraints top="48px" left="269px" width="17%" height="25px" />
+                </Label>
+                <Label styleName="content-bold" x:name="label2" value="&lt;center&gt;CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="0px" left="670px" width="87%" height="25px" />
+                </Label>
+                <Label styleName="content-bold" x:name="label3" value="&lt;center&gt;Độc lập - Tự do - Hạnh phúc" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="24px" left="670px" width="87%" height="25px" />
+                </Label>
+                <PopupDateField dateFormat="dd/MM/yyyy" x:name="pdfNgayLapQD">
+                    <x:constraints top="58px" left="816px" width="150px" height="25px" />
+                </PopupDateField>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtDiaDanhHC" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="58px" left="607px" width="200px" height="25px" />
+                </TextField>
+            </AbsoluteLayout>
+        </GridLayout>
+        <GridLayout x:name="gridLayout3">
+            <x:constraints gridx="1" gridy="3" weighty="0.0" weightx="0.0" width="1000px" height="1200px" />
+            <AbsoluteLayout x:name="absoluteLayout2">
+                <x:constraints gridx="1" gridy="1" weighty="0.0" weightx="0.0" width="1000px" height="1200px" />
+                <Label styleName="content-bold" x:name="label4" value="&lt;center&gt;QUYẾT ĐỊNH&lt;/center&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="21px" left="431px" width="17%" height="25px" />
+                </Label>
+                <Label styleName="content-bold" x:name="label5" value="&lt;center&gt;Cưỡng chế khấu trừ tiền từ tài khoản&lt;/center&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="45px" left="274px" width="432px" height="25px" />
+                </Label>
+                <Label x:name="label6" value="Căn cứ Điều 86, Điều 87 Luật xử lý vi phạm hành chính;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="79px" left="10px" width="47%" height="25px" />
+                </Label>
+                <Label x:name="label7" value="Căn cứ Điều 15 Nghị định số 166/2013/NĐ-CP ngày 12/11/2013 của Chính phủ quy định về cưỡng chế thi hành quyết định xử phạt vi phạm hành chính;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="103px" left="10px" width="986px" height="25px" />
+                </Label>
+                <Label x:name="label9" value="Căn cứ Quyết định về việc giao quyền cưỡng chế thi hành quyết định xử phạt vi phạm hành chính số " contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="127px" left="10px" width="630px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..........................................................................................." styleName="content-bold" x:name="txtSoQuyetDinhCuongChe" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="127px" left="645px" width="351px" height="25px" />
+                </TextField>
+                <PopupDateField dateFormat="dd/MM/yyyy" x:name="pdfNgayQDCuongChe">
+                    <x:constraints top="151px" left="44px" width="150px" height="25px" />
+                </PopupDateField>
+                <Label x:name="label8" value="(nếu có);">
+                    <x:constraints top="151px" left="193px" width="57px" height="25px" />
+                </Label>
+                <Label x:name="label10" value="Để bảo đảm thi hành Quyết định xử phạt vi phạm hành chính số:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="175px" left="10px" width="410px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="............................................................................................................" styleName="content-bold" x:name="txtSoVPHC1" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="175px" left="421px" width="356px" height="25px" />
+                    <x:event>valueChange.valueChange</x:event>
+                </TextField>
+                <PopupDateField dateFormat="dd/MM/yyyy" x:name="pdfNgayRaQDXPHC">
+                    <x:constraints top="175px" left="815px" width="150px" height="25px" />
+                    <x:event>valueChange.valueChange</x:event>
+                </PopupDateField>
+                <Label x:name="label11" value="ngày">
+                    <x:constraints top="151px" left="10px" width="35px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt=".........................................................................................." styleName="content-bold" x:name="txtNguoiKyQDXPHC" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="199px" left="30px" width="340px" height="25px" />
+                    <x:event>valueChange.valueChange</x:event>
+                </TextField>
+                <Label x:name="label12" value="Tôi:">
+                    <x:constraints top="223px" left="10px" width="30px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtTenCanBo" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="223px" left="39px" width="200px" height="25px" />
+                </TextField>
+                <Label x:name="label13" value="Cấp bậc, chức vụ:">
+                    <x:constraints top="223px" left="278px" width="120px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtCapBacChucVu" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="223px" left="397px" width="220px" height="25px" />
+                </TextField>
+                <Label x:name="label14" value="Đơn vị:">
+                    <x:constraints top="223px" left="616px" width="50px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtDonvi" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="223px" left="665px" width="310px" height="25px" />
+                </TextField>
+                <Label styleName="content-bold" x:name="label15" value="&lt;center&gt;QUYẾT ĐỊNH&lt;/center&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="268px" left="431px" width="17%" height="25px" />
+                </Label>
+                <Label x:name="label16" value="&lt;b&gt;Điều 1. &lt;/b&gt;Cưỡng chế khấu trừ tiền từ tài khoản để thi hành Quyết định xử phạt vi phạm hành chính số" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="302px" left="10px" width="630px" height="25px" />
+                </Label>
+                <PopupDateField dateFormat="dd/MM/yyyy" x:name="pdfNgayRaQDXPHC2">
+                    <x:constraints top="326px" left="10px" width="150px" height="25px" />
+                </PopupDateField>
+                <Label x:name="label17" value="&lt;center&gt;do" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="326px" left="159px" width="28px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtNguoiKyQDXPHC2" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="326px" left="190px" width="300px" height="25px" />
+                </TextField>
+                <Label x:name="label18" value="ký, đối với:">
+                    <x:constraints top="326px" left="489px" width="78px" height="25px" />
+                </Label>
+                <Label x:name="label19" value="Ông(Bà)/Tổ chức(Tên tổ chức, người đại diện theo pháp luật:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="350px" left="10px" width="390px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="....................................................................................................................................................." styleName="content-bold" x:name="txtTenNVP" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="350px" left="397px" width="599px" height="25px" />
+                    <x:event>valueChange.valueChange</x:event>
+                </TextField>
+                <Label x:name="label20" value="Sinh ngày:">
+                    <x:constraints top="374px" left="10px" width="78px" height="25px" />
+                </Label>
+                <Label x:name="label21" value="Quốc tịch:">
+                    <x:constraints top="374px" left="273px" width="78px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtQuocTich" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="374px" left="350px" width="220px" height="25px" />
+                </TextField>
+                <Label x:name="label22" value="Nghề nghiệp/Lĩnh vực hoạt động hoặc Mã số doanh nghiệp:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="398px" left="10px" width="390px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="....................................................................................................................................................." styleName="content-bold" x:name="txtNgheNghiepNVP" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="398px" left="397px" width="599px" height="25px" />
+                </TextField>
+                <Label x:name="label23" value="Nơi ở hiện tại/Địa chỉ trụ sở:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="422px" left="10px" width="180px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="......................................................................................................................................................................................................................" styleName="content-bold" x:name="txtDiaChiNVP" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="422px" left="189px" width="807px" height="25px" />
+                </TextField>
+                <Label x:name="label24" value="CMND hoặc CCCD hoặc hộ chiếu/GCN đăng ký hoặc GP thành lập số:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="446px" left="10px" width="450px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="....................................................................................................................................................." styleName="content-bold" x:name="txtSoCMT" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="446px" left="460px" width="536px" height="25px" />
+                </TextField>
+                <Label x:name="label25" value="Ngày cấp:">
+                    <x:constraints top="470px" left="10px" width="78px" height="25px" />
+                </Label>
+                <PopupDateField dateFormat="dd/MM/yyyy" x:name="pdfNgayCapCMT">
+                    <x:constraints top="470px" left="87px" width="150px" height="25px" />
+                </PopupDateField>
+                <Label x:name="label26" value="Nơi cấp:">
+                    <x:constraints top="470px" left="273px" width="78px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtNoiCapCMT" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="470px" left="350px" width="220px" height="25px" />
+                </TextField>
+                <Label x:name="label27" value="Số tài khoản:">
+                    <x:constraints top="494px" left="10px" width="88px" height="25px" />
+                </Label>
+                <Label x:name="label29" value="- Số tiền bị khấu trừ:">
+                    <x:constraints top="518px" left="10px" width="128px" height="25px" />
+                </Label>
+                <Label x:name="label32" value="Lý do khấu trừ: Không tự nguyện chấp hành Quyết định xử phạt vi phạm hành chính số:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="542px" left="10px" width="550px" height="25px" />
+                </Label>
+                <Label x:name="label38" value="chuyển tiền từ tài khoản:">
+                    <x:constraints top="614px" left="10px" width="160px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtTutaiKhoan" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="614px" left="168px" width="140px" height="25px" />
+                </TextField>
+                <Label x:name="label39" value="vào tài khoản:">
+                    <x:constraints top="614px" left="310px" width="90px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtTaiKhoanThu" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="614px" left="399px" width="220px" height="25px" />
+                    <x:event>valueChange.valueChange</x:event>
+                </TextField>
+                <Label x:name="label40" value="của:">
+                    <x:constraints top="614px" left="617px" width="30px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="...................................................................................................." styleName="content-bold" x:name="txtTenNganHang" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="614px" left="646px" width="350px" height="25px" />
+                    <x:event>valueChange.valueChange</x:event>
+                </TextField>
+                <Label x:name="label41" value="trong thời hạn ">
+                    <x:constraints top="638px" left="10px" width="90px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtSoNgay" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="638px" left="97px" width="40px" height="25px" />
+                </TextField>
+                <Label x:name="label42" value="ngày, kể từ ngày nhận được Quyết định này.">
+                    <x:constraints top="638px" left="136px" width="282px" height="25px" />
+                </Label>
+                <Label x:name="label43" value="- Trường hợp Ông(Bà)/Tổ chức">
+                    <x:constraints top="662px" left="10px" width="200px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="............................................................................................................................................" styleName="content-bold" x:name="txtTenNVP3" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="662px" left="209px" width="445px" height="25px" />
+                </TextField>
+                <Label x:name="label44" value="không tự nguyện thực hiện trong thời hạn quy định thì">
+                    <x:constraints top="662px" left="656px" width="340px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtTenNganHangNVP3" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="686px" left="10px" width="290px" height="25px" />
+                </TextField>
+                <Label x:name="label45" value="có trách nhiệm trích chuyển từ tài khoản của cá nhân/tổ chức bị cưỡng chế số tiền bị khấu trừ nêu trên đến ">
+                    <x:constraints top="686px" left="298px" width="679px" height="25px" />
+                </Label>
+                <Label x:name="label46" value="tài khoản:">
+                    <x:constraints top="710px" left="10px" width="70px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtTaiKhoanThu2" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="710px" left="81px" width="310px" height="25px" />
+                </TextField>
+                <Label x:name="label47" value="của">
+                    <x:constraints top="710px" left="389px" width="30px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="................................................................................................................................................." styleName="content-bold" x:name="txtTenNganHang2" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="710px" left="418px" width="78%" height="25px" />
+                </TextField>
+                <Label x:name="label48" value="&lt;b&gt;Điều 2.&lt;/b&gt; Quyết định này có hiệu lực thi hành kể từ ngày" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="734px" left="10px" width="350px" height="25px" />
+                </Label>
+                <PopupDateField dateFormat="dd/MM/yyyy" x:name="pdfNgayHieuLucQd">
+                    <x:constraints top="734px" left="361px" width="150px" height="25px" />
+                </PopupDateField>
+                <Label x:name="label49" value="&lt;b&gt;Điều 3. &lt;/b&gt;Quyết định này được:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="758px" left="10px" width="350px" height="25px" />
+                </Label>
+                <Label x:name="label50" value="1. Giao cho Ông(Bà)/Tổ chức bị áp dụng biện pháp cưỡng chế thi hành quyết định xử phạt vi phạm hành chính có tên tại Điều 1 để chấp hành Quyết định. Ông(Bà)/Tổ chức phải thực hiện Quyết định này và phải chịu mọi chi phí về việc tổ chức thực hiện cưỡng chế." contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="782px" left="10px" width="986px" height="50px" />
+                </Label>
+                <Label x:name="label51" value="Ông(Bà)/Tổ chức:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="831px" left="10px" width="120px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtOngBaToChuc4" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="831px" left="129px" width="283px" height="25px" />
+                </TextField>
+                <Label x:name="label52" value="có quyền khiếu nại hoặc khởi kiện hành chính đối với Quyết định này theo quy định của " contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="831px" left="413px" width="564px" height="25px" />
+                </Label>
+                <Label x:name="label53" value="pháp luật." contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="855px" left="0px" width="100px" height="25px" />
+                </Label>
+                <Label x:name="label54" value="2. Gửi cho:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="879px" left="10px" width="100px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtTenNganHangNVP4" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="879px" left="109px" width="310px" height="25px" />
+                </TextField>
+                <Label x:name="label55" value="để chuyển số tiền bị khấu trừ đến tài khoản của" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="879px" left="418px" width="306px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="...................................................................................................." styleName="content-bold" x:name="txtTenNganHang3" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="879px" left="730px" width="266px" height="25px" />
+                </TextField>
+                <Label x:name="label56" value="3. Gửi cho" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="903px" left="10px" width="100px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtToChucThucHien" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="903px" left="109px" width="310px" height="25px" />
+                </TextField>
+                <Label x:name="label57" value="để tổ chức thực hiện Quyết định này./." contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                    <x:constraints top="903px" left="418px" width="306px" height="25px" />
+                </Label>
+                <XdevGridLayout x:name="form">
+                    <x:constraints top="971px" left="259px" width="30px" height="30px" />
+                    <XdevFieldGroup x:name="fieldGroup" x:entityType="QdCuongCheKhauTruTienTuTk07">
+                        <x:typeArguments>
+                            <typeArgument type="QdCuongCheKhauTruTienTuTk07" />
+                        </x:typeArguments>
+                        <x:fields>
+                            <entry name="txtTenCQChuQuan" property="tenCoQuanCapTren" />
+                            <entry name="txtTenDonVi" property="tenDonVi" />
+                            <entry name="txtSoQuyetDinh" property="soQuyetDinh" />
+                            <entry name="pdfNgayLapQD" property="ngayLapQuyetDinh" />
+                            <entry name="txtDiaDanhHC" property="diaDiemLapQd" />
+                            <entry name="txtSoQuyetDinhCuongChe" property="soCanCuQdGqcc" />
+                            <entry name="pdfNgayQDCuongChe" property="ngayCuongChe" />
+                            <entry name="txtSoVPHC1" property="soQdXphc" />
+                            <entry name="pdfNgayRaQDXPHC" property="ngayQdXphc" />
+                            <entry name="txtNguoiKyQDXPHC" property="nguoiKy" />
+                            <entry name="txtTenCanBo" property="canBoRaQd" />
+                            <entry name="txtCapBacChucVu" property="capbacChucvu" />
+                            <entry name="txtDonvi" property="tenDV2" />
+                            <entry name="txtTenNVP" property="tenNvp" />
+                            <entry name="txtQuocTich" property="quoctichNvp" />
+                            <entry name="txtNgaySinhNvp" property="ngaysinhNvp" />
+                            <entry name="txtNgheNghiepNVP" property="nghenghiepNvp" />
+                            <entry name="txtDiaChiNVP" property="diachiNvp" />
+                            <entry name="txtSoCMT" property="soCmndNvp" />
+                            <entry name="pdfNgayCapCMT" property="ngayCapCmnd" />
+                            <entry name="txtNoiCapCMT" property="noiCapCmnd" />
+                            <entry name="txtSoTaiKhoanNVp" property="soTaiKhoanNvp" />
+                            <entry name="txtNganHangNVP" property="nganHangNvp" />
+                            <entry name="txtSoTienKhauTru" property="soTienKhauTru" />
+                            <entry name="txtSoTienKhauTruBangChu" property="soTienBangChu" />
+                            <entry name="txtTaiKhoanThu" property="soTkKhoBac" />
+                            <entry name="txtTenNganHang" property="tenDiaChiNganHangThuTien" />
+                            <entry name="txtSoNgay" property="thoiHan" />
+                            <entry name="txtToChucThucHien" property="tenDonViThiHanhQd" />
+                            <entry name="pdfNgayHieuLucQd" property="ngayHieuLuc" />
+                        </x:fields>
+                    </XdevFieldGroup>
+                </XdevGridLayout>
+                <TextField columns="5" nullRepresentation="" inputPrompt=".................................................................................................................................." styleName="content-bold" x:name="txtSoVPHC2" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="302px" left="645px" width="351px" height="25px" />
+                </TextField>
+                <TextField columns="5" nullRepresentation="" inputPrompt="................................................................................................................................................................................................................................................................" styleName="content-bold" x:name="txtSoTaiKhoanNVp" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="494px" left="100px" width="290px" height="25px" />
+                    <x:event>valueChange.valueChange</x:event>
+                </TextField>
+                <TextField columns="5" nullRepresentation="" inputPrompt=".........................................................................................................................................................................................................................." styleName="content-bold" x:name="txtSoTienKhauTru" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="518px" left="138px" width="250px" height="25px" />
+                </TextField>
+                <XdevComboBox itemCaptionFromAnnotation="false" x:name="cmbCanBo" x:entity="AuthUser" x:autoQuery="false">
+                    <x:constraints top="223px" left="240px" width="35px" height="25px" />
+                    <x:entityProperty>
+                        <entry type="String" property="userName" />
+                    </x:entityProperty>
+                    <x:typeArguments>
+                        <typeArgument type="AuthUser" />
+                    </x:typeArguments>
+                    <x:event>valueChange.valueChange</x:event>
+                </XdevComboBox>
+                <TextField columns="5" nullRepresentation="" inputPrompt="..............................................................................." styleName="content-bold" x:name="txtNgaySinhNvp" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="374px" left="87px" width="180px" height="25px" />
+                </TextField>
+                <Label x:name="label58" value="ký;">
+                    <x:constraints top="199px" left="372px" width="5%" height="25px" />
+                </Label>
+                <Label x:name="label59" value="ngày">
+                    <x:constraints top="175px" left="777px" width="38px" height="25px" />
+                </Label>
+                <Label x:name="label60" value="ngày">
+                    <x:constraints top="542px" left="948px" width="48px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="........................................................................................." styleName="content-bold" x:name="txtQuyetDinhXPHCSO3" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="542px" left="565px" width="380px" height="25px" />
+                </TextField>
+                <Label x:name="label61" value="do">
+                    <x:constraints top="566px" left="160px" width="18px" height="25px" />
+                </Label>
+                <PopupDateField dateFormat="dd/MM/yyyy" x:name="pdfNgayLapQDXPHC3">
+                    <x:constraints top="566px" left="10px" width="150px" height="25px" />
+                </PopupDateField>
+                <TextField columns="5" nullRepresentation="" inputPrompt="...................................................................................................." styleName="content-bold" x:name="txtNguoiKy3" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="566px" left="180px" width="346px" height="25px" />
+                </TextField>
+                <Label x:name="label28" value="do">
+                    <x:constraints top="199px" left="10px" width="20px" height="25px" />
+                </Label>
+                <Label x:name="label30" value="tại:">
+                    <x:constraints top="494px" left="392px" width="28px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="................................................................................................................................................................................................................................................................" styleName="content-bold" x:name="txtNganHangNVP" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="494px" left="419px" width="577px" height="25px" />
+                    <x:event>valueChange.valueChange</x:event>
+                </TextField>
+                <Label x:name="label31" value="(Bằng chữ:">
+                    <x:constraints top="518px" left="392px" width="78px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="................................................................................................................................................................................................................................................................" styleName="content-bold" x:name="txtSoTienKhauTruBangChu" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="518px" left="474px" width="500px" height="25px" />
+                </TextField>
+                <Label x:name="label33" value=")">
+                    <x:constraints top="518px" left="978px" width="18px" height="25px" />
+                </Label>
+                <Label x:name="label62" value="ký;">
+                    <x:constraints top="566px" left="528px" width="18px" height="25px" />
+                </Label>
+                <Label x:name="label34" value="- Ông(Bà)/Tổ chức:">
+                    <x:constraints top="590px" left="10px" width="128px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="...................................................................................................." styleName="content-bold" x:name="txtTenNVP2" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="590px" left="140px" width="346px" height="25px" />
+                </TextField>
+                <Label x:name="label63" value="có trách nhiệm yêu cầu">
+                    <x:constraints top="590px" left="490px" width="150px" height="25px" />
+                </Label>
+                <TextField columns="5" nullRepresentation="" inputPrompt="...................................................................................................." styleName="content-bold" x:name="txtTenNganHangNVP2" primaryStyleName="v-textfield-borderless">
+                    <x:constraints top="590px" left="646px" width="350px" height="25px" />
+                </TextField>
+            </AbsoluteLayout>
+        </GridLayout>
+    </GridLayout>
+</XdevView>
+

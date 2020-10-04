@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<?xdevuiml version="1.0"?>
+<?template BROWSER_WXGA?>
+<?import com.etc.bca_moto.entities.HanhViViPham?>
+<?import com.etc.bca_moto.entities.NghiDinhCp?>
+<?import com.etc.bca_moto.entities.PhuongTienTggt?>
+<?import com.vaadin.ui.AbsoluteLayout?>
+<?import com.vaadin.ui.GridLayout?>
+<?import com.vaadin.ui.Label?>
+<?import com.vaadin.ui.PopupDateField?>
+<?import com.vaadin.ui.TextField?>
+<?import com.xdev.ui.XdevButton?>
+<?import com.xdev.ui.XdevView?>
+<?import com.xdev.ui.entitycomponent.combobox.XdevComboBox?>
+<?import java.lang.String?>
+<XdevView xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="ViewDemo" primaryStyleName="v-font-ct">
+    <x:constraints zpos="0" width="100%" height="-1px" />
+    <GridLayout x:name="gridLayout">
+        <x:constraints zpos="0" width="100%" height="-1px" />
+        <AbsoluteLayout x:name="absoluteLayout">
+            <x:constraints gridx="1" gridy="1" weighty="0.0" weightx="0.1" width="100%" height="200px" />
+            <Label x:name="label" value="Hồi &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; giờ &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; phút, ngày " contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints top="40px" left="50px" width="300px" />
+            </Label>
+            <TextField columns="5" styleName="borderless" x:name="txtMinute">
+                <x:constraints gridx="1" gridy="2" top="40px" left="200px" width="50px" height="25px" />
+            </TextField>
+            <PopupDateField dateFormat="dd/MM/YYYY" x:name="popupDateField">
+                <x:constraints gridHeight="1" gridx="1" gridy="1" top="35px" left="380px" weighty="0.0" weightx="0.1" alignment="TOP_LEFT" gridWidth="1" />
+            </PopupDateField>
+            <Label x:name="label2" value="Tại">
+                <x:constraints top="70px" left="50px" width="50px" />
+            </Label>
+            <TextField columns="5" inputPrompt="................................................................................................................." styleName="borderless" x:name="txtDiaDiem">
+                <x:constraints top="70px" left="120px" width="500px" height="25px" />
+            </TextField>
+            <Label x:name="label3" value="Phương tiện:">
+                <x:constraints top="105px" left="50px" width="100px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox" x:entity="PhuongTienTggt">
+                <x:constraints top="100px" left="170px" width="450px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="tenPhuongtien" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="PhuongTienTggt" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+            </XdevComboBox>
+            <Label x:name="label4" value="BKS:">
+                <x:constraints top="135px" left="50px" width="50px" />
+            </Label>
+            <Label x:name="label5" value="Hành vi vi phạm chính tại:">
+                <x:constraints top="167px" left="50px" width="300px" />
+            </Label>
+            <TextField columns="5" inputPrompt="" styleName="borderless" x:name="txtBKS">
+                <x:constraints top="135px" left="100px" width="150px" height="25px" />
+            </TextField>
+            <TextField columns="5" styleName="borderless" x:name="txtHour">
+                <x:constraints gridx="1" gridy="2" top="40px" left="90px" width="50px" height="25px" />
+            </TextField>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absoluteLayout1">
+            <x:constraints gridx="1" gridy="2" weighty="0.0" weightx="0.1" width="100%" height="100px" />
+            <Label x:name="label6" value="Hành vi vi phạm ">
+                <x:constraints top="20px" left="70px" width="130px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbHVVP" x:entity="HanhViViPham">
+                <x:constraints top="15px" left="230px" width="600px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="noiDung" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="HanhViViPham" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+                <x:event>valueChange.valueChange</x:event>
+            </XdevComboBox>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox3" x:entity="NghiDinhCp">
+                <x:constraints top="60px" left="70px" width="300px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="ten" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="NghiDinhCp" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+            </XdevComboBox>
+            <XdevButton icon="FontAwesome.REMOVE" caption="" x:name="btnDelete" primaryStyleName="v-btnLuu">
+                <x:constraints top="15px" left="850px" width="40px" height="30px" />
+            </XdevButton>
+            <Label x:name="label7" value="Điều">
+                <x:constraints top="60px" left="419px" width="50px" />
+            </Label>
+            <Label x:name="label8" value="Khoản">
+                <x:constraints top="60px" left="559px" width="50px" />
+            </Label>
+            <Label x:name="lblDieu" value="Điểm">
+                <x:constraints top="60px" left="696px" width="50px" />
+            </Label>
+            <TextField data="comboBox3" columns="5" inputPrompt="......." styleName="borderless" enabled="false" x:name="txtDieu">
+                <x:constraints gridx="1" gridy="2" top="60px" left="478px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........" styleName="borderless" enabled="false" x:name="txtKhoan">
+                <x:constraints gridx="1" gridy="2" top="60px" left="618px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........." styleName="borderless" enabled="false" x:name="txtDiem">
+                <x:constraints gridx="1" gridy="2" top="60px" left="755px" width="50px" height="25px" />
+            </TextField>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absoluteLayout3">
+            <x:constraints gridx="1" gridy="3" top="527px" left="81px" weighty="0.0" weightx="0.1" width="100%" height="100px" />
+            <Label x:name="label12" value="Hành vi vi phạm ">
+                <x:constraints top="20px" left="70px" width="130px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbHVVP3" x:entity="HanhViViPham">
+                <x:constraints top="15px" left="230px" width="600px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="noiDung" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="HanhViViPham" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+                <x:event>valueChange.valueChange</x:event>
+            </XdevComboBox>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox5" x:entity="NghiDinhCp">
+                <x:constraints top="60px" left="70px" width="300px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="ten" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="NghiDinhCp" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+            </XdevComboBox>
+            <XdevButton icon="FontAwesome.REMOVE" caption="" x:name="btnDelete3" primaryStyleName="v-btnLuu">
+                <x:constraints top="15px" left="850px" width="40px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <Label x:name="label13" value="Điều">
+                <x:constraints top="60px" left="419px" width="50px" />
+            </Label>
+            <Label x:name="label14" value="Khoản">
+                <x:constraints top="60px" left="559px" width="50px" />
+            </Label>
+            <Label x:name="lblDieu3" value="Điểm">
+                <x:constraints top="60px" left="696px" width="50px" />
+            </Label>
+            <TextField columns="5" inputPrompt="......." styleName="borderless" enabled="false" x:name="txtDieu3">
+                <x:constraints gridx="1" gridy="2" top="60px" left="478px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........" styleName="borderless" enabled="false" x:name="txtKhoan3">
+                <x:constraints gridx="1" gridy="2" top="60px" left="618px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........." styleName="borderless" enabled="false" x:name="txtDiem3">
+                <x:constraints gridx="1" gridy="2" top="60px" left="755px" width="50px" height="25px" />
+            </TextField>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absoluteLayout6">
+            <x:constraints gridx="1" gridy="4" top="537px" left="62px" weighty="0.0" weightx="0.1" width="100%" height="100px" />
+            <Label x:name="label21" value="Hành vi vi phạm ">
+                <x:constraints top="20px" left="70px" width="130px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbHVVP6" x:entity="HanhViViPham">
+                <x:constraints top="15px" left="230px" width="600px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="noiDung" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="HanhViViPham" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+                <x:event>valueChange.valueChange</x:event>
+            </XdevComboBox>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox8" x:entity="NghiDinhCp">
+                <x:constraints top="60px" left="70px" width="300px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="ten" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="NghiDinhCp" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+            </XdevComboBox>
+            <XdevButton icon="FontAwesome.REMOVE" caption="" x:name="btnDelete6" primaryStyleName="v-btnLuu">
+                <x:constraints top="15px" left="850px" width="40px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <Label x:name="label22" value="Điều">
+                <x:constraints top="60px" left="419px" width="50px" />
+            </Label>
+            <Label x:name="label23" value="Khoản">
+                <x:constraints top="60px" left="559px" width="50px" />
+            </Label>
+            <Label x:name="lblDieu6" value="Điểm">
+                <x:constraints top="60px" left="696px" width="50px" />
+            </Label>
+            <TextField columns="5" inputPrompt="......." styleName="borderless" enabled="false" x:name="txtDieu6">
+                <x:constraints gridx="1" gridy="2" top="60px" left="478px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........" styleName="borderless" enabled="false" x:name="txtKhoan6">
+                <x:constraints gridx="1" gridy="2" top="60px" left="618px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........." styleName="borderless" enabled="false" x:name="txtDiem6">
+                <x:constraints gridx="1" gridy="2" top="60px" left="755px" width="50px" height="25px" />
+            </TextField>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absoluteLayout5">
+            <x:constraints gridx="1" gridy="5" top="539px" left="110px" weighty="0.0" weightx="0.1" width="100%" height="100px" />
+            <Label x:name="label18" value="Hành vi vi phạm ">
+                <x:constraints top="20px" left="70px" width="130px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbHVVP5" x:entity="HanhViViPham">
+                <x:constraints top="15px" left="230px" width="600px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="noiDung" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="HanhViViPham" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+                <x:event>valueChange.valueChange</x:event>
+            </XdevComboBox>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox7" x:entity="NghiDinhCp">
+                <x:constraints top="60px" left="70px" width="300px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="ten" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="NghiDinhCp" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+            </XdevComboBox>
+            <XdevButton icon="FontAwesome.REMOVE" caption="" x:name="btnDelete5" primaryStyleName="v-btnLuu">
+                <x:constraints top="15px" left="850px" width="40px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <Label x:name="label19" value="Điều">
+                <x:constraints top="60px" left="419px" width="50px" />
+            </Label>
+            <Label x:name="label20" value="Khoản">
+                <x:constraints top="60px" left="559px" width="50px" />
+            </Label>
+            <Label x:name="lblDieu5" value="Điểm">
+                <x:constraints top="60px" left="696px" width="50px" />
+            </Label>
+            <TextField columns="5" inputPrompt="......." styleName="borderless" enabled="false" x:name="txtDieu5">
+                <x:constraints gridx="1" gridy="2" top="60px" left="478px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........" styleName="borderless" enabled="false" x:name="txtKhoan5">
+                <x:constraints gridx="1" gridy="2" top="60px" left="618px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........." styleName="borderless" enabled="false" x:name="txtDiem5">
+                <x:constraints gridx="1" gridy="2" top="60px" left="755px" width="50px" height="25px" />
+            </TextField>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absoluteLayout4">
+            <x:constraints gridx="1" gridy="6" top="529px" left="36px" weighty="0.0" weightx="0.1" width="100%" height="100px" />
+            <Label x:name="label15" value="Hành vi vi phạm ">
+                <x:constraints top="20px" left="70px" width="130px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbHVVP4" x:entity="HanhViViPham">
+                <x:constraints top="15px" left="230px" width="600px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="noiDung" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="HanhViViPham" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+                <x:event>valueChange.valueChange</x:event>
+            </XdevComboBox>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox6" x:entity="NghiDinhCp">
+                <x:constraints top="60px" left="70px" width="300px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="ten" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="NghiDinhCp" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+            </XdevComboBox>
+            <XdevButton icon="FontAwesome.REMOVE" caption="" x:name="btnDelete4" primaryStyleName="v-btnLuu">
+                <x:constraints top="15px" left="850px" width="40px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <Label x:name="label16" value="Điều">
+                <x:constraints top="60px" left="419px" width="50px" />
+            </Label>
+            <Label x:name="label17" value="Khoản">
+                <x:constraints top="60px" left="559px" width="50px" />
+            </Label>
+            <Label x:name="lblDieu4" value="Điểm">
+                <x:constraints top="60px" left="696px" width="50px" />
+            </Label>
+            <TextField columns="5" inputPrompt="......." styleName="borderless" enabled="false" x:name="txtDieu4">
+                <x:constraints gridx="1" gridy="2" top="60px" left="478px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........" styleName="borderless" enabled="false" x:name="txtKhoan4">
+                <x:constraints gridx="1" gridy="2" top="60px" left="618px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........." styleName="borderless" enabled="false" x:name="txtDiem4">
+                <x:constraints gridx="1" gridy="2" top="60px" left="755px" width="50px" height="25px" />
+            </TextField>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absoluteLayout2">
+            <x:constraints gridx="1" gridy="7" weighty="0.0" weightx="0.1" width="100%" height="100px" />
+            <Label x:name="label9" value="Hành vi vi phạm ">
+                <x:constraints top="20px" left="70px" width="130px" />
+            </Label>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbHVVP2" x:entity="HanhViViPham">
+                <x:constraints top="15px" left="230px" width="600px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="noiDung" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="HanhViViPham" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+                <x:event>valueChange.valueChange</x:event>
+            </XdevComboBox>
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox4" x:entity="NghiDinhCp">
+                <x:constraints top="60px" left="70px" width="300px" height="30px" />
+                <x:entityProperty>
+                    <entry type="String" property="ten" />
+                </x:entityProperty>
+                <x:typeArguments>
+                    <typeArgument type="NghiDinhCp" />
+                </x:typeArguments>
+                <x:data methodName="findAll" />
+            </XdevComboBox>
+            <XdevButton icon="FontAwesome.REMOVE" caption="" x:name="btnDelete2" primaryStyleName="v-btnLuu">
+                <x:constraints top="15px" left="850px" width="40px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <Label x:name="label10" value="Điều">
+                <x:constraints top="60px" left="419px" width="50px" />
+            </Label>
+            <Label x:name="label11" value="Khoản">
+                <x:constraints top="60px" left="559px" width="50px" />
+            </Label>
+            <Label x:name="lblDieu2" value="Điểm">
+                <x:constraints top="60px" left="696px" width="50px" />
+            </Label>
+            <TextField columns="5" inputPrompt="......." styleName="borderless" enabled="false" x:name="txtDieu2">
+                <x:constraints gridx="1" gridy="2" top="60px" left="478px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........" styleName="borderless" enabled="false" x:name="txtKhoan2">
+                <x:constraints gridx="1" gridy="2" top="60px" left="618px" width="50px" height="25px" />
+            </TextField>
+            <TextField columns="5" inputPrompt="........." styleName="borderless" enabled="false" x:name="txtDiem2">
+                <x:constraints gridx="1" gridy="2" top="60px" left="755px" width="50px" height="25px" />
+            </TextField>
+        </AbsoluteLayout>
+        <AbsoluteLayout x:name="absoluteLayout10">
+            <x:constraints gridx="1" gridy="8" weighty="0.1" weightx="0.1" width="100%" height="100px" />
+            <XdevButton caption="Lưu" x:name="btnLuu" primaryStyleName="v-btnLuu">
+                <x:constraints top="37px" left="448px" width="100px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <XdevButton caption="Đóng" x:name="btnClose" primaryStyleName="v-btnLuu">
+                <x:constraints top="37px" left="570px" width="100px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <XdevButton caption="Thêm lỗi HVVP" x:name="btnAdd" primaryStyleName="v-btnLuu">
+                <x:constraints top="0px" left="69px" width="150px" height="30px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+        </AbsoluteLayout>
+    </GridLayout>
+</XdevView>
+

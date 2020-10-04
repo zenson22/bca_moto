@@ -1,0 +1,284 @@
+@import "addons.scss";
+@import "BCA_MOTO.scss";
+
+/* This file prefixes all rules with the theme name to avoid causing conflicts with other themes. */
+/* The actual styles should be defined in BCA_MOTO.scss */
+.BCA_MOTO {
+  @include addons;
+  @include BCA_MOTO;
+}
+
+.v-btnLuu {
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    outline: none;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    height: 30px;
+    padding: 0.35rem 0.75rem;
+    color: white;
+    font-family: ROBOTO;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 0.25rem;
+    border: 2px solid #0E82CF;
+    border-top-color: #0E82CF;
+    border-bottom-color: #0E82CF;
+    background-color: #0E82CF;
+    background-image: -webkit-linear-gradient(top, #0E82CF 2%, #0E82CF 98%);
+    background-image: linear, to bottom, #007bff 2%, #007bff 98%;
+    -webkit-box-shadow: inset 0 1px 0 #0E82CF, 0 1px 0 rgba(0, 0, 0, 0.04);
+    box-shadow: inset 0 1px 0 #0E82CF, 0 1px 0 rgba(0, 0, 0, 0.04);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.v-btnLuu:before {
+	content: "";
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.v-btnLuu > div {
+	vertical-align: middle;
+}
+
+
+.v-btnLuu:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border-radius: inherit;
+	-webkit-transition: box-shadow 180ms, border 180ms;
+	-moz-transition: box-shadow 180ms, border 180ms;
+	transition: box-shadow 180ms, border 180ms;
+}
+
+.v-btnLuu:focus:after {
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+.v-btnLuu.v-disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50) ;
+}
+
+.v-btnLuu.v-disabled:after {
+	display: none;
+}
+
+.v-btnLuu:after {
+	border: inherit;
+	top: -1px;
+	right: -1px;
+	bottom: -1px;
+	left: -1px;
+}
+
+.v-btnLuu:hover:after {
+	background-color: rgba(186, 186, 186, 0.1);
+}
+
+.v-btnLuu:focus:after {
+	border-color: #197de1;
+	-webkit-box-shadow: 0 0 0 2px rgba(25, 125, 225, 0.5);
+	box-shadow: 0 0 0 2px rgba(25, 125, 225, 0.5);
+}
+
+.v-btnLuu:active:after {
+	background-color: rgba(125, 125, 125, 0.2);
+}
+
+.v-btnPrint {
+	position: relative;
+	text-align: center;
+	white-space: nowrap;
+	outline: none;
+	line-height: 1;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	cursor: pointer;
+	height: 30px;
+	padding: 0.35rem 0.75rem;
+	color: white;
+	font-family: ROBOTO;
+	font-weight: 500;
+	font-size: 14px;
+	border-radius: 0.25rem;
+	border: 2px solid #385c50;
+	border-top-color: #385c50;
+	border-bottom-color: #385c50;
+	background-color: #385c50;
+	background-image: -webkit-linear-gradient(top, #385c50 2%, #385c50 98%);
+	background-image: linear, to bottom, #385c50 2%, #385c50 98%;
+	-webkit-box-shadow: inset 0 1px 0 #385c50, 0 1px 0 rgba(0, 0, 0, 0.04);
+	box-shadow: inset 0 1px 0 #408080, 0 1px 0 rgba(0, 0, 0, 0.04);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.v-btnPrint:before {
+	content: "";
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.v-btnPrint > div {
+	vertical-align: middle;
+}
+
+
+.v-btnPrint:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border-radius: inherit;
+	-webkit-transition: box-shadow 180ms, border 180ms;
+	-moz-transition: box-shadow 180ms, border 180ms;
+	transition: box-shadow 180ms, border 180ms;
+}
+
+.v-btnPrint:focus:after {
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+.v-btnPrint.v-disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50) ;
+}
+
+.v-btnPrint.v-disabled:after {
+	display: none;
+}
+
+.v-btnPrint:after {
+	border: inherit;
+	top: -1px;
+	right: -1px;
+	bottom: -1px;
+	left: -1px;
+}
+
+.v-btnPrint:hover:after {
+	background-color: rgba(186, 186, 186, 0.1);
+}
+
+.v-btnPrint:focus:after {
+	border-color: #197de1;
+	-webkit-box-shadow: 0 0 0 2px rgba(25, 125, 225, 0.5);
+	box-shadow: 0 0 0 2px rgba(25, 125, 225, 0.5);
+}
+
+.v-btnPrint:active:after {
+	background-color: rgba(125, 125, 125, 0.2);
+}
+
+
+.v-label-ct {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	white-space: normal;
+}
+
+
+.v-btnLeft {
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    outline: none;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    height: 30px;
+    padding: 0.35rem 0.75rem;
+    color: white;
+    font-family: ROBOTO;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius:1.5rem;
+    border: 1px solid #2f4982;
+	border-top-color: #2f4982;
+	border-bottom-color: #2f4982;
+	background-color: #4768ad;
+	background-image: -webkit-linear-gradient(top, #2f4982 2%, #2f4982 98%);
+	background-image: linear-gradient(to bottom,#2f4982 2%, #2f4982 98%);
+	-webkit-box-shadow: inset 0 1px 0 #2f4982, 0 1px 0 rgba(0, 0, 0, 0.04);
+	box-shadow: inset 0 1px 0 #2f4982, 0 1px 0 rgba(0, 0, 0, 0.04);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.v-btnLeft:focus:after {
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+.v-btnLeft.v-disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50) ;
+}
+
+.v-btnLeft.v-disabled:after {
+	display: none;
+}
+
+.v-btnLeft:after {
+	border: inherit;
+	top: -1px;
+	right: -1px;
+	bottom: -1px;
+	left: -1px;
+}
+
+.v-btnLeft:hover:after {
+	background-color: rgba(186, 186, 186, 0.1);
+}
+
+.v-btnLeft:focus:after {
+	border-color: #197de1;
+	-webkit-box-shadow: 0 0 0 2px rgba(25, 125, 225, 0.5);
+	box-shadow: 0 0 0 2px rgba(25, 125, 225, 0.5);
+}
+
+.v-btnLeft:active:after {
+	background-color: rgba(125, 125, 125, 0.2);
+}
+
+.v-gridlayout-scroll {
+	position: relative;
+	overflow: auto;
+}
+
+.v-title b{
+	background-color: lightblue;
+}
+
+
+.v-font-ct{
+	font-family: TimeNewRoman;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: inline-block;
+}
