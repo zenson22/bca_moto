@@ -68,8 +68,6 @@ public class DonViCanhsatGt implements java.io.Serializable {
 	private Long donViResourceId;
 	private Set<DanhSachDonViDacBiet> danhSachDonViDacBiets = new HashSet<>(0);
 	private List<AuthUser> authUsers = new ArrayList<>();
-	private DiaDanhHanhChinh diaDanhHanhChinh;
-
 	public DonViCanhsatGt() {
 	}
 
@@ -438,16 +436,6 @@ public class DonViCanhsatGt implements java.io.Serializable {
 		getAuthUsers().remove(authUser);
 		authUser.setDonViCanhsatGt(null);
 		return authUser;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "DIADANHHANHCHINH_ID")
-	public DiaDanhHanhChinh getDiaDanhHanhChinh() {
-		return this.diaDanhHanhChinh;
-	}
-
-	public void setDiaDanhHanhChinh(final DiaDanhHanhChinh diaDanhHanhChinh) {
-		this.diaDanhHanhChinh = diaDanhHanhChinh;
 	}
 
 }

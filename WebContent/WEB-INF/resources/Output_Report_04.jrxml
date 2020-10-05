@@ -3,8 +3,52 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Output_Report_04" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="70e7f5d2-6633-4372-a8b1-f56ab0598119">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BCA_MOTO"/>
 	<property name="com.jaspersoft.studio.data.sql.tables"/>
+	<parameter name="id" class="java.lang.Long">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
 	<queryString>
-		<![CDATA[SELECT * FROM "QD_GIAM_MIEN_TIEN_PHAT_04"]]>
+		<![CDATA[SELECT QD04."CO_QUAN_CHU_QUAN",
+	QD04."SO_QUYET_DINH",
+	QD04."NGAY_TAO_QUYET_DINH",
+	QD04."CAN_CU_QD_VPHC_SO",
+	QD04."CAN_CU_QD_VPHC_NGAY",
+	QD04."VPHC_KY",
+	QD04."CAN_CU_QD_HOAN_TH_SO",
+	QD04."CAN_CU_QD_HOAN_TH_NGAY",
+	QD04."HOAN_TH_KY",
+	QD04."CAN_CU_QD_GQ_SO",
+	QD04."CAN_CU_QD_GQ_NGAY",
+	QD04."NGAY_XET_DON",
+	QD04."CAN_BO_RA_QD_ID",
+	QD04."CAP_BAC_CHUC_VU",
+	QD04."DON_VI",
+	QD04."TEN_NGUOI_NVP",
+	QD04."CO_QUAN_XN",
+	QD04."TIEN_PHAT_DUOC_GIAM_BANG_SO",
+	QD04."TIEN_PHAT_DUOC_GIAM_BANG_CHU",
+	QD04."TIEN_PHAT_SAU_GIAM_BANG_SO",
+	QD04."TIEN_PHAT_SAU_GIAM_BANG_CHU",
+	QD04."LY_DO_GIAM",
+	QD04."TANG_VAT_NHAN_LAI",
+	QD04."PHOI_HOP_THUC_HIEN_QD",
+	QD04."NGUOI_TAO_ID",
+	QD04."NGAY_TAO",
+	QD04."NGUOI_SUA_ID",
+	QD04."NGAY_SUA",
+	QD04."DDHC_ID",
+	QD04."TRANG_THAI_QD",
+	QD04."DIA_DANH_HC",
+	QD04."MA_THONG_TU",
+	QD04."MA_VU_VIEC",
+	QD04."NAM_LAP_QD",
+	QD04."DON_VI_CSGT_ID",
+	CB."CAP_BAC",
+	CB."TEN_CAN_BO"
+FROM "QD_GIAM_MIEN_TIEN_PHAT_04" QD04
+	INNER JOIN "CAN_BO" CB ON 
+	 CB."ID" = QD04."CAN_BO_RA_QD_ID" 
+WHERE 
+	 QD04."ID" = $P{id}]]>
 	</queryString>
 	<field name="CAN_BO_RA_QD_ID" class="java.lang.Long">
 		<fieldDescription><![CDATA[canBoRaQdId]]></fieldDescription>
@@ -24,7 +68,7 @@
 	<field name="NGAY_XET_DON" class="java.util.Date">
 		<fieldDescription><![CDATA[ngayXetDon]]></fieldDescription>
 	</field>
-	<field name="DIA_DANH_HANH_HC" class="java.lang.String">
+	<field name="DIA_DANH_HC" class="java.lang.String">
 		<fieldDescription><![CDATA[diaDanhHc]]></fieldDescription>
 	</field>
 	<field name="NGUOI_TAO_ID" class="java.lang.Long">
@@ -51,14 +95,11 @@
 	<field name="TIEN_PHAT_DUOC_GIAM_BANG_SO" class="java.lang.String">
 		<fieldDescription><![CDATA[tienPhatDuocGiamBangSo]]></fieldDescription>
 	</field>
-	<field name="TIEN_PHAT_SAU_DUOC_GIAM_BANG_SO" class="java.lang.String">
+	<field name="TIEN_PHAT_SAU_GIAM_BANG_SO" class="java.lang.String">
 		<fieldDescription><![CDATA[tienPhatSauGiamBangSo]]></fieldDescription>
 	</field>
 	<field name="CO_QUAN_CHU_QUAN" class="java.lang.String">
 		<fieldDescription><![CDATA[coQuanChuQuan]]></fieldDescription>
-	</field>
-	<field name="ID" class="java.lang.Long">
-		<fieldDescription><![CDATA[id]]></fieldDescription>
 	</field>
 	<field name="HOAN_TH_KY" class="java.lang.String">
 		<fieldDescription><![CDATA[hoanThKy]]></fieldDescription>
@@ -114,6 +155,8 @@
 	<field name="PHOI_HOP_THUC_HIEN_QD" class="java.lang.String">
 		<fieldDescription><![CDATA[phoiHopThucHienQd]]></fieldDescription>
 	</field>
+	<field name="TEN_CAN_BO" class="java.lang.String"/>
+	<field name="CAP_BAC" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -138,9 +181,9 @@
 				<textElement markup="html">
 					<font fontName="Times New Roman" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{DIA_DANH_HANH_HC}+" , ngày "+
+				<textFieldExpression><![CDATA[$F{DIA_DANH_HC}+" , ngày "+
 $F{NGAY_TAO_QUYET_DINH}.getDate()+
-" tháng"+
+" tháng "+
 ($F{NGAY_TAO_QUYET_DINH}.getMonth()+01)+
 " năm"+
 ($F{NGAY_TAO_QUYET_DINH}.getYear()+1900)]]></textFieldExpression>
@@ -170,21 +213,21 @@ $F{NGAY_TAO_QUYET_DINH}.getDate()+
 					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
 				</reportElement>
 				<textElement markup="html">
-					<font fontName="Times New Roman"/>
+					<font fontName="SansSerif"/>
 					<paragraph firstLineIndent="24"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Căn cứ Điều 77 Luật xử lý vi phạm hành chính;"+
 "<br>Căn cứ Quyết định xử phạt vi phạm hành chính số: ....................."+$F{CAN_CU_QD_VPHC_SO}+
-"..................................ngày"+$F{CAN_CU_QD_VPHC_NGAY}+"&emsp; do ........................................."+ $F{CAN_BO_RA_QD_ID}+"....................................................ký;<br>"+
+"..................................ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{CAN_CU_QD_VPHC_NGAY})+"&emsp; do ........................................."+ $F{VPHC_KY}+"....................................................ký;<br>"+
 "Căn cứ Quyết định hoãn thi hành quyết định phạt tiền "+ 
-"số............................."+$F{CAN_CU_QD_HOAN_TH_SO}+"...............................ngày"+$F{CAN_CU_QD_HOAN_TH_NGAY}+ " &emsp; do.........................................."+$F{HOAN_TH_KY}+"............................ký (nếu có);"+
+"số............................."+$F{CAN_CU_QD_HOAN_TH_SO}+"...............................ngày "+new SimpleDateFormat("dd/MM/yyyy").format( $F{CAN_CU_QD_HOAN_TH_NGAY})+ " &emsp; do.........................................."+$F{HOAN_TH_KY}+"............................ký (nếu có);"+
 "<br>	Căn cứ Quyết định về việc giao quyền xử phạt vi phạm hành chính số ..................................." +
-$F{CAN_CU_QD_GQ_SO}+".............................."+$F{CAN_CU_QD_GQ_NGAY}+"................................(nếu có);"+
+$F{CAN_CU_QD_GQ_SO}+"......................................................... ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{CAN_CU_QD_GQ_NGAY})+" ................................(nếu có);"+
 "<br>	Xét đơn đề nghị giảm/miễn tiền phạt vi phạm hành chính ngày "
-+$F{NGAY_XET_DON}+
-"&emsp;của Ông(Bà).........."+$F{TEN_NGUOI_NVP}+"................được(4)......"+$F{CAN_BO_RA_QD_ID}
++new SimpleDateFormat("dd/MM/yyyy").format($F{NGAY_XET_DON})+
+"&emsp;của Ông(Bà).........."+$F{TEN_NGUOI_NVP}+"................được(4)......"+$F{CO_QUAN_XN}
 +".......xác nhận;"+
-"<br>	Tôi:..."+$F{CAN_BO_RA_QD_ID}+".Cấp bậc, chức vụ:.............."+$F{CAP_BAC_CHUC_VU}+"............Đơn vị:......"+$F{DON_VI_CSGT_ID}]]></textFieldExpression>
+"<br>	Tôi:..."+$F{TEN_CAN_BO}+".Cấp bậc, chức vụ:.............."+$F{CAP_BAC}+"............Đơn vị:......"+$F{DON_VI}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -203,10 +246,10 @@ $F{CAN_CU_QD_GQ_SO}+".............................."+$F{CAN_CU_QD_GQ_NGAY}+"....
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA["<b>Điều 1</b> Giảm/Miễn tiền phạt vi phạm hành chính tại Quyết định xử phạt vi phạm hành chính số....................."+$F{CAN_CU_QD_VPHC_SO}+
-"ngày"+$F{CAN_CU_QD_VPHC_NGAY}+" &emsp;do..........................."+$F{CAN_BO_RA_QD_ID}+".........................ký."+
+"ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{CAN_CU_QD_VPHC_NGAY})+" &emsp;do..........................."+$F{CAN_BO_RA_QD_ID}+".........................ký."+
 "<br>Số tiền phạt mà Ông(Bà) ......"+$F{TEN_NGUOI_NVP}+"........ "+
 "được giảm/miễn là: ....................."+$F{TIEN_PHAT_DUOC_GIAM_BANG_SO}+"...................đồng (Bằng chữ: ..............................."+$F{TIEN_PHAT_DUOC_GIAM_BANG_CHU}+".................................................................)."+
-"<br>Số tiền phạt sau khi giảm/miễn Ông(Bà) phải nộp là:..."+$F{TIEN_PHAT_SAU_DUOC_GIAM_BANG_SO}+"..đồng "+
+"<br>Số tiền phạt sau khi giảm/miễn Ông(Bà) phải nộp là:..."+$F{TIEN_PHAT_SAU_GIAM_BANG_SO}+"..đồng "+
 "(Bằng chữ: ..........................."+$F{TIEN_PHAT_SAU_GIAM_BANG_CHU}+"...............).<br>"+
 "Lý do giảm/miễn:..................................................."+ $F{LY_DO_GIAM}+"............................................."+
 "<br>Ông(Bà) được nhận lại(5)......................"+$F{TANG_VAT_NHAN_LAI}+"...........................<br>"+
@@ -244,7 +287,7 @@ $F{CAN_CU_QD_GQ_SO}+".............................."+$F{CAN_CU_QD_GQ_NGAY}+"....
 				</textElement>
 				<textFieldExpression><![CDATA["<b><style size=\'8'>NGƯỜI RA QUYẾT</style> ĐỊNH</b>"+
 "<br><i>(Ký, đóng dấu, ghi rõ chức vụ, họ tên)</i>"+
-"<br>"+$F{CAN_BO_RA_QD_ID}]]></textFieldExpression>
+"<br>"+$F{TEN_CAN_BO}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

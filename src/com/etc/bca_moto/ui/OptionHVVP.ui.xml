@@ -27,7 +27,7 @@
             <TextField columns="5" styleName="borderless" x:name="txtMinute">
                 <x:constraints gridx="1" gridy="2" top="40px" left="200px" width="50px" height="25px" />
             </TextField>
-            <PopupDateField dateFormat="dd/MM/YYYY" x:name="popupDateField">
+            <PopupDateField dateFormat="dd/MM/yyyy" x:name="popupDateField">
                 <x:constraints gridHeight="1" gridx="1" gridy="1" top="35px" left="380px" weighty="0.0" weightx="0.1" alignment="TOP_LEFT" gridWidth="1" />
             </PopupDateField>
             <Label x:name="label2" value="Tại">
@@ -42,7 +42,7 @@
             <XdevComboBox itemCaptionFromAnnotation="false" x:name="comboBox" x:entity="PhuongTienTggt">
                 <x:constraints top="100px" left="170px" width="450px" height="30px" />
                 <x:entityProperty>
-                    <entry type="String" property="tenPhuongtien" />
+                    <entry type="String" property="tenPhuongTien" />
                 </x:entityProperty>
                 <x:typeArguments>
                     <typeArgument type="PhuongTienTggt" />

@@ -100,7 +100,7 @@ public class TaoMoiQD07View extends XdevView {
 		this.txtTenCanBo.setValue(this.cmbCanBo.getSelectedItem().getBean().getUserName());
 		this.txtCapBacChucVu.setValue(this.cmbCanBo.getSelectedItem().getBean().getCapBac()+", "+this.cmbCanBo.getSelectedItem().getBean().getChucVu());
 		this.txtDonvi.setValue(this.cmbCanBo.getSelectedItem().getBean().getDonViCanhsatGt().getTenDonVi());
-		this.txtDiaDanhHC.setValue(this.cmbCanBo.getSelectedItem().getBean().getDonViCanhsatGt().getDiaDanhHanhChinh().getTen());
+		//this.txtDiaDanhHC.setValue(this.cmbCanBo.getSelectedItem().getBean().getDonViCanhsatGt().getDiaDanhHanhChinh().getTen());
 	}
 
 	/**

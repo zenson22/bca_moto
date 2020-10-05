@@ -1,0 +1,5 @@
+import com.etc.bca_moto.entities.QdGiamMienTienPhat04
+getMaxId()
+{
+	select max(id) from QdGiamMienTienPhat04 
+}

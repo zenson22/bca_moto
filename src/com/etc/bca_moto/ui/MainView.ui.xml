@@ -2,12 +2,42 @@
 <!DOCTYPE xml>
 
 <?xdevuiml version="1.0"?>
-<?import com.xdev.ui.*?>
+<?template BROWSER_XGA?>
+<?import com.etc.bca_moto.entities.QdGiamMienTienPhat04?>
+<?import com.xdev.ui.XdevButton?>
+<?import com.xdev.ui.XdevGridLayout?>
+<?import com.xdev.ui.XdevView?>
+<?import com.xdev.ui.entitycomponent.table.XdevTable?>
+<?import java.lang.Long?>
+<?import java.lang.String?>
+<?import java.util.Date?>
 <XdevView xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="MainView">
-    <x:constraints designWidth="600" zpos="0" designHeight="400" width="100%" height="100%" />
+    <x:constraints zpos="0" width="100%" height="100%" />
     <XdevGridLayout x:name="gridLayout">
-        <x:constraints width="100%" zpos="0" height="100%" />
+        <x:constraints zpos="0" width="100%" height="100%" />
+        <XdevButton caption="Create Report" x:name="btnBBvphc" primaryStyleName="v-btnLuu">
+            <x:constraints gridx="1" gridy="1" top="10px" left="81px" weighty="0.0" weightx="0.0" />
+            <x:event>click.buttonClick</x:event>
+        </XdevButton>
+        <XdevTable x:name="table" x:entity="QdGiamMienTienPhat04">
+            <x:entityProperties>
+                <entry type="String" property="coQuanChuQuan" caption="Cơ quan chủ quản" />
+                <entry type="String" property="donVi" caption="Đơn vị" />
+                <entry type="String" property="capBacChucVu" caption="Cấp bậc" />
+                <entry type="String" property="soQuyetDinh" caption="Số QĐ" />
+                <entry type="Date" property="ngayTaoQuyetDinh" caption="Ngày tạo QĐ" />
+                <entry type="String" property="tenNguoiNvp" caption="Người vi phạm" />
+                <entry type="String" property="lyDoGiam" caption="Lý do giảm" />
+                <entry type="String" property="tangVatNhanLai" caption="Tang vật nhận lại" />
+                <entry type="Long" property="trangThaiQd" caption="Trạng thái" />
+            </x:entityProperties>
+            <x:constraints gridx="1" gridy="2" weighty="0.1" weightx="0.1" width="100%" height="100%" />
+            <x:typeArguments>
+                <typeArgument type="QdGiamMienTienPhat04" />
+            </x:typeArguments>
+            <x:data methodName="findAll" />
+            <x:event>valueChange.valueChange</x:event>
+        </XdevTable>
     </XdevGridLayout>
 </XdevView>
-<?template BROWSER_XGA?>
 

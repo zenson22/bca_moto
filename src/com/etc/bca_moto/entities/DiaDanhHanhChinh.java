@@ -47,7 +47,6 @@ public class DiaDanhHanhChinh implements java.io.Serializable {
 	private String tenHieu;
 	private String khuVuc;
 	private Long ddResourceId;
-	private List<DonViCanhsatGt> donViCanhsatGts = new ArrayList<>();
 	public DiaDanhHanhChinh() {
 	}
 
@@ -265,27 +264,6 @@ public class DiaDanhHanhChinh implements java.io.Serializable {
 
 	public void setDdResourceId(Long ddResourceId) {
 		this.ddResourceId = ddResourceId;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "diaDanhHanhChinh")
-	public List<DonViCanhsatGt> getDonViCanhsatGts() {
-		return donViCanhsatGts;
-	}
-
-	public void setDonViCanhsatGts(List<DonViCanhsatGt> donViCanhsatGts) {
-		this.donViCanhsatGts = donViCanhsatGts;
-	}
-
-	public DonViCanhsatGt addDonViCanhsatGt(DonViCanhsatGt donViCanhsatGt) {
-		getDonViCanhsatGts().add(donViCanhsatGt);
-		donViCanhsatGt.setDiaDanhHanhChinh(this);
-		return donViCanhsatGt;
-	}
-
-	public DonViCanhsatGt removeDonViCanhsatGt(DonViCanhsatGt donViCanhsatGt) {
-		getDonViCanhsatGts().remove(donViCanhsatGt);
-		donViCanhsatGt.setDiaDanhHanhChinh(null);
-		return donViCanhsatGt;
 	}
 
 }

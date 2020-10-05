@@ -8,6 +8,7 @@ import com.etc.bca_moto.entities.HanhViViPham_;
 import com.etc.bca_moto.entities.NghiDinhCp;
 import com.etc.bca_moto.entities.NghiDinhCp_;
 import com.etc.bca_moto.entities.PhuongTienTggt;
+import com.etc.bca_moto.entities.PhuongTienTggt_;
 import com.vaadin.data.Property;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.label.ContentMode;
@@ -237,8 +238,8 @@ public class OptionHVVP extends XdevView {
 		sbf = new StringBuffer("Vào hồi ");
 		sbf.append(this.txtHour.getValue()+" giờ "+this.txtMinute.getValue()+" phút, ngày ");
 		sbf.append(this.popupDateField.getValue());
-		sbf.append(" tại "+this.txtDiaDiem.getValue()+ " điều khiển "+ this.comboBox.getSelectedItem().getBean());//Phuong tien thieu
-		sbf.append(" mang biển kiếm soát "+ this.txtBKS.getValue()+ " đã vi phạm hành vi:");
+		sbf.append(" tại "+this.txtDiaDiem.getValue()+ " điều khiển "+ this.comboBox.getSelectedItem().getBean().getTenPhuongTien());//Phuong tien thieu
+		sbf.append(" mang biển kiếm soát "+ this.txtBKS.getValue()+ " đã vi phạm hành vi: ");
 		
 		sbf.append(this.cbHVVP.getSelectedItem().getBean().getNoiDung());
 		sbf.append(" tại điểm "+this.txtDiem.getValue()+" Khoản "+this.txtKhoan.getValue()+" Điều "+this.txtDieu.getValue() );
@@ -365,7 +366,7 @@ public class OptionHVVP extends XdevView {
 		this.label.setValue("Hồi &emsp;&emsp;&emsp;&emsp;&emsp; giờ &emsp;&emsp;&emsp;&emsp;&emsp; phút, ngày ");
 		this.label.setContentMode(ContentMode.HTML);
 		this.txtMinute.setStyleName("borderless");
-		this.popupDateField.setDateFormat("dd/MM/YYYY");
+		this.popupDateField.setDateFormat("dd/MM/yyyy");
 		this.label2.setValue("Tại");
 		this.txtDiaDiem.setInputPrompt(
 				".................................................................................................................");
@@ -373,7 +374,7 @@ public class OptionHVVP extends XdevView {
 		this.label3.setValue("Phương tiện:");
 		this.comboBox.setItemCaptionFromAnnotation(false);
 		this.comboBox.setContainerDataSource(PhuongTienTggt.class, DAOs.get(PhuongTienTggtDAO.class).findAll());
-		this.comboBox.setItemCaptionPropertyId("tenPhuongtien");
+		this.comboBox.setItemCaptionPropertyId(PhuongTienTggt_.tenPhuongTien.getName());
 		this.label4.setValue("BKS:");
 		this.label5.setValue("Hành vi vi phạm chính tại:");
 		this.txtBKS.setInputPrompt("");
@@ -744,46 +745,16 @@ public class OptionHVVP extends XdevView {
 		this.setWidth(100, Unit.PERCENTAGE);
 		this.setHeight(-1, Unit.PIXELS);
 	
-		this.cbHVVP.addValueChangeListener(new Property.ValueChangeListener() {
-			@Override
-			public void valueChange(final Property.ValueChangeEvent event) {
-				OptionHVVP.this.cbHVVP_valueChange(event);
-			}
-		});
-		this.cbHVVP3.addValueChangeListener(new Property.ValueChangeListener() {
-			@Override
-			public void valueChange(final Property.ValueChangeEvent event) {
-				OptionHVVP.this.cbHVVP3_valueChange(event);
-			}
-		});
+		this.cbHVVP.addValueChangeListener(event -> this.cbHVVP_valueChange(event));
+		this.cbHVVP3.addValueChangeListener(event -> this.cbHVVP3_valueChange(event));
 		this.btnDelete3.addClickListener(event -> this.btnDelete3_buttonClick(event));
-		this.cbHVVP6.addValueChangeListener(new Property.ValueChangeListener() {
-			@Override
-			public void valueChange(final Property.ValueChangeEvent event) {
-				OptionHVVP.this.cbHVVP6_valueChange(event);
-			}
-		});
+		this.cbHVVP6.addValueChangeListener(event -> this.cbHVVP6_valueChange(event));
 		this.btnDelete6.addClickListener(event -> this.btnDelete6_buttonClick(event));
-		this.cbHVVP5.addValueChangeListener(new Property.ValueChangeListener() {
-			@Override
-			public void valueChange(final Property.ValueChangeEvent event) {
-				OptionHVVP.this.cbHVVP5_valueChange(event);
-			}
-		});
+		this.cbHVVP5.addValueChangeListener(event -> this.cbHVVP5_valueChange(event));
 		this.btnDelete5.addClickListener(event -> this.btnDelete5_buttonClick(event));
-		this.cbHVVP4.addValueChangeListener(new Property.ValueChangeListener() {
-			@Override
-			public void valueChange(final Property.ValueChangeEvent event) {
-				OptionHVVP.this.cbHVVP4_valueChange(event);
-			}
-		});
+		this.cbHVVP4.addValueChangeListener(event -> this.cbHVVP4_valueChange(event));
 		this.btnDelete4.addClickListener(event -> this.btnDelete4_buttonClick(event));
-		this.cbHVVP2.addValueChangeListener(new Property.ValueChangeListener() {
-			@Override
-			public void valueChange(final Property.ValueChangeEvent event) {
-				OptionHVVP.this.cbHVVP2_valueChange(event);
-			}
-		});
+		this.cbHVVP2.addValueChangeListener(event -> this.cbHVVP2_valueChange(event));
 		this.btnDelete2.addClickListener(event -> this.btnDelete2_buttonClick(event));
 		this.btnLuu.addClickListener(event -> this.btnLuu_buttonClick(event));
 		this.btnClose.addClickListener(event -> this.btnClose_buttonClick(event));

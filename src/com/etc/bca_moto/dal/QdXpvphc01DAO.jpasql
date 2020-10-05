@@ -1,0 +1,5 @@
+import com.etc.bca_moto.entities.QdXpvphc01
+findBySoQd(String soQd)
+{
+	select * from QdXpvphc01 where soQuyetDinh =: soQd
+}

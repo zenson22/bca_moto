@@ -1,5 +1,7 @@
 package com.etc.bca_moto.ui;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -7,19 +9,30 @@ import java.util.Map;
 
 import com.etc.bca_moto.dal.CanBoDAO;
 import com.etc.bca_moto.dal.DonViCanhsatGtDAO;
+import com.etc.bca_moto.dal.QdGiamMienTienPhat04DAO;
+import com.etc.bca_moto.dal.QdXpvphc01DAO;
+import com.etc.bca_moto.dal.QdXpvphc02DAO;
 import com.etc.bca_moto.entities.CanBo;
 import com.etc.bca_moto.entities.CanBo_;
 import com.etc.bca_moto.entities.QdGiamMienTienPhat04;
+import com.etc.bca_moto.entities.QdGiamMienTienPhat04_;
+import com.etc.bca_moto.entities.QdXpvphc01;
+import com.etc.bca_moto.entities.QdXpvphc01_;
+import com.etc.bca_moto.entities.QdXpvphc02;
+import com.etc.bca_moto.entities.QdXpvphc02_;
 import com.vaadin.data.Property;
+import com.vaadin.server.Page;
+import com.vaadin.server.StreamResource;
+import com.vaadin.server.StreamResource.StreamSource;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.PopupDateField;
+import com.vaadin.ui.UI;
 import com.xdev.dal.DAOs;
 import com.xdev.ui.XdevButton;
 import com.xdev.ui.XdevFieldGroup;
@@ -30,10 +43,10 @@ import com.xdev.ui.entitycomponent.combobox.XdevComboBox;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class BBGiamPhatView extends XdevView {
 
@@ -48,15 +61,23 @@ public class BBGiamPhatView extends XdevView {
 		}
 		return bbGiamPhatView;
 	}
-
-	public void setFiedGroupData(final QdGiamMienTienPhat04 qdgm){
-		//this.fieldGroup.setItemDataSource(qdgm);
-	}
+	private final Object ouputView = UI.getCurrent().getSession().getAttribute("OutPutViewReport04");
 	
 	public BBGiamPhatView() {
 		super();
 		this.initUI();
-		//this.fieldGroup.setItemDataSource(new QdGiamMien());
+		//final Object ouputView = UI.getCurrent().getSession().getAttribute("OutPutViewReport04");
+		if(this.ouputView!=null){
+			//final QdGiamMienTienPhat04  giamMienTienPhat04 = DAOs.get(QdGiamMienTienPhat04DAO.class).find(Long.parseLong(this.ouputView.toString()));
+			final QdGiamMienTienPhat04  giamMienTienPhat04 = (QdGiamMienTienPhat04) this.ouputView;
+			this.fieldGroup.setItemDataSource(giamMienTienPhat04);
+			this.cbQdVPHC.setValue(DAOs.get(QdXpvphc01DAO.class).findBySoQd(this.txtQdVPHC.getValue()).get(0));
+			this.cbQdHoanThiHanh.setValue(DAOs.get(QdXpvphc02DAO.class).findBySoQd(this.txtHoanTH.getValue()).get(0));
+			
+			this.cbCanBo.setValue(DAOs.get(CanBoDAO.class).find(Long.parseLong(this.txtCanBoId.getValue())));
+		} else {
+			this.fieldGroup.setItemDataSource(new QdGiamMienTienPhat04());
+		}
 	}
 
 	/**
@@ -66,25 +87,47 @@ public class BBGiamPhatView extends XdevView {
 	 * @see Button.ClickListener#buttonClick(Button.ClickEvent)
 	 * @eventHandlerDelegate Do NOT delete, used by UI designer!
 	 */
+	@SuppressWarnings("deprecation")
 	private void cmdPrint_buttonClick(final Button.ClickEvent event) {
+		long id = 0;
+		if(this.ouputView != null){
+			id = ((QdGiamMienTienPhat04)this.ouputView).getId();
+		}
 		final Connection conn = BBVPHCView.getConnection();
-		JasperReport jsReport = null;
+		JasperReport jpReport = null;
 		JasperPrint jasperPrint = null;
-		final String report_Rescore = "E:/Data/Java/rapid/ReportExample/WebContent/WEB-INF/resources/reports/Mau_Bien_Ban_So_04.jrxml";
+		final String path = System.getProperty("java.class.path").split("\\.")[0];
 		try {
-			jsReport = JasperCompileManager.compileReport(report_Rescore);
+			jpReport = JasperCompileManager.compileReport(
+					path + "BCA_MOTO\\WebContent\\WEB-INF\\resources\\Output_Report_04.jrxml");
 			// Preparing parameters
 			final Map<String, Object> parameters = new HashMap<>();
-			parameters.put("id", this.txtThree.getValue());
-			parameters.put("cbId", this.txtTwo.getValue());
-			
-			jasperPrint = JasperFillManager.fillReport(jsReport, parameters, conn);
+			if(id==0){
+				parameters.put("id", DAOs.get(QdGiamMienTienPhat04DAO.class).getMaxId().get(0));
+			}
+			else{
+				parameters.put("id", id);
+			}
+			jasperPrint = JasperFillManager.fillReport(jpReport, parameters, conn);
 			conn.close();
-			
 		} catch (final JRException | SQLException e) {
 			e.printStackTrace();
 		}
-		JasperViewer.viewReport(jasperPrint);
+		byte[] b = null;
+		try {
+			b = JasperExportManager.exportReportToPdf(jasperPrint);
+		} catch (final JRException e) {
+			e.printStackTrace();
+		}
+		final InputStream stream = new ByteArrayInputStream(b);
+		final StreamResource.StreamSource source = new StreamSource(){
+			@Override
+			public InputStream getStream() {
+				return stream;
+			}
+		};
+		final StreamResource resource = new StreamResource(source, "Bao_Cao_So_04.pdf");
+		Page.getCurrent().open(resource, "_blank", false);
 	}
 
 	/**
@@ -95,11 +138,11 @@ public class BBGiamPhatView extends XdevView {
 	 * @eventHandlerDelegate Do NOT delete, used by UI designer!
 	 */
 	private void cmdSave_buttonClick(final Button.ClickEvent event) {
-		if (this.txtThree.isEmpty()) {
-			this.txtThree.focus();
+		if (this.txtSoQd.isEmpty()) {
+			this.txtSoQd.focus();
 			Notification.show("Thế quên t ak");
 		} else {
-			//this.fieldGroup.save();
+			this.fieldGroup.save();
 			Notification.show("Oki", Type.WARNING_MESSAGE);
 		}
 	}
@@ -135,11 +178,10 @@ public class BBGiamPhatView extends XdevView {
 	 */
 	private void cbCanBo_valueChange(final Property.ValueChangeEvent event) {
 		this.txtCapBac.setValue(this.cbCanBo.getSelectedItem().getBean().getCapBac());
-		
+		this.txtCanBoId.setValue(this.cbCanBo.getSelectedItem().getBean().getId()+"");
 		this.txtDvCSGT.setValue(DAOs.get(DonViCanhsatGtDAO.class).
 				find(this.cbCanBo.getSelectedItem().getBean().getDonViCsgtId()).getTenDonVi());
-		this.txtDvCSGTId.setValue(DAOs.get(DonViCanhsatGtDAO.class).
-				find(this.cbCanBo.getSelectedItem().getBean().getDonViCsgtId()).getId()+"");
+		this.txtDvCSGTId.setValue(this.cbCanBo.getSelectedItem().getBean().getDonViCsgtId()+"");
 	}
 
 	/*
@@ -151,9 +193,9 @@ public class BBGiamPhatView extends XdevView {
 		this.gridLayout = new GridLayout();
 		this.absoluteLayoutTitle = new AbsoluteLayout();
 		this.lblQuocHieu = new Label();
-		this.txtOne = new XdevTextField();
-		this.txtTwo = new XdevTextField();
-		this.txtThree = new XdevTextField();
+		this.txtCoQuanChuQuan = new XdevTextField();
+		this.txtDonVi = new XdevTextField();
+		this.txtSoQd = new XdevTextField();
 		this.label = new Label();
 		this.label2 = new Label();
 		this.label3 = new Label();
@@ -161,7 +203,7 @@ public class BBGiamPhatView extends XdevView {
 		this.label5 = new Label();
 		this.label7 = new Label();
 		this.txtAddress = new XdevTextField();
-		this.popupDateFieldNgayLap = new PopupDateField();
+		this.pdfNgayTao = new PopupDateField();
 		this.cmdPrint = new XdevButton();
 		this.cmdSave = new XdevButton();
 		this.form = new XdevGridLayout();
@@ -172,17 +214,17 @@ public class BBGiamPhatView extends XdevView {
 		this.label9 = new Label();
 		this.label10 = new Label();
 		this.label11 = new Label();
-		this.popupDateFieldNgayXuPhatVPHC = new PopupDateField();
+		this.pdfCcQdVphc = new PopupDateField();
 		this.label12 = new Label();
 		this.label13 = new Label();
 		this.label14 = new Label();
 		this.label15 = new Label();
 		this.label16 = new Label();
-		this.popupDateFieldHoanTHQD = new PopupDateField();
-		this.popupDateFieldNgayGQXP = new PopupDateField();
+		this.pdfHoanTH = new PopupDateField();
+		this.pdfGqXpVphc = new PopupDateField();
 		this.label17 = new Label();
 		this.label18 = new Label();
-		this.popupDateFieldXetDon = new PopupDateField();
+		this.pdfXetDonGM = new PopupDateField();
 		this.label19 = new Label();
 		this.label20 = new Label();
 		this.label21 = new Label();
@@ -216,21 +258,31 @@ public class BBGiamPhatView extends XdevView {
 		this.cbCanBo = new XdevComboBox<>();
 		this.txtCapBac = new XdevTextField();
 		this.txtDvCSGT = new XdevTextField();
+		this.txtNguoiViPham = new XdevTextField();
+		this.txtTienDuocGiamSo = new XdevTextField();
+		this.txtTienSauGiamSo = new XdevTextField();
+		this.txtTienDuocGiamChu = new XdevTextField();
+		this.txtTienSauGiamChu = new XdevTextField();
+		this.txtLydoGiamMien = new XdevTextField();
+		this.txtTvNhanLai = new XdevTextField();
+		this.txtNgViPham = new XdevTextField();
+		this.txtToChucThucHien = new XdevTextField();
+		this.txtNguoiRaQd = new XdevTextField();
+		this.txtCanBoId = new XdevTextField();
+		this.txtVphcKy = new XdevTextField();
+		this.txtHoanTHKy = new XdevTextField();
+		this.txtCoQuanXN = new XdevTextField();
 	
 		this.setPrimaryStyleName("v-font-ct");
-		this.gridLayout.setPrimaryStyleName("v-gridlayout-scroll");
 		this.lblQuocHieu.setPrimaryStyleName("v-label-ct");
 		this.lblQuocHieu.setValue("<b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br> Độc lập - Tự do - Hạnh phúc</b>");
 		this.lblQuocHieu.setContentMode(ContentMode.HTML);
-		this.txtOne.setColumns(5);
-		this.txtOne.setInputPrompt(".............................");
-		this.txtOne.setStyleName("borderless");
-		this.txtTwo.setColumns(5);
-		this.txtTwo.setInputPrompt(".............................");
-		this.txtTwo.setStyleName("borderless");
-		this.txtThree.setColumns(5);
-		this.txtThree.setInputPrompt(".............................");
-		this.txtThree.setStyleName("borderless");
+		this.txtCoQuanChuQuan.setInputPrompt(".............................");
+		this.txtCoQuanChuQuan.setStyleName("borderless");
+		this.txtDonVi.setInputPrompt(".............................");
+		this.txtDonVi.setStyleName("borderless");
+		this.txtSoQd.setInputPrompt(".............................");
+		this.txtSoQd.setStyleName("borderless");
 		this.label.setValue("(1)");
 		this.label.setContentMode(ContentMode.HTML);
 		this.label2.setValue("(2)");
@@ -247,11 +299,32 @@ public class BBGiamPhatView extends XdevView {
 		this.label7.setContentMode(ContentMode.HTML);
 		this.txtAddress.setInputPrompt("........................................");
 		this.txtAddress.setStyleName("borderless");
-		this.popupDateFieldNgayLap.setDateFormat("dd/MM/yyyy");
+		this.pdfNgayTao.setDateFormat("dd/MM/yyyy");
 		this.cmdPrint.setCaption("In");
 		this.cmdPrint.setPrimaryStyleName("v-btnPrint");
 		this.cmdSave.setCaption("Lưu");
 		this.cmdSave.setPrimaryStyleName("v-btnLuu");
+		this.fieldGroup.bind(this.txtCoQuanChuQuan, QdGiamMienTienPhat04_.coQuanChuQuan.getName());
+		this.fieldGroup.bind(this.txtSoQd, QdGiamMienTienPhat04_.soQuyetDinh.getName());
+		this.fieldGroup.bind(this.txtQdVPHC, QdGiamMienTienPhat04_.canCuQdVphcSo.getName());
+		this.fieldGroup.bind(this.txtVphcKy, QdGiamMienTienPhat04_.vphcKy.getName());
+		this.fieldGroup.bind(this.pdfCcQdVphc, QdGiamMienTienPhat04_.canCuQdVphcNgay.getName());
+		this.fieldGroup.bind(this.txtHoanTH, QdGiamMienTienPhat04_.canCuQdHoanThSo.getName());
+		this.fieldGroup.bind(this.pdfHoanTH, QdGiamMienTienPhat04_.canCuQdHoanThNgay.getName());
+		this.fieldGroup.bind(this.txtHoanTHKy, QdGiamMienTienPhat04_.hoanThKy.getName());
+		this.fieldGroup.bind(this.txtCanBoId, QdGiamMienTienPhat04_.canBoRaQdId.getName());
+		this.fieldGroup.bind(this.txtCapBac, QdGiamMienTienPhat04_.capBacChucVu.getName());
+		this.fieldGroup.bind(this.txtDvCSGT, QdGiamMienTienPhat04_.donVi.getName());
+		this.fieldGroup.bind(this.txtTienDuocGiamSo, QdGiamMienTienPhat04_.tienPhatDuocGiamBangSo.getName());
+		this.fieldGroup.bind(this.txtTienDuocGiamChu, QdGiamMienTienPhat04_.tienPhatDuocGiamBangChu.getName());
+		this.fieldGroup.bind(this.txtTienSauGiamSo, QdGiamMienTienPhat04_.tienPhatSauGiamBangSo.getName());
+		this.fieldGroup.bind(this.txtTienSauGiamChu, QdGiamMienTienPhat04_.tienPhatSauGiamBangChu.getName());
+		this.fieldGroup.bind(this.txtLydoGiamMien, QdGiamMienTienPhat04_.lyDoGiam.getName());
+		this.fieldGroup.bind(this.txtTvNhanLai, QdGiamMienTienPhat04_.tangVatNhanLai.getName());
+		this.fieldGroup.bind(this.txtNguoiViPham, QdGiamMienTienPhat04_.tenNguoiNvp.getName());
+		this.fieldGroup.bind(this.txtToChucThucHien, QdGiamMienTienPhat04_.phoiHopThucHienQd.getName());
+		this.fieldGroup.bind(this.txtCoQuanXN, QdGiamMienTienPhat04_.coQuanXn.getName());
+		this.fieldGroup.bind(this.pdfNgayTao, QdGiamMienTienPhat04_.ngayTaoQuyetDinh.getName());
 		this.label6.setValue(
 				"Căn cứ Điều 77 Luật xử lý vi phạm hành chính;<br>Căn cứ Quyết định xử phạt vi phạm hành chính số:");
 		this.label6.setContentMode(ContentMode.HTML);
@@ -260,18 +333,18 @@ public class BBGiamPhatView extends XdevView {
 		this.label10.setValue("ký;");
 		this.label11.setValue("ngày");
 		this.label11.setContentMode(ContentMode.HTML);
-		this.popupDateFieldNgayXuPhatVPHC.setDateFormat("dd/MM/yyyy");
+		this.pdfCcQdVphc.setDateFormat("dd/MM/yyyy");
 		this.label12.setValue("ngày");
 		this.label13.setValue("ký (nếu có);");
 		this.label13.setContentMode(ContentMode.HTML);
 		this.label14.setValue("ngày");
 		this.label15.setValue("(nếu có);");
 		this.label16.setValue("Căn cứ Quyết định về việc giao quyền xử phạt vi phạm hành chính số");
-		this.popupDateFieldHoanTHQD.setDateFormat("dd/MM/yyyy");
-		this.popupDateFieldNgayGQXP.setDateFormat("dd/MM/yyyy");
+		this.pdfHoanTH.setDateFormat("dd/MM/yyyy");
+		this.pdfGqXpVphc.setDateFormat("dd/MM/yyyy");
 		this.label17.setValue("do:");
 		this.label18.setValue("Xét đơn đề nghị giảm/miễn tiền phạt vi phạm hành chính ngày");
-		this.popupDateFieldXetDon.setDateFormat("dd/MM/yyyy");
+		this.pdfXetDonGM.setDateFormat("dd/MM/yyyy");
 		this.label19.setValue("của Ông(Bà)");
 		this.label19.setContentMode(ContentMode.HTML);
 		this.label20.setValue("được<sup>(4)</sup>");
@@ -310,10 +383,12 @@ public class BBGiamPhatView extends XdevView {
 		this.label41.setContentMode(ContentMode.HTML);
 		this.cbQdVPHC.setItemCaptionFromAnnotation(false);
 		this.cbQdVPHC.setInputPrompt("Chọn đê");
-		this.cbQdVPHC.setItemCaptionPropertyId("so");
+		this.cbQdVPHC.setContainerDataSource(QdXpvphc01.class, DAOs.get(QdXpvphc01DAO.class).findAll());
+		this.cbQdVPHC.setItemCaptionPropertyId(QdXpvphc01_.soQuyetDinh.getName());
 		this.cbQdHoanThiHanh.setItemCaptionFromAnnotation(false);
 		this.cbQdHoanThiHanh.setInputPrompt(" Không chọn -> lỗi");
-		this.cbQdHoanThiHanh.setItemCaptionPropertyId("so");
+		this.cbQdHoanThiHanh.setContainerDataSource(QdXpvphc02.class, DAOs.get(QdXpvphc02DAO.class).findAll());
+		this.cbQdHoanThiHanh.setItemCaptionPropertyId(QdXpvphc02_.soQuyetDinh.getName());
 		this.txtQdVPHC.setColumns(5);
 		this.txtQdVPHC.setInputPrompt(".............................");
 		this.txtQdVPHC.setStyleName("borderless");
@@ -339,32 +414,79 @@ public class BBGiamPhatView extends XdevView {
 		this.txtDvCSGT.setInputPrompt(".............................");
 		this.txtDvCSGT.setStyleName("borderless");
 		this.txtDvCSGT.setEnabled(false);
+		this.txtNguoiViPham
+				.setInputPrompt("................................................................................");
+		this.txtNguoiViPham.setStyleName("borderless");
+		this.txtTienDuocGiamSo
+				.setInputPrompt("................................................................................");
+		this.txtTienDuocGiamSo.setStyleName("borderless");
+		this.txtTienSauGiamSo.setInputPrompt(
+				".........................................................................................................................");
+		this.txtTienSauGiamSo.setStyleName("borderless");
+		this.txtTienDuocGiamChu
+				.setInputPrompt("................................................................................");
+		this.txtTienDuocGiamChu.setStyleName("borderless");
+		this.txtTienSauGiamChu.setInputPrompt(
+				"..................................................................................................................................................................................................................................................");
+		this.txtTienSauGiamChu.setStyleName("borderless");
+		this.txtLydoGiamMien.setInputPrompt(
+				".........................................................................................................................");
+		this.txtLydoGiamMien.setStyleName("borderless");
+		this.txtTvNhanLai.setInputPrompt(
+				".........................................................................................................................");
+		this.txtTvNhanLai.setStyleName("borderless");
+		this.txtNgViPham.setInputPrompt(
+				".........................................................................................................................");
+		this.txtNgViPham.setStyleName("borderless");
+		this.txtToChucThucHien.setInputPrompt(
+				".........................................................................................................................");
+		this.txtToChucThucHien.setStyleName("borderless");
+		this.txtNguoiRaQd.setInputPrompt(
+				".........................................................................................................................");
+		this.txtNguoiRaQd.setStyleName("borderless");
+		this.txtCanBoId.setColumns(5);
+		this.txtCanBoId.setInputPrompt(".............................");
+		this.txtCanBoId.setStyleName("borderless");
+		this.txtCanBoId.setEnabled(false);
+		this.txtCanBoId.setVisible(false);
+		this.txtVphcKy.setInputPrompt(
+				".....................................................................................................................................................................................................");
+		this.txtVphcKy.setStyleName("borderless");
+		this.txtHoanTHKy.setInputPrompt(
+				".....................................................................................................................................................................................................");
+		this.txtHoanTHKy.setStyleName("borderless");
+		this.txtCoQuanXN.setInputPrompt(
+				".....................................................................................................................................................................................................");
+		this.txtCoQuanXN.setStyleName("borderless");
 	
 		this.lblQuocHieu.setWidth(400, Unit.PIXELS);
 		this.lblQuocHieu.setHeight(50, Unit.PIXELS);
 		this.absoluteLayoutTitle.addComponent(this.lblQuocHieu, "left:822px; top:50px");
-		this.absoluteLayoutTitle.addComponent(this.txtOne, "left:28px; top:52px");
-		this.absoluteLayoutTitle.addComponent(this.txtTwo, "left:28px; top:87px");
-		this.absoluteLayoutTitle.addComponent(this.txtThree, "left:58px; top:122px");
+		this.txtCoQuanChuQuan.setWidth(150, Unit.PIXELS);
+		this.absoluteLayoutTitle.addComponent(this.txtCoQuanChuQuan, "left:28px; top:52px");
+		this.txtDonVi.setWidth(150, Unit.PIXELS);
+		this.absoluteLayoutTitle.addComponent(this.txtDonVi, "left:28px; top:87px");
+		this.txtSoQd.setWidth(120, Unit.PIXELS);
+		this.absoluteLayoutTitle.addComponent(this.txtSoQd, "left:58px; top:122px");
 		this.label.setWidth(30, Unit.PIXELS);
 		this.label.setHeight(30, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.label, "left:108px; top:57px");
+		this.absoluteLayoutTitle.addComponent(this.label, "left:200px; top:57px");
 		this.label2.setWidth(30, Unit.PIXELS);
 		this.label2.setHeight(30, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.label2, "left:108px; top:92px");
+		this.absoluteLayoutTitle.addComponent(this.label2, "left:200px; top:92px");
 		this.label3.setWidth(30, Unit.PIXELS);
 		this.label3.setHeight(30, Unit.PIXELS);
 		this.absoluteLayoutTitle.addComponent(this.label3, "left:28px; top:127px");
 		this.absoluteLayoutTitle.addComponent(this.label4, "left:0px; top:165px");
 		this.label5.setWidth(100, Unit.PIXELS);
 		this.label5.setHeight(30, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.label5, "left:138px; top:127px");
+		this.absoluteLayoutTitle.addComponent(this.label5, "left:200px; top:127px");
 		this.label7.setWidth(150, Unit.PIXELS);
 		this.label7.setHeight(30, Unit.PIXELS);
 		this.absoluteLayoutTitle.addComponent(this.label7, "left:835px; top:115px");
 		this.txtAddress.setWidth(100, Unit.PIXELS);
 		this.absoluteLayoutTitle.addComponent(this.txtAddress, "left:795px; top:109px");
-		this.absoluteLayoutTitle.addComponent(this.popupDateFieldNgayLap, "left:984px; top:109px");
+		this.absoluteLayoutTitle.addComponent(this.pdfNgayTao, "left:984px; top:109px");
 		this.absoluteLayoutTitle.addComponent(this.cmdPrint, "left:416px; top:41px");
 		this.absoluteLayoutTitle.addComponent(this.cmdSave, "left:339px; top:41px");
 		this.form.setWidth(30, Unit.PIXELS);
@@ -384,8 +506,8 @@ public class BBGiamPhatView extends XdevView {
 		this.absoluteLayout.addComponent(this.label10, "left:1027px; top:51px");
 		this.label11.setWidth(30, Unit.PIXELS);
 		this.label11.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label11, "left:780px; top:20px");
-		this.absoluteLayout.addComponent(this.popupDateFieldNgayXuPhatVPHC, "left:815px; top:15px");
+		this.absoluteLayout.addComponent(this.label11, "left:803px; top:19px");
+		this.absoluteLayout.addComponent(this.pdfCcQdVphc, "left:838px; top:14px");
 		this.label12.setWidth(50, Unit.PIXELS);
 		this.label12.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label12, "left:30px; top:110px");
@@ -401,15 +523,15 @@ public class BBGiamPhatView extends XdevView {
 		this.label16.setWidth(100, Unit.PERCENTAGE);
 		this.label16.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label16, "left:70px; top:140px");
-		this.absoluteLayout.addComponent(this.popupDateFieldHoanTHQD, "left:88px; top:104px");
-		this.absoluteLayout.addComponent(this.popupDateFieldNgayGQXP, "left:88px; top:166px");
+		this.absoluteLayout.addComponent(this.pdfHoanTH, "left:88px; top:104px");
+		this.absoluteLayout.addComponent(this.pdfGqXpVphc, "left:88px; top:166px");
 		this.label17.setWidth(30, Unit.PIXELS);
 		this.label17.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label17, "left:282px; top:110px");
 		this.label18.setWidth(100, Unit.PERCENTAGE);
 		this.label18.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label18, "left:70px; top:200px");
-		this.absoluteLayout.addComponent(this.popupDateFieldXetDon, "left:480px; top:193px");
+		this.absoluteLayout.addComponent(this.pdfXetDonGM, "left:480px; top:193px");
 		this.label19.setWidth(100, Unit.PIXELS);
 		this.label19.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label19, "left:899px; top:199px");
@@ -424,10 +546,10 @@ public class BBGiamPhatView extends XdevView {
 		this.absoluteLayout.addComponent(this.label22, "left:70px; top:261px");
 		this.label23.setWidth(120, Unit.PIXELS);
 		this.label23.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label23, "left:361px; top:259px");
+		this.absoluteLayout.addComponent(this.label23, "left:409px; top:260px");
 		this.label24.setWidth(70, Unit.PIXELS);
 		this.label24.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label24, "left:675px; top:260px");
+		this.absoluteLayout.addComponent(this.label24, "left:723px; top:261px");
 		this.absoluteLayout.addComponent(this.label25, "left:0px; top:322px");
 		this.label26.setWidth(100, Unit.PERCENTAGE);
 		this.label26.setHeight(30, Unit.PIXELS);
@@ -448,12 +570,12 @@ public class BBGiamPhatView extends XdevView {
 		this.label31.setWidth(150, Unit.PIXELS);
 		this.label31.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label31, "left:30px; top:460px");
-		this.label32.setWidth(150, Unit.PIXELS);
+		this.label32.setWidth(110, Unit.PIXELS);
 		this.label32.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label32, "left:400px; top:460px");
+		this.absoluteLayout.addComponent(this.label32, "left:555px; top:455px");
 		this.label33.setWidth(30, Unit.PIXELS);
 		this.label33.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label33, "left:1012px; top:463px");
+		this.absoluteLayout.addComponent(this.label33, "left:1200px; top:460px");
 		this.label34.setWidth(330, Unit.PIXELS);
 		this.label34.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label34, "left:72px; top:490px");
@@ -462,10 +584,10 @@ public class BBGiamPhatView extends XdevView {
 		this.absoluteLayout.addComponent(this.label35, "left:30px; top:520px");
 		this.label37.setWidth(30, Unit.PIXELS);
 		this.label37.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label37, "left:1012px; top:524px");
+		this.absoluteLayout.addComponent(this.label37, "left:1200px; top:524px");
 		this.label38.setWidth(50, Unit.PIXELS);
 		this.label38.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label38, "left:1012px; top:494px");
+		this.absoluteLayout.addComponent(this.label38, "left:1200px; top:494px");
 		this.label36.setWidth(100, Unit.PERCENTAGE);
 		this.label36.setHeight(150, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label36, "left:72px; top:550px");
@@ -475,24 +597,67 @@ public class BBGiamPhatView extends XdevView {
 		this.label40.setWidth(250, Unit.PIXELS);
 		this.label40.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label40, "left:832px; top:670px");
-		this.lblQuocHieu2.setWidth(400, Unit.PIXELS);
+		this.lblQuocHieu2.setWidth(350, Unit.PIXELS);
 		this.lblQuocHieu2.setHeight(50, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.lblQuocHieu2, "left:854px; top:706px");
 		this.label41.setWidth(100, Unit.PIXELS);
 		this.label41.setHeight(100, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label41, "left:30px; top:700px");
-		this.absoluteLayout.addComponent(this.cbQdVPHC, "left:520px; top:0px");
-		this.absoluteLayout.addComponent(this.cbQdHoanThiHanh, "left:520px; top:73px");
-		this.absoluteLayout.addComponent(this.txtQdVPHC, "left:401px; top:0px");
+		this.cbQdVPHC.setWidth(250, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.cbQdVPHC, "left:400px; top:18px");
+		this.cbQdHoanThiHanh.setWidth(250, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.cbQdHoanThiHanh, "left:450px; top:73px");
+		this.absoluteLayout.addComponent(this.txtQdVPHC, "left:700px; top:0px");
 		this.absoluteLayout.addComponent(this.txtHoanTH, "left:730px; top:80px");
-		this.absoluteLayout.addComponent(this.txtDvCSGTId, "left:928px; top:257px");
-		this.absoluteLayout.addComponent(this.cbCanBo, "left:139px; top:259px");
+		this.absoluteLayout.addComponent(this.txtDvCSGTId, "left:976px; top:258px");
+		this.cbCanBo.setWidth(270, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.cbCanBo, "left:120px; top:260px");
 		this.txtCapBac.setWidth(150, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.txtCapBac, "left:490px; top:255px");
+		this.absoluteLayout.addComponent(this.txtCapBac, "left:538px; top:256px");
 		this.txtDvCSGT.setWidth(150, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.txtDvCSGT, "left:755px; top:255px");
+		this.absoluteLayout.addComponent(this.txtDvCSGT, "left:803px; top:256px");
+		this.txtNguoiViPham.setWidth(500, Unit.PIXELS);
+		this.txtNguoiViPham.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtNguoiViPham, "left:271px; top:430px");
+		this.txtTienDuocGiamSo.setWidth(300, Unit.PIXELS);
+		this.txtTienDuocGiamSo.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtTienDuocGiamSo, "left:200px; top:460px");
+		this.txtTienSauGiamSo.setWidth(600, Unit.PIXELS);
+		this.txtTienSauGiamSo.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtTienSauGiamSo, "left:411px; top:494px");
+		this.txtTienDuocGiamChu.setWidth(500, Unit.PIXELS);
+		this.txtTienDuocGiamChu.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtTienDuocGiamChu, "left:680px; top:460px");
+		this.txtTienSauGiamChu.setWidth(1000, Unit.PIXELS);
+		this.txtTienSauGiamChu.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtTienSauGiamChu, "left:145px; top:520px");
+		this.txtLydoGiamMien.setWidth(600, Unit.PIXELS);
+		this.txtLydoGiamMien.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtLydoGiamMien, "left:200px; top:550px");
+		this.txtTvNhanLai.setWidth(600, Unit.PIXELS);
+		this.txtTvNhanLai.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtTvNhanLai, "left:250px; top:575px");
+		this.txtNgViPham.setWidth(600, Unit.PIXELS);
+		this.txtNgViPham.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtNgViPham, "left:250px; top:645px");
+		this.txtToChucThucHien.setWidth(600, Unit.PIXELS);
+		this.txtToChucThucHien.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtToChucThucHien, "left:220px; top:670px");
+		this.txtNguoiRaQd.setWidth(300, Unit.PIXELS);
+		this.txtNguoiRaQd.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtNguoiRaQd, "left:900px; top:770px");
+		this.absoluteLayout.addComponent(this.txtCanBoId, "left:1080px; top:257px");
+		this.txtVphcKy.setWidth(800, Unit.PIXELS);
+		this.txtVphcKy.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtVphcKy, "left:109px; top:54px");
+		this.txtHoanTHKy.setWidth(500, Unit.PIXELS);
+		this.txtHoanTHKy.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtHoanTHKy, "left:350px; top:110px");
+		this.txtCoQuanXN.setWidth(500, Unit.PIXELS);
+		this.txtCoQuanXN.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtCoQuanXN, "left:321px; top:229px");
 		this.gridLayout.setColumns(1);
-		this.gridLayout.setRows(3);
+		this.gridLayout.setRows(2);
 		this.absoluteLayoutTitle.setWidth(100, Unit.PERCENTAGE);
 		this.absoluteLayoutTitle.setHeight(250, Unit.PIXELS);
 		this.gridLayout.addComponent(this.absoluteLayoutTitle, 0, 0);
@@ -500,14 +665,11 @@ public class BBGiamPhatView extends XdevView {
 		this.absoluteLayout.setHeight(800, Unit.PIXELS);
 		this.gridLayout.addComponent(this.absoluteLayout, 0, 1);
 		this.gridLayout.setColumnExpandRatio(0, 10.0F);
-		final CustomComponent gridLayout_vSpacer = new CustomComponent();
-		gridLayout_vSpacer.setSizeFull();
-		this.gridLayout.addComponent(gridLayout_vSpacer, 0, 2, 0, 2);
-		this.gridLayout.setRowExpandRatio(2, 1.0F);
-		this.gridLayout.setWidth(1300, Unit.PIXELS);
-		this.gridLayout.setHeight(100, Unit.PERCENTAGE);
+		this.gridLayout.setWidth(1280, Unit.PIXELS);
+		this.gridLayout.setHeight(1200, Unit.PIXELS);
 		this.setContent(this.gridLayout);
-		this.setSizeFull();
+		this.setWidth(1280, Unit.PIXELS);
+		this.setHeight(-1, Unit.PIXELS);
 	
 		this.cmdPrint.addClickListener(event -> this.cmdPrint_buttonClick(event));
 		this.cmdSave.addClickListener(event -> this.cmdSave_buttonClick(event));
@@ -534,18 +696,21 @@ public class BBGiamPhatView extends XdevView {
 	// <generated-code name="variables">
 	private XdevButton cmdPrint, cmdSave;
 	private XdevFieldGroup<QdGiamMienTienPhat04> fieldGroup;
+	private XdevComboBox<QdXpvphc02> cbQdHoanThiHanh;
 	private XdevComboBox<CanBo> cbCanBo;
 	private Label lblQuocHieu, label, label2, label3, label4, label5, label7, label6, label8, label9, label10, label11,
 			label12, label13, label14, label15, label16, label17, label18, label19, label20, label21, label22, label23,
 			label24, label25, label26, label27, label28, label29, label30, label31, label32, label33, label34, label35,
 			label37, label38, label36, label39, label40, lblQuocHieu2, label41;
-	private XdevTextField txtOne, txtTwo, txtThree, txtAddress, txtQdVPHC, txtHoanTH, txtDvCSGTId, txtCapBac, txtDvCSGT;
+	private XdevTextField txtCoQuanChuQuan, txtDonVi, txtSoQd, txtAddress, txtQdVPHC, txtHoanTH, txtDvCSGTId, txtCapBac,
+			txtDvCSGT, txtNguoiViPham, txtTienDuocGiamSo, txtTienSauGiamSo, txtTienDuocGiamChu, txtTienSauGiamChu,
+			txtLydoGiamMien, txtTvNhanLai, txtNgViPham, txtToChucThucHien, txtNguoiRaQd, txtCanBoId, txtVphcKy, txtHoanTHKy,
+			txtCoQuanXN;
 	private XdevGridLayout form;
-	private PopupDateField popupDateFieldNgayLap, popupDateFieldNgayXuPhatVPHC, popupDateFieldHoanTHQD,
-			popupDateFieldNgayGQXP, popupDateFieldXetDon, popupDateFieldHoanTHQD2;
-	private XdevComboBox<CustomComponent> cbQdVPHC, cbQdHoanThiHanh;
+	private PopupDateField pdfNgayTao, pdfCcQdVphc, pdfHoanTH, pdfGqXpVphc, pdfXetDonGM, popupDateFieldHoanTHQD2;
 	private GridLayout gridLayout;
 	private AbsoluteLayout absoluteLayoutTitle, absoluteLayout;
+	private XdevComboBox<QdXpvphc01> cbQdVPHC;
 	// </generated-code>
 
 }
