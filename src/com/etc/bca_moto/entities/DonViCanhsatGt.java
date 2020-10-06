@@ -67,7 +67,6 @@ public class DonViCanhsatGt implements java.io.Serializable {
 	private Long diaDiemTamGiuId;
 	private Long donViResourceId;
 	private Set<DanhSachDonViDacBiet> danhSachDonViDacBiets = new HashSet<>(0);
-	private List<AuthUser> authUsers = new ArrayList<>();
 	public DonViCanhsatGt() {
 	}
 
@@ -415,27 +414,6 @@ public class DonViCanhsatGt implements java.io.Serializable {
 
 	public void setDanhSachDonViDacBiets(final Set<DanhSachDonViDacBiet> danhSachDonViDacBiets) {
 		this.danhSachDonViDacBiets = danhSachDonViDacBiets;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "donViCanhsatGt")
-	public List<AuthUser> getAuthUsers() {
-		return this.authUsers;
-	}
-
-	public void setAuthUsers(final List<AuthUser> authUsers) {
-		this.authUsers = authUsers;
-	}
-
-	public AuthUser addAuthUser(final AuthUser authUser) {
-		getAuthUsers().add(authUser);
-		authUser.setDonViCanhsatGt(this);
-		return authUser;
-	}
-
-	public AuthUser removeAuthUser(final AuthUser authUser) {
-		getAuthUsers().remove(authUser);
-		authUser.setDonViCanhsatGt(null);
-		return authUser;
 	}
 
 }

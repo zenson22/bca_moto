@@ -1,7 +1,9 @@
 package com.etc.bca_moto.ui;
 
+import com.etc.bca_moto.dal.DonViCanhsatGtDAO;
 import com.etc.bca_moto.entities.AuthUser;
 import com.etc.bca_moto.entities.AuthUser_;
+import com.etc.bca_moto.entities.DonViCanhsatGt;
 import com.etc.bca_moto.entities.QdCuongCheKhauTruTienTuTk07;
 import com.etc.bca_moto.entities.QdCuongCheKhauTruTienTuTk07_;
 /*import com.etc.bca_moto.entities.auth.AuthUser;
@@ -19,6 +21,7 @@ import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
+import com.xdev.dal.DAOs;
 import com.xdev.ui.XdevButton;
 import com.xdev.ui.XdevFieldGroup;
 import com.xdev.ui.XdevGridLayout;
@@ -95,11 +98,12 @@ public class TaoMoiQD07View extends XdevView {
 	 * @eventHandlerDelegate Do NOT delete, used by UI designer!
 	 */
 	private void cmbCanBo_valueChange(final Property.ValueChangeEvent event) {
-		this.txtTenCQChuQuan.setValue(this.cmbCanBo.getSelectedItem().getBean().getDonViCanhsatGt().getTenCoquanChuquan());
-		this.txtTenDonVi.setValue(this.cmbCanBo.getSelectedItem().getBean().getDonViCanhsatGt().getTenDonVi());
+		final DonViCanhsatGt donViCanhsatGt = DAOs.get(DonViCanhsatGtDAO.class).find(this.cmbCanBo.getSelectedItem().getBean().getDonViCsgtId());
+		this.txtTenCQChuQuan.setValue(donViCanhsatGt.getTenCoquanChuquan());
+		this.txtTenDonVi.setValue(donViCanhsatGt.getTenDonVi());
 		this.txtTenCanBo.setValue(this.cmbCanBo.getSelectedItem().getBean().getUserName());
 		this.txtCapBacChucVu.setValue(this.cmbCanBo.getSelectedItem().getBean().getCapBac()+", "+this.cmbCanBo.getSelectedItem().getBean().getChucVu());
-		this.txtDonvi.setValue(this.cmbCanBo.getSelectedItem().getBean().getDonViCanhsatGt().getTenDonVi());
+		//this.txtDonvi.setValue(this.cmbCanBo.getSelectedItem().getBean().getDonViCanhsatGt().getTenDonVi());
 		//this.txtDiaDanhHC.setValue(this.cmbCanBo.getSelectedItem().getBean().getDonViCanhsatGt().getDiaDanhHanhChinh().getTen());
 	}
 

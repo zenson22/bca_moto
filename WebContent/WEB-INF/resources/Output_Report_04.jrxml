@@ -213,7 +213,7 @@ $F{NGAY_TAO_QUYET_DINH}.getDate()+
 					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
 				</reportElement>
 				<textElement markup="html">
-					<font fontName="SansSerif"/>
+					<font fontName="Times New Roman"/>
 					<paragraph firstLineIndent="24"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Căn cứ Điều 77 Luật xử lý vi phạm hành chính;"+

@@ -1,9 +1,7 @@
 package com.etc.bca_moto.entities;
 
-import com.etc.bca_moto.dal.AuthResourceDAO;
-import com.xdev.dal.DAO;
-import com.xdev.util.Caption;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.hibernate.annotations.GenericGenerator;
+
+import com.etc.bca_moto.dal.AuthResourceDAO;
+import com.xdev.dal.DAO;
+import com.xdev.util.Caption;
 
 /**
  * AuthResource
@@ -41,7 +44,7 @@ public class AuthResource implements java.io.Serializable {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(final long id) {
 		this.id = id;
 	}
 
@@ -51,7 +54,7 @@ public class AuthResource implements java.io.Serializable {
 		return this.name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -61,7 +64,7 @@ public class AuthResource implements java.io.Serializable {
 		return this.description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
 
@@ -71,7 +74,7 @@ public class AuthResource implements java.io.Serializable {
 		return this.refResourceId;
 	}
 
-	public void setRefResourceId(Long refResourceId) {
+	public void setRefResourceId(final Long refResourceId) {
 		this.refResourceId = refResourceId;
 	}
 
@@ -82,7 +85,7 @@ public class AuthResource implements java.io.Serializable {
 		return this.updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(final Date updateDate) {
 		this.updateDate = updateDate;
 	}
 

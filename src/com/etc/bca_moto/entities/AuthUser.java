@@ -1,14 +1,12 @@
 package com.etc.bca_moto.entities;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.etc.bca_moto.dal.AuthUserDAO;
 import com.xdev.dal.DAO;
+import com.xdev.security.authentication.CredentialsUsernamePassword;
 import com.xdev.util.Caption;
 
 /**
@@ -26,7 +25,7 @@ import com.xdev.util.Caption;
 @Caption("{%loginId}")
 @Entity
 @Table(name = "AUTH_USER", schema = "BCA_MOTO")
-public class AuthUser implements java.io.Serializable {
+public class AuthUser implements java.io.Serializable, CredentialsUsernamePassword {
 
 	private long id;
 	private String loginId;
@@ -59,7 +58,6 @@ public class AuthUser implements java.io.Serializable {
 	private String nickName;
 	private String refreshTokenId;
 	private Date ngaySinh;
-	private DonViCanhsatGt donViCanhsatGt;
 	public AuthUser() {
 	}
 
@@ -383,14 +381,14 @@ public class AuthUser implements java.io.Serializable {
 		this.ngaySinh = ngaySinh;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "DONVICANHSATGT_ID")
-	public DonViCanhsatGt getDonViCanhsatGt() {
-		return this.donViCanhsatGt;
+	@Override
+	public String username() {
+		return this.getUserName();
 	}
 
-	public void setDonViCanhsatGt(final DonViCanhsatGt donViCanhsatGt) {
-		this.donViCanhsatGt = donViCanhsatGt;
+	@Override
+	public byte[] password() {
+		return this.getPassword().getBytes(StandardCharsets.UTF_8);
 	}
 
 }

@@ -7,13 +7,14 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.etc.bca_moto.dal.AuthUserDAO;
 import com.etc.bca_moto.dal.CanBoDAO;
 import com.etc.bca_moto.dal.DonViCanhsatGtDAO;
 import com.etc.bca_moto.dal.QdGiamMienTienPhat04DAO;
 import com.etc.bca_moto.dal.QdXpvphc01DAO;
 import com.etc.bca_moto.dal.QdXpvphc02DAO;
-import com.etc.bca_moto.entities.CanBo;
-import com.etc.bca_moto.entities.CanBo_;
+import com.etc.bca_moto.entities.AuthUser;
+import com.etc.bca_moto.entities.AuthUser_;
 import com.etc.bca_moto.entities.QdGiamMienTienPhat04;
 import com.etc.bca_moto.entities.QdGiamMienTienPhat04_;
 import com.etc.bca_moto.entities.QdXpvphc01;
@@ -325,6 +326,7 @@ public class BBGiamPhatView extends XdevView {
 		this.fieldGroup.bind(this.txtToChucThucHien, QdGiamMienTienPhat04_.phoiHopThucHienQd.getName());
 		this.fieldGroup.bind(this.txtCoQuanXN, QdGiamMienTienPhat04_.coQuanXn.getName());
 		this.fieldGroup.bind(this.pdfNgayTao, QdGiamMienTienPhat04_.ngayTaoQuyetDinh.getName());
+		this.fieldGroup.bind(this.pdfXetDonGM, QdGiamMienTienPhat04_.ngayXetDon.getName());
 		this.label6.setValue(
 				"Căn cứ Điều 77 Luật xử lý vi phạm hành chính;<br>Căn cứ Quyết định xử phạt vi phạm hành chính số:");
 		this.label6.setContentMode(ContentMode.HTML);
@@ -406,8 +408,8 @@ public class BBGiamPhatView extends XdevView {
 		this.txtDvCSGTId.setVisible(false);
 		this.cbCanBo.setItemCaptionFromAnnotation(false);
 		this.cbCanBo.setInputPrompt("Phải chọn");
-		this.cbCanBo.setContainerDataSource(CanBo.class, DAOs.get(CanBoDAO.class).findAll());
-		this.cbCanBo.setItemCaptionPropertyId(CanBo_.tenCanBo.getName());
+		this.cbCanBo.setContainerDataSource(AuthUser.class, DAOs.get(AuthUserDAO.class).findAll());
+		this.cbCanBo.setItemCaptionPropertyId(AuthUser_.userName.getName());
 		this.txtCapBac.setInputPrompt(".............................");
 		this.txtCapBac.setStyleName("borderless");
 		this.txtCapBac.setEnabled(false);
@@ -692,12 +694,11 @@ public class BBGiamPhatView extends XdevView {
 			}
 		});
 	} // </generated-code>
-
 	// <generated-code name="variables">
 	private XdevButton cmdPrint, cmdSave;
 	private XdevFieldGroup<QdGiamMienTienPhat04> fieldGroup;
 	private XdevComboBox<QdXpvphc02> cbQdHoanThiHanh;
-	private XdevComboBox<CanBo> cbCanBo;
+	private XdevComboBox<AuthUser> cbCanBo;
 	private Label lblQuocHieu, label, label2, label3, label4, label5, label7, label6, label8, label9, label10, label11,
 			label12, label13, label14, label15, label16, label17, label18, label19, label20, label21, label22, label23,
 			label24, label25, label26, label27, label28, label29, label30, label31, label32, label33, label34, label35,

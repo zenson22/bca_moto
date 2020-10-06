@@ -3,7 +3,7 @@
 
 <?xdevuiml version="1.0"?>
 <?template BROWSER_WXGA?>
-<?import com.etc.bca_moto.entities.CanBo?>
+<?import com.etc.bca_moto.entities.AuthUser?>
 <?import com.etc.bca_moto.entities.QdGiamMienTienPhat04?>
 <?import com.etc.bca_moto.entities.QdXpvphc01?>
 <?import com.etc.bca_moto.entities.QdXpvphc02?>
@@ -96,6 +96,7 @@
                         <entry name="txtToChucThucHien" property="phoiHopThucHienQd" />
                         <entry name="txtCoQuanXN" property="coQuanXn" />
                         <entry name="pdfNgayTao" property="ngayTaoQuyetDinh" />
+                        <entry name="pdfXetDonGM" property="ngayXetDon" />
                     </x:fields>
                 </XdevFieldGroup>
             </XdevGridLayout>
@@ -256,13 +257,13 @@
             <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" enabled="false" x:name="txtDvCSGTId" visible="false">
                 <x:constraints top="258px" left="976px" />
             </XdevTextField>
-            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbCanBo" x:entity="CanBo" inputPrompt="Phải chọn">
+            <XdevComboBox itemCaptionFromAnnotation="false" x:name="cbCanBo" x:entity="AuthUser" inputPrompt="Phải chọn">
                 <x:constraints top="260px" left="120px" width="270px" />
                 <x:entityProperty>
-                    <entry type="String" property="tenCanBo" />
+                    <entry type="String" property="userName" />
                 </x:entityProperty>
                 <x:typeArguments>
-                    <typeArgument type="CanBo" />
+                    <typeArgument type="AuthUser" />
                 </x:typeArguments>
                 <x:data methodName="findAll" />
                 <x:event>valueChange.valueChange</x:event>
