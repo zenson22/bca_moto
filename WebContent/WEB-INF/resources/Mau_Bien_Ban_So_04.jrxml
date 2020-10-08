@@ -184,7 +184,7 @@ $F{QD_VPHC_SO}+".............................."+$F{NGAY_LAP}.getDate()+
 		</band>
 	</detail>
 	<summary>
-		<band height="96" splitType="Stretch">
+		<band height="95" splitType="Stretch">
 			<staticText>
 				<reportElement x="80" y="70" width="474" height="25" uuid="b7658787-ddaa-47c4-8eaf-3c1ada885fdc"/>
 				<textElement textAlignment="Justified">

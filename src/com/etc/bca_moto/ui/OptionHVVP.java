@@ -745,16 +745,46 @@ public class OptionHVVP extends XdevView {
 		this.setWidth(100, Unit.PERCENTAGE);
 		this.setHeight(-1, Unit.PIXELS);
 	
-		this.cbHVVP.addValueChangeListener(event -> this.cbHVVP_valueChange(event));
-		this.cbHVVP3.addValueChangeListener(event -> this.cbHVVP3_valueChange(event));
+		this.cbHVVP.addValueChangeListener(new Property.ValueChangeListener() {
+			@Override
+			public void valueChange(final Property.ValueChangeEvent event) {
+				OptionHVVP.this.cbHVVP_valueChange(event);
+			}
+		});
+		this.cbHVVP3.addValueChangeListener(new Property.ValueChangeListener() {
+			@Override
+			public void valueChange(final Property.ValueChangeEvent event) {
+				OptionHVVP.this.cbHVVP3_valueChange(event);
+			}
+		});
 		this.btnDelete3.addClickListener(event -> this.btnDelete3_buttonClick(event));
-		this.cbHVVP6.addValueChangeListener(event -> this.cbHVVP6_valueChange(event));
+		this.cbHVVP6.addValueChangeListener(new Property.ValueChangeListener() {
+			@Override
+			public void valueChange(final Property.ValueChangeEvent event) {
+				OptionHVVP.this.cbHVVP6_valueChange(event);
+			}
+		});
 		this.btnDelete6.addClickListener(event -> this.btnDelete6_buttonClick(event));
-		this.cbHVVP5.addValueChangeListener(event -> this.cbHVVP5_valueChange(event));
+		this.cbHVVP5.addValueChangeListener(new Property.ValueChangeListener() {
+			@Override
+			public void valueChange(final Property.ValueChangeEvent event) {
+				OptionHVVP.this.cbHVVP5_valueChange(event);
+			}
+		});
 		this.btnDelete5.addClickListener(event -> this.btnDelete5_buttonClick(event));
-		this.cbHVVP4.addValueChangeListener(event -> this.cbHVVP4_valueChange(event));
+		this.cbHVVP4.addValueChangeListener(new Property.ValueChangeListener() {
+			@Override
+			public void valueChange(final Property.ValueChangeEvent event) {
+				OptionHVVP.this.cbHVVP4_valueChange(event);
+			}
+		});
 		this.btnDelete4.addClickListener(event -> this.btnDelete4_buttonClick(event));
-		this.cbHVVP2.addValueChangeListener(event -> this.cbHVVP2_valueChange(event));
+		this.cbHVVP2.addValueChangeListener(new Property.ValueChangeListener() {
+			@Override
+			public void valueChange(final Property.ValueChangeEvent event) {
+				OptionHVVP.this.cbHVVP2_valueChange(event);
+			}
+		});
 		this.btnDelete2.addClickListener(event -> this.btnDelete2_buttonClick(event));
 		this.btnLuu.addClickListener(event -> this.btnLuu_buttonClick(event));
 		this.btnClose.addClickListener(event -> this.btnClose_buttonClick(event));

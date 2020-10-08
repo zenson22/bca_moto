@@ -1,6 +1,5 @@
 package com.etc.bca_moto.entities;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,9 +12,9 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.etc.bca_moto.authentication.CustomCredential;
 import com.etc.bca_moto.dal.AuthUserDAO;
 import com.xdev.dal.DAO;
-import com.xdev.security.authentication.CredentialsUsernamePassword;
 import com.xdev.util.Caption;
 
 /**
@@ -25,7 +24,7 @@ import com.xdev.util.Caption;
 @Caption("{%loginId}")
 @Entity
 @Table(name = "AUTH_USER", schema = "BCA_MOTO")
-public class AuthUser implements java.io.Serializable, CredentialsUsernamePassword {
+public class AuthUser implements java.io.Serializable, CustomCredential  {
 
 	private long id;
 	private String loginId;
@@ -387,8 +386,8 @@ public class AuthUser implements java.io.Serializable, CredentialsUsernamePasswo
 	}
 
 	@Override
-	public byte[] password() {
-		return this.getPassword().getBytes(StandardCharsets.UTF_8);
+	public String password() {
+		return this.getPassword();
 	}
 
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 
 <?xdevuiml version="1.0"?>
-<?template BROWSER_WXGA?>
+<?template NONE?>
 <?import com.vaadin.ui.Image?>
 <?import com.xdev.ui.XdevAbsoluteLayout?>
 <?import com.xdev.ui.XdevButton?>
@@ -11,45 +11,51 @@
 <?import com.xdev.ui.XdevPasswordField?>
 <?import com.xdev.ui.XdevTextField?>
 <?import com.xdev.ui.XdevView?>
-<XdevView xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="LoginView" primaryStyleName="v-font-ct">
-    <x:constraints zpos="0" width="100%" height="100%" />
+<XdevView xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="LoginView" primaryStyleName="auth_view_background">
+    <x:constraints zpos="0" width="100%" height="-1px" />
     <XdevGridLayout x:name="gridLayout" margin="">
-        <x:constraints zpos="0" width="100%" height="-1px" />
-        <XdevGridLayout x:name="gridLayoutBanner" margin="t">
-            <x:constraints gridx="1" gridy="1" weighty="0.0" weightx="0.1" width="65%" alignment="TOP_CENTER" />
+        <x:constraints width="100%" zpos="0" height="100%" />
+        <XdevAbsoluteLayout x:name="absoluteLayoutBanner">
+            <x:constraints gridx="1" gridy="1" weighty="0.0" weightx="0.1" width="1100px" alignment="TOP_CENTER" height="150px" />
+            <XdevLabel styleName="large" x:name="lblBCA" value="&lt;b style=&quot;color:#FBC50A;&quot;&gt;BỘ CÔNG AN&lt;br&gt;CỤC CẢNH SÁT GIAO THÔNG&lt;/b&gt;&lt;br&gt;&lt;b style=&quot;color:#FFF;&quot;&gt; HỆ THỐNG CƠ SỞ DỮ LIỆU XỬ PHẠT VI PHẠM HÀNH CHÍNH TRONG LĨNH VỰC GIAO THÔNG&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints gridHeight="1" gridx="2" gridy="2" top="20px" left="140px" weighty="0.0" weightx="0.1" width="100%" alignment="TOP_CENTER" gridWidth="1" height="100px" />
+            </XdevLabel>
             <Image source="WebContent/WEB-INF/resources/images/image_2019removebg.png" x:name="image">
-                <x:constraints gridx="1" gridy="1" weighty="0.0" weightx="0.0" width="110px" alignment="TOP_RIGHT" height="120px" />
+                <x:constraints gridHeight="1" gridx="1" gridy="1" top="20px" left="10px" weighty="0.0" weightx="0.0" width="110px" alignment="TOP_RIGHT" gridWidth="1" height="120px" />
             </Image>
-            <XdevAbsoluteLayout x:name="absoluteLayout">
-                <x:constraints gridx="2" gridy="1" weighty="0.0" weightx="0.1" width="450px" alignment="MIDDLE_CENTER" height="500px" />
-                <XdevLabel styleName="h3" x:name="label" value="&lt;div style=&quot;text-align: center;width:100%;color:#085B97&quot;&gt;&lt;b &gt;ĐĂNG NHẬP TÀI KHOẢN&lt;/b&gt;&lt;/div&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
-                    <x:constraints gridHeight="1" gridx="2" gridy="2" top="150px" left="0px" weighty="0.0" weightx="0.1" width="400px" alignment="TOP_LEFT" gridWidth="1" />
-                </XdevLabel>
-                <XdevTextField columns="20" caption="Tài khoản" inputPrompt="Nhập tài khoản" x:name="txtUsername">
-                    <x:constraints gridHeight="1" gridx="2" gridy="3" top="200px" left="1px" weighty="0.0" weightx="0.1" width="400px" alignment="TOP_LEFT" gridWidth="1" />
-                </XdevTextField>
-                <XdevPasswordField columns="20" caption="Mật khẩu" inputPrompt=".............." x:name="txtPassword">
-                    <x:constraints gridHeight="1" gridx="2" gridy="4" top="285px" left="1px" weighty="0.0" weightx="0.1" width="400px" alignment="TOP_LEFT" gridWidth="1" />
-                </XdevPasswordField>
-                <XdevTextField columns="5" inputPrompt="Nhập mã bảo vệ" x:name="txtMaBaoVe">
-                    <x:constraints gridHeight="1" gridx="2" gridy="5" top="340px" left="1px" weighty="0.0" weightx="0.1" width="300px" alignment="TOP_LEFT" gridWidth="1" />
-                </XdevTextField>
-                <XdevButton caption="ĐĂNG NHẬP" x:name="cmdLogin" primaryStyleName="v-btnLuu" x:shortcut="ENTER">
-                    <x:constraints gridHeight="1" gridx="2" gridy="6" top="390px" left="124px" weighty="0.0" weightx="0.1" width="150px" alignment="MIDDLE_LEFT" gridWidth="1" height="40px" />
-                    <x:event>click.buttonClick</x:event>
-                </XdevButton>
-                <XdevTextField columns="5" enabled="false" x:name="txtRandom">
-                    <x:constraints top="340px" left="321px" />
-                </XdevTextField>
-                <XdevButton icon="FontAwesome.REPEAT" caption="" x:name="btnRandom" primaryStyleName="v-btnLuu">
-                    <x:constraints top="340px" left="411px" width="40px" height="38px" />
-                    <x:event>click.buttonClick</x:event>
-                </XdevButton>
-                <XdevLabel styleName="large" x:name="lblBCA" value="&lt;b style=&quot;color:#FBC50A;&quot;&gt;BỘ CÔNG AN&lt;br&gt;CỤC CẢNH SÁT GIAO THÔNG&lt;/b&gt;&lt;br&gt;&lt;b&gt; HỆ THỐNG CƠ SỞ DỮ LIỆU XỬ PHẠT VI PHẠM HÀNH CHÍNH TRONG LĨNH VỰC GIAO THÔNG&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
-                    <x:constraints gridHeight="1" gridx="2" gridy="1" top="0px" left="0px" weighty="0.0" weightx="0.1" width="100%" alignment="TOP_CENTER" gridWidth="1" />
-                </XdevLabel>
-            </XdevAbsoluteLayout>
-        </XdevGridLayout>
+        </XdevAbsoluteLayout>
+        <XdevAbsoluteLayout x:name="absoluteLayout">
+            <x:constraints gridx="1" gridy="2" weighty="0.0" weightx="0.1" width="500px" alignment="MIDDLE_CENTER" height="700px" />
+            <XdevLabel styleName="h3" x:name="label" value="&lt;div style=&quot;text-align: center;width:100%;color:#085B97&quot;&gt;&lt;b &gt;ĐĂNG NHẬP TÀI KHOẢN&lt;/b&gt;&lt;/div&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints gridHeight="1" gridx="2" gridy="2" top="51px" left="37px" weighty="0.0" weightx="0.1" width="400px" alignment="TOP_LEFT" gridWidth="1" />
+            </XdevLabel>
+            <XdevTextField columns="20" caption="Tài khoản" inputPrompt="Nhập tài khoản" x:name="txtUsername">
+                <x:constraints gridHeight="1" gridx="2" gridy="3" top="147px" left="37px" weighty="0.0" weightx="0.1" width="400px" alignment="TOP_LEFT" gridWidth="1" />
+            </XdevTextField>
+            <XdevPasswordField columns="20" caption="Mật khẩu" inputPrompt=".............." x:name="txtPassword">
+                <x:constraints gridHeight="1" gridx="2" gridy="4" top="216px" left="38px" weighty="0.0" weightx="0.1" width="400px" alignment="TOP_LEFT" gridWidth="1" />
+            </XdevPasswordField>
+            <XdevTextField columns="5" inputPrompt="Nhập mã bảo vệ" x:name="txtMaBaoVe">
+                <x:constraints gridHeight="1" gridx="2" gridy="5" top="266px" left="38px" weighty="0.0" weightx="0.1" width="300px" alignment="TOP_LEFT" gridWidth="1" height="37px" />
+            </XdevTextField>
+            <XdevButton caption="ĐĂNG NHẬP" x:name="cmdLogin" primaryStyleName="v-btnLuu" x:shortcut="ENTER">
+                <x:constraints gridHeight="1" gridx="2" gridy="6" top="340px" left="160px" weighty="0.0" weightx="0.1" width="150px" alignment="MIDDLE_LEFT" gridWidth="1" height="40px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+            <XdevTextField columns="5" enabled="false" x:name="txtRandom" primaryStyleName="captcha_background">
+                <x:constraints top="266px" left="358px" width="80px" height="37px" />
+            </XdevTextField>
+            <XdevButton icon="FontAwesome.REPEAT" caption="" x:name="btnRandom" primaryStyleName="v-btnLuu">
+                <x:constraints top="266px" left="448px" width="40px" height="38px" />
+                <x:event>click.buttonClick</x:event>
+            </XdevButton>
+        </XdevAbsoluteLayout>
+        <XdevAbsoluteLayout x:name="absoluteLayoutFooter">
+            <x:constraints gridx="1" gridy="3" top="371px" left="0px" weighty="0.0" weightx="0.1" width="600px" alignment="BOTTOM_CENTER" height="100px" />
+            <XdevLabel x:name="lblFooter" value="&lt;div style=&quot;font-size: 12px;color:#FFF;text-align:center&quot;&gt;&lt;b&gt;CỤC CẢNH SÁT GIAO THÔNG&lt;/b&gt;&lt;br&gt; Địa chỉ: 112 Lê Duẩn, Quận Hoàn Kiếm, Hà Nội&lt;br&gt;Fax:84 24 38220885 * Email:tccs-c67@vnn.vn * Đường dây nóng: 0692342608 * Phiên bản 0.55&lt;/div&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
+                <x:constraints gridHeight="1" gridx="1" gridy="3" top="30px" left="1px" weighty="0.0" weightx="0.0" width="100%" alignment="BOTTOM_CENTER" gridWidth="1" height="100%" />
+            </XdevLabel>
+        </XdevAbsoluteLayout>
     </XdevGridLayout>
 </XdevView>
 

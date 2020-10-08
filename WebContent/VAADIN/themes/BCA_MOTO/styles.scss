@@ -282,7 +282,66 @@
 	-moz-osx-font-smoothing: grayscale;
 	display: inline-block;
 }
-.v-gridlayout-slot {
+.v-bottom {
 	position: absolute;
-	line-height: 1.55;
+	margin-bottom:10px;
+}
+.auth_view_background {
+	background: url(../images/bg-login-df.jpg) no-repeat center;
+	background-size: 100% 100%;
+	font-family: Arial;
+	display: inline-block;
+	padding: 0px 0px;
+}
+
+.v-slot{
+-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+
+.v-textfield {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+	margin: 0;
+	font: inherit;
+	
+	font-weight: 400;
+	line-height: normal;
+	height: 37px;
+	border-radius: 4px;
+	padding: 4px 9px;
+	border: 1px solid #4671FD;
+	background: white;
+	color: #474747;
+	-webkit-box-shadow: inset 0 1px 0 #f7f7f7, 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: inset 0 1px 0 #f7f7f7, 0 1px 0 rgba(255, 255, 255, 0.1);
+	-webkit-transition: box-shadow 180ms, border 180ms;
+	-moz-transition: box-shadow 180ms, border 180ms;
+	transition: box-shadow 180ms, border 180ms;
+	width: 185px;
+}
+
+.v-textfield.v-disabled {
+	opacity: 0.8;
+	filter: alpha(opacity=80) ;
+}
+
+.captcha_background {
+    background: url(../images/download.jpg) no-repeat center;
+    background-size: 100% 100%;
+    color: #3563ea;
+    font: inherit;
+    font-size:24px;
+    border: none;
+    font-weight:bold;
+    text-align:center;
 }

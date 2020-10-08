@@ -8,23 +8,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.etc.bca_moto.dal.AuthUserDAO;
-import com.etc.bca_moto.dal.CanBoDAO;
 import com.etc.bca_moto.dal.DonViCanhsatGtDAO;
 import com.etc.bca_moto.dal.QdGiamMienTienPhat04DAO;
-import com.etc.bca_moto.dal.QdXpvphc01DAO;
-import com.etc.bca_moto.dal.QdXpvphc02DAO;
 import com.etc.bca_moto.entities.AuthUser;
 import com.etc.bca_moto.entities.AuthUser_;
+import com.etc.bca_moto.entities.DonViCanhsatGt;
 import com.etc.bca_moto.entities.QdGiamMienTienPhat04;
 import com.etc.bca_moto.entities.QdGiamMienTienPhat04_;
-import com.etc.bca_moto.entities.QdXpvphc01;
-import com.etc.bca_moto.entities.QdXpvphc01_;
-import com.etc.bca_moto.entities.QdXpvphc02;
-import com.etc.bca_moto.entities.QdXpvphc02_;
 import com.vaadin.data.Property;
+import com.vaadin.event.FieldEvents;
 import com.vaadin.server.Page;
 import com.vaadin.server.StreamResource;
 import com.vaadin.server.StreamResource.StreamSource;
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Button;
@@ -35,6 +31,7 @@ import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.UI;
 import com.xdev.dal.DAOs;
+import com.xdev.ui.XdevAbsoluteLayout;
 import com.xdev.ui.XdevButton;
 import com.xdev.ui.XdevFieldGroup;
 import com.xdev.ui.XdevGridLayout;
@@ -69,13 +66,16 @@ public class BBGiamPhatView extends XdevView {
 		this.initUI();
 		//final Object ouputView = UI.getCurrent().getSession().getAttribute("OutPutViewReport04");
 		if(this.ouputView!=null){
-			//final QdGiamMienTienPhat04  giamMienTienPhat04 = DAOs.get(QdGiamMienTienPhat04DAO.class).find(Long.parseLong(this.ouputView.toString()));
-			final QdGiamMienTienPhat04  giamMienTienPhat04 = (QdGiamMienTienPhat04) this.ouputView;
-			this.fieldGroup.setItemDataSource(giamMienTienPhat04);
-			this.cbQdVPHC.setValue(DAOs.get(QdXpvphc01DAO.class).findBySoQd(this.txtQdVPHC.getValue()).get(0));
-			this.cbQdHoanThiHanh.setValue(DAOs.get(QdXpvphc02DAO.class).findBySoQd(this.txtHoanTH.getValue()).get(0));
-			
-			this.cbCanBo.setValue(DAOs.get(CanBoDAO.class).find(Long.parseLong(this.txtCanBoId.getValue())));
+			this.fieldGroup.setItemDataSource((QdGiamMienTienPhat04) this.ouputView);
+			final AuthUser authUser = DAOs.get(AuthUserDAO.class).find(Long.parseLong(this.txtCanBoId.getValue()));
+			this.cbAuthen.setValue(authUser);
+			this.txtDonVi.setValue(this.txtDvCSGT.getValue());
+			this.txtCoQuanChuQuan.setValue(DAOs.get(DonViCanhsatGtDAO.class).
+					find(this.cbAuthen.getSelectedItem().getBean().getDonViCsgtId()).getTenCoquanChuquan());
+			this.txtVphcKy2.setValue(this.txtVphcKy.getValue());this.txtNgViPham2.setValue(this.txtNgViPham.getValue());
+			this.pdfQdVphc2.setValue(this.pdfCcQdVphc.getValue());
+			this.txtQdVPHC2.setValue(this.txtQdVPHC.getValue());
+			this.txtNguoiRaQd.setValue(authUser.getUserName());
 		} else {
 			this.fieldGroup.setItemDataSource(new QdGiamMienTienPhat04());
 		}
@@ -150,39 +150,64 @@ public class BBGiamPhatView extends XdevView {
 
 	/**
 	 * Event handler delegate method for the {@link XdevComboBox}
-	 * {@link #cbQdVPHC}.
+	 * {@link #cbAuthen}.
 	 *
 	 * @see Property.ValueChangeListener#valueChange(Property.ValueChangeEvent)
 	 * @eventHandlerDelegate Do NOT delete, used by UI designer!
 	 */
-	private void cbQdVPHC_valueChange(final Property.ValueChangeEvent event) {
-		this.txtQdVPHC.setValue(this.cbQdVPHC.getSelectedItem().getBean().getId() + "");
+	private void cbAuthen_valueChange(final Property.ValueChangeEvent event) {
+		this.txtCapBac.setValue(this.cbAuthen.getSelectedItem().getBean().getCapBac());
+		this.txtCanBoId.setValue(this.cbAuthen.getSelectedItem().getBean().getId()+"");
+		final DonViCanhsatGt donViCanhsatGt = DAOs.get(DonViCanhsatGtDAO.class).
+				find(this.cbAuthen.getSelectedItem().getBean().getDonViCsgtId());
+		this.txtDvCSGT.setValue(donViCanhsatGt.getTenDonVi());
+		this.txtDvCSGTId.setValue(this.cbAuthen.getSelectedItem().getBean().getDonViCsgtId()+"");
+		this.txtCoQuanChuQuan.setValue(donViCanhsatGt.getTenCoquanChuquan());
+		this.txtDonVi.setValue(this.txtDvCSGT.getValue());
 	}
 
 	/**
-	 * Event handler delegate method for the {@link XdevComboBox}
-	 * {@link #cbQdHoanThiHanh}.
+	 * Event handler delegate method for the {@link XdevTextField}
+	 * {@link #txtQdVPHC}.
 	 *
-	 * @see Property.ValueChangeListener#valueChange(Property.ValueChangeEvent)
+	 * @see FieldEvents.TextChangeListener#textChange(FieldEvents.TextChangeEvent)
 	 * @eventHandlerDelegate Do NOT delete, used by UI designer!
 	 */
-	private void cbQdHoanThiHanh_valueChange(final Property.ValueChangeEvent event) {
-		this.txtHoanTH.setValue(this.cbQdHoanThiHanh.getSelectedItem().getBean().getId() + "");
+	private void txtQdVPHC_textChange(final FieldEvents.TextChangeEvent event) {
+		this.txtQdVPHC2.setValue(this.txtQdVPHC.getValue());
 	}
 
 	/**
-	 * Event handler delegate method for the {@link XdevComboBox}
-	 * {@link #cbCanBo}.
+	 * Event handler delegate method for the {@link PopupDateField}
+	 * {@link #pdfCcQdVphc}.
 	 *
 	 * @see Property.ValueChangeListener#valueChange(Property.ValueChangeEvent)
 	 * @eventHandlerDelegate Do NOT delete, used by UI designer!
 	 */
-	private void cbCanBo_valueChange(final Property.ValueChangeEvent event) {
-		this.txtCapBac.setValue(this.cbCanBo.getSelectedItem().getBean().getCapBac());
-		this.txtCanBoId.setValue(this.cbCanBo.getSelectedItem().getBean().getId()+"");
-		this.txtDvCSGT.setValue(DAOs.get(DonViCanhsatGtDAO.class).
-				find(this.cbCanBo.getSelectedItem().getBean().getDonViCsgtId()).getTenDonVi());
-		this.txtDvCSGTId.setValue(this.cbCanBo.getSelectedItem().getBean().getDonViCsgtId()+"");
+	private void pdfCcQdVphc_valueChange(final Property.ValueChangeEvent event) {
+		this.pdfQdVphc2.setValue(this.pdfCcQdVphc.getValue());
+	}
+
+	/**
+	 * Event handler delegate method for the {@link XdevTextField}
+	 * {@link #txtVphcKy}.
+	 *
+	 * @see FieldEvents.TextChangeListener#textChange(FieldEvents.TextChangeEvent)
+	 * @eventHandlerDelegate Do NOT delete, used by UI designer!
+	 */
+	private void txtVphcKy_textChange(final FieldEvents.TextChangeEvent event) {
+		this.txtVphcKy2.setValue(this.txtVphcKy.getValue());
+	}
+
+	/**
+	 * Event handler delegate method for the {@link XdevTextField}
+	 * {@link #txtNgViPham}.
+	 *
+	 * @see FieldEvents.TextChangeListener#textChange(FieldEvents.TextChangeEvent)
+	 * @eventHandlerDelegate Do NOT delete, used by UI designer!
+	 */
+	private void txtNgViPham_textChange(final FieldEvents.TextChangeEvent event) {
+		this.txtNgViPham2.setValue(this.txtNgViPham.getValue());
 	}
 
 	/*
@@ -192,6 +217,9 @@ public class BBGiamPhatView extends XdevView {
 	// <generated-code name="initUI">
 	private void initUI() {
 		this.gridLayout = new GridLayout();
+		this.absoluteLayout2 = new XdevAbsoluteLayout();
+		this.cmdPrint = new XdevButton();
+		this.cmdSave = new XdevButton();
 		this.absoluteLayoutTitle = new AbsoluteLayout();
 		this.lblQuocHieu = new Label();
 		this.txtCoQuanChuQuan = new XdevTextField();
@@ -203,10 +231,8 @@ public class BBGiamPhatView extends XdevView {
 		this.label4 = new Label();
 		this.label5 = new Label();
 		this.label7 = new Label();
-		this.txtAddress = new XdevTextField();
+		this.txtDdhc = new XdevTextField();
 		this.pdfNgayTao = new PopupDateField();
-		this.cmdPrint = new XdevButton();
-		this.cmdSave = new XdevButton();
 		this.form = new XdevGridLayout();
 		this.fieldGroup = new XdevFieldGroup<>(QdGiamMienTienPhat04.class);
 		this.absoluteLayout = new AbsoluteLayout();
@@ -234,7 +260,7 @@ public class BBGiamPhatView extends XdevView {
 		this.label24 = new Label();
 		this.label25 = new Label();
 		this.label26 = new Label();
-		this.popupDateFieldHoanTHQD2 = new PopupDateField();
+		this.pdfQdVphc2 = new PopupDateField();
 		this.label27 = new Label();
 		this.label28 = new Label();
 		this.label29 = new Label();
@@ -251,30 +277,37 @@ public class BBGiamPhatView extends XdevView {
 		this.label40 = new Label();
 		this.lblQuocHieu2 = new Label();
 		this.label41 = new Label();
-		this.cbQdVPHC = new XdevComboBox<>();
-		this.cbQdHoanThiHanh = new XdevComboBox<>();
 		this.txtQdVPHC = new XdevTextField();
 		this.txtHoanTH = new XdevTextField();
 		this.txtDvCSGTId = new XdevTextField();
-		this.cbCanBo = new XdevComboBox<>();
+		this.cbAuthen = new XdevComboBox<>();
 		this.txtCapBac = new XdevTextField();
 		this.txtDvCSGT = new XdevTextField();
-		this.txtNguoiViPham = new XdevTextField();
+		this.txtNgViPham = new XdevTextField();
 		this.txtTienDuocGiamSo = new XdevTextField();
 		this.txtTienSauGiamSo = new XdevTextField();
 		this.txtTienDuocGiamChu = new XdevTextField();
 		this.txtTienSauGiamChu = new XdevTextField();
 		this.txtLydoGiamMien = new XdevTextField();
 		this.txtTvNhanLai = new XdevTextField();
-		this.txtNgViPham = new XdevTextField();
+		this.txtNgViPham2 = new XdevTextField();
 		this.txtToChucThucHien = new XdevTextField();
 		this.txtNguoiRaQd = new XdevTextField();
 		this.txtCanBoId = new XdevTextField();
 		this.txtVphcKy = new XdevTextField();
 		this.txtHoanTHKy = new XdevTextField();
 		this.txtCoQuanXN = new XdevTextField();
+		this.txtQdVPHC2 = new XdevTextField();
+		this.txtVphcKy2 = new XdevTextField();
+		this.txtGqXuPhatVphcSo = new XdevTextField();
 	
 		this.setPrimaryStyleName("v-font-ct");
+		this.gridLayout.setSpacing(true);
+		this.gridLayout.setMargin(new MarginInfo(true, false, false, false));
+		this.cmdPrint.setCaption("In");
+		this.cmdPrint.setPrimaryStyleName("v-btnPrint");
+		this.cmdSave.setCaption("Lưu");
+		this.cmdSave.setPrimaryStyleName("v-btnLuu");
 		this.lblQuocHieu.setPrimaryStyleName("v-label-ct");
 		this.lblQuocHieu.setValue("<b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br> Độc lập - Tự do - Hạnh phúc</b>");
 		this.lblQuocHieu.setContentMode(ContentMode.HTML);
@@ -296,15 +329,11 @@ public class BBGiamPhatView extends XdevView {
 		this.label4.setContentMode(ContentMode.HTML);
 		this.label5.setValue("/QĐ-GMTP");
 		this.label5.setContentMode(ContentMode.HTML);
-		this.label7.setValue("(3)&emsp; &emsp; &emsp; ,ngày");
+		this.label7.setValue(" ,ngày");
 		this.label7.setContentMode(ContentMode.HTML);
-		this.txtAddress.setInputPrompt("........................................");
-		this.txtAddress.setStyleName("borderless");
+		this.txtDdhc.setInputPrompt("........................................");
+		this.txtDdhc.setStyleName("borderless");
 		this.pdfNgayTao.setDateFormat("dd/MM/yyyy");
-		this.cmdPrint.setCaption("In");
-		this.cmdPrint.setPrimaryStyleName("v-btnPrint");
-		this.cmdSave.setCaption("Lưu");
-		this.cmdSave.setPrimaryStyleName("v-btnLuu");
 		this.fieldGroup.bind(this.txtCoQuanChuQuan, QdGiamMienTienPhat04_.coQuanChuQuan.getName());
 		this.fieldGroup.bind(this.txtSoQd, QdGiamMienTienPhat04_.soQuyetDinh.getName());
 		this.fieldGroup.bind(this.txtQdVPHC, QdGiamMienTienPhat04_.canCuQdVphcSo.getName());
@@ -322,11 +351,14 @@ public class BBGiamPhatView extends XdevView {
 		this.fieldGroup.bind(this.txtTienSauGiamChu, QdGiamMienTienPhat04_.tienPhatSauGiamBangChu.getName());
 		this.fieldGroup.bind(this.txtLydoGiamMien, QdGiamMienTienPhat04_.lyDoGiam.getName());
 		this.fieldGroup.bind(this.txtTvNhanLai, QdGiamMienTienPhat04_.tangVatNhanLai.getName());
-		this.fieldGroup.bind(this.txtNguoiViPham, QdGiamMienTienPhat04_.tenNguoiNvp.getName());
+		this.fieldGroup.bind(this.txtNgViPham, QdGiamMienTienPhat04_.tenNguoiNvp.getName());
 		this.fieldGroup.bind(this.txtToChucThucHien, QdGiamMienTienPhat04_.phoiHopThucHienQd.getName());
 		this.fieldGroup.bind(this.txtCoQuanXN, QdGiamMienTienPhat04_.coQuanXn.getName());
 		this.fieldGroup.bind(this.pdfNgayTao, QdGiamMienTienPhat04_.ngayTaoQuyetDinh.getName());
 		this.fieldGroup.bind(this.pdfXetDonGM, QdGiamMienTienPhat04_.ngayXetDon.getName());
+		this.fieldGroup.bind(this.txtGqXuPhatVphcSo, QdGiamMienTienPhat04_.canCuQdGqSo.getName());
+		this.fieldGroup.bind(this.pdfGqXpVphc, QdGiamMienTienPhat04_.canCuQdGqNgay.getName());
+		this.fieldGroup.bind(this.txtDdhc, QdGiamMienTienPhat04_.diaDanhHc.getName());
 		this.label6.setValue(
 				"Căn cứ Điều 77 Luật xử lý vi phạm hành chính;<br>Căn cứ Quyết định xử phạt vi phạm hành chính số:");
 		this.label6.setContentMode(ContentMode.HTML);
@@ -361,7 +393,8 @@ public class BBGiamPhatView extends XdevView {
 		this.label26.setValue(
 				"<b>Điều 1.</b> Giảm/Miễn tiền phạt vi phạm hành chính tại Quyết định xử phạt vi phạm hành chính số");
 		this.label26.setContentMode(ContentMode.HTML);
-		this.popupDateFieldHoanTHQD2.setDateFormat("dd/MM/yyyy");
+		this.pdfQdVphc2.setDateFormat("dd/MM/yyyy");
+		this.pdfQdVphc2.setEnabled(false);
 		this.label27.setValue("ngày");
 		this.label28.setValue("do:");
 		this.label29.setValue("ký.");
@@ -383,47 +416,34 @@ public class BBGiamPhatView extends XdevView {
 		this.lblQuocHieu2.setContentMode(ContentMode.HTML);
 		this.label41.setValue("<b>Nơi nhận:</b><br> - Như Điều 3;<br>- Lưu Hồ sơ. ");
 		this.label41.setContentMode(ContentMode.HTML);
-		this.cbQdVPHC.setItemCaptionFromAnnotation(false);
-		this.cbQdVPHC.setInputPrompt("Chọn đê");
-		this.cbQdVPHC.setContainerDataSource(QdXpvphc01.class, DAOs.get(QdXpvphc01DAO.class).findAll());
-		this.cbQdVPHC.setItemCaptionPropertyId(QdXpvphc01_.soQuyetDinh.getName());
-		this.cbQdHoanThiHanh.setItemCaptionFromAnnotation(false);
-		this.cbQdHoanThiHanh.setInputPrompt(" Không chọn -> lỗi");
-		this.cbQdHoanThiHanh.setContainerDataSource(QdXpvphc02.class, DAOs.get(QdXpvphc02DAO.class).findAll());
-		this.cbQdHoanThiHanh.setItemCaptionPropertyId(QdXpvphc02_.soQuyetDinh.getName());
-		this.txtQdVPHC.setColumns(5);
-		this.txtQdVPHC.setInputPrompt(".............................");
+		this.txtQdVPHC.setInputPrompt(
+				"..............................................................................................................");
 		this.txtQdVPHC.setStyleName("borderless");
-		this.txtQdVPHC.setEnabled(false);
-		this.txtQdVPHC.setVisible(false);
-		this.txtHoanTH.setColumns(5);
-		this.txtHoanTH.setInputPrompt(".............................");
+		this.txtHoanTH.setInputPrompt(
+				"..............................................................................................................................................................................................................................................");
 		this.txtHoanTH.setStyleName("borderless");
-		this.txtHoanTH.setEnabled(false);
-		this.txtHoanTH.setVisible(false);
 		this.txtDvCSGTId.setColumns(5);
 		this.txtDvCSGTId.setInputPrompt(".............................");
 		this.txtDvCSGTId.setStyleName("borderless");
 		this.txtDvCSGTId.setEnabled(false);
 		this.txtDvCSGTId.setVisible(false);
-		this.cbCanBo.setItemCaptionFromAnnotation(false);
-		this.cbCanBo.setInputPrompt("Phải chọn");
-		this.cbCanBo.setContainerDataSource(AuthUser.class, DAOs.get(AuthUserDAO.class).findAll());
-		this.cbCanBo.setItemCaptionPropertyId(AuthUser_.userName.getName());
+		this.cbAuthen.setItemCaptionFromAnnotation(false);
+		this.cbAuthen.setInputPrompt("Phải chọn");
+		this.cbAuthen.setContainerDataSource(AuthUser.class, DAOs.get(AuthUserDAO.class).findAll());
+		this.cbAuthen.setItemCaptionPropertyId(AuthUser_.userName.getName());
 		this.txtCapBac.setInputPrompt(".............................");
 		this.txtCapBac.setStyleName("borderless");
 		this.txtCapBac.setEnabled(false);
 		this.txtDvCSGT.setInputPrompt(".............................");
 		this.txtDvCSGT.setStyleName("borderless");
 		this.txtDvCSGT.setEnabled(false);
-		this.txtNguoiViPham
-				.setInputPrompt("................................................................................");
-		this.txtNguoiViPham.setStyleName("borderless");
+		this.txtNgViPham.setInputPrompt("................................................................................");
+		this.txtNgViPham.setStyleName("borderless");
 		this.txtTienDuocGiamSo
 				.setInputPrompt("................................................................................");
 		this.txtTienDuocGiamSo.setStyleName("borderless");
 		this.txtTienSauGiamSo.setInputPrompt(
-				".........................................................................................................................");
+				"................................................................................................................................................................................................");
 		this.txtTienSauGiamSo.setStyleName("borderless");
 		this.txtTienDuocGiamChu
 				.setInputPrompt("................................................................................");
@@ -437,11 +457,11 @@ public class BBGiamPhatView extends XdevView {
 		this.txtTvNhanLai.setInputPrompt(
 				".........................................................................................................................");
 		this.txtTvNhanLai.setStyleName("borderless");
-		this.txtNgViPham.setInputPrompt(
-				".........................................................................................................................");
-		this.txtNgViPham.setStyleName("borderless");
+		this.txtNgViPham2.setInputPrompt(
+				".....................................................................................................................................................................................................................................");
+		this.txtNgViPham2.setStyleName("borderless");
 		this.txtToChucThucHien.setInputPrompt(
-				".........................................................................................................................");
+				"..........................................................................................................................................................................................................................................");
 		this.txtToChucThucHien.setStyleName("borderless");
 		this.txtNguoiRaQd.setInputPrompt(
 				".........................................................................................................................");
@@ -452,7 +472,7 @@ public class BBGiamPhatView extends XdevView {
 		this.txtCanBoId.setEnabled(false);
 		this.txtCanBoId.setVisible(false);
 		this.txtVphcKy.setInputPrompt(
-				".....................................................................................................................................................................................................");
+				".........................................................................................................................................................................................................................");
 		this.txtVphcKy.setStyleName("borderless");
 		this.txtHoanTHKy.setInputPrompt(
 				".....................................................................................................................................................................................................");
@@ -460,10 +480,29 @@ public class BBGiamPhatView extends XdevView {
 		this.txtCoQuanXN.setInputPrompt(
 				".....................................................................................................................................................................................................");
 		this.txtCoQuanXN.setStyleName("borderless");
+		this.txtQdVPHC2.setInputPrompt(
+				"..........................................................................................................................................................");
+		this.txtQdVPHC2.setStyleName("borderless");
+		this.txtQdVPHC2.setEnabled(false);
+		this.txtVphcKy2.setInputPrompt(
+				".....................................................................................................................................................................................................");
+		this.txtVphcKy2.setStyleName("borderless");
+		this.txtVphcKy2.setEnabled(false);
+		this.txtGqXuPhatVphcSo.setInputPrompt(
+				"..............................................................................................................................................................................................................................................");
+		this.txtGqXuPhatVphcSo.setStyleName("borderless");
+		this.txtGqXuPhatVphcSo.setEnabled(false);
+		this.txtGqXuPhatVphcSo.setVisible(false);
 	
+		this.cmdPrint.setWidth(100, Unit.PIXELS);
+		this.cmdPrint.setHeight(40, Unit.PIXELS);
+		this.absoluteLayout2.addComponent(this.cmdPrint, "left:450px; top:20px");
+		this.cmdSave.setWidth(100, Unit.PIXELS);
+		this.cmdSave.setHeight(40, Unit.PIXELS);
+		this.absoluteLayout2.addComponent(this.cmdSave, "left:280px; top:20px");
 		this.lblQuocHieu.setWidth(400, Unit.PIXELS);
 		this.lblQuocHieu.setHeight(50, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.lblQuocHieu, "left:822px; top:50px");
+		this.absoluteLayoutTitle.addComponent(this.lblQuocHieu, "left:597px; top:40px");
 		this.txtCoQuanChuQuan.setWidth(150, Unit.PIXELS);
 		this.absoluteLayoutTitle.addComponent(this.txtCoQuanChuQuan, "left:28px; top:52px");
 		this.txtDonVi.setWidth(150, Unit.PIXELS);
@@ -483,21 +522,19 @@ public class BBGiamPhatView extends XdevView {
 		this.label5.setWidth(100, Unit.PIXELS);
 		this.label5.setHeight(30, Unit.PIXELS);
 		this.absoluteLayoutTitle.addComponent(this.label5, "left:200px; top:127px");
-		this.label7.setWidth(150, Unit.PIXELS);
+		this.label7.setWidth(70, Unit.PIXELS);
 		this.label7.setHeight(30, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.label7, "left:835px; top:115px");
-		this.txtAddress.setWidth(100, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.txtAddress, "left:795px; top:109px");
-		this.absoluteLayoutTitle.addComponent(this.pdfNgayTao, "left:984px; top:109px");
-		this.absoluteLayoutTitle.addComponent(this.cmdPrint, "left:416px; top:41px");
-		this.absoluteLayoutTitle.addComponent(this.cmdSave, "left:339px; top:41px");
+		this.absoluteLayoutTitle.addComponent(this.label7, "left:699px; top:115px");
+		this.txtDdhc.setWidth(100, Unit.PIXELS);
+		this.absoluteLayoutTitle.addComponent(this.txtDdhc, "left:594px; top:109px");
+		this.absoluteLayoutTitle.addComponent(this.pdfNgayTao, "left:783px; top:109px");
 		this.form.setWidth(30, Unit.PIXELS);
 		this.form.setHeight(30, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.form, "left:600px; top:82px");
-		this.label6.setWidth(100, Unit.PERCENTAGE);
+		this.absoluteLayoutTitle.addComponent(this.form, "left:399px; top:82px");
+		this.label6.setWidth(350, Unit.PIXELS);
 		this.label6.setHeight(50, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label6, "left:70px; top:0px");
-		this.label8.setWidth(100, Unit.PERCENTAGE);
+		this.label8.setWidth(380, Unit.PIXELS);
 		this.label8.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label8, "left:70px; top:80px");
 		this.label9.setWidth(30, Unit.PIXELS);
@@ -508,8 +545,8 @@ public class BBGiamPhatView extends XdevView {
 		this.absoluteLayout.addComponent(this.label10, "left:1027px; top:51px");
 		this.label11.setWidth(30, Unit.PIXELS);
 		this.label11.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label11, "left:803px; top:19px");
-		this.absoluteLayout.addComponent(this.pdfCcQdVphc, "left:838px; top:14px");
+		this.absoluteLayout.addComponent(this.label11, "left:836px; top:20px");
+		this.absoluteLayout.addComponent(this.pdfCcQdVphc, "left:871px; top:15px");
 		this.label12.setWidth(50, Unit.PIXELS);
 		this.label12.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label12, "left:30px; top:110px");
@@ -522,7 +559,7 @@ public class BBGiamPhatView extends XdevView {
 		this.label15.setWidth(100, Unit.PIXELS);
 		this.label15.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label15, "left:928px; top:170px");
-		this.label16.setWidth(100, Unit.PERCENTAGE);
+		this.label16.setWidth(470, Unit.PIXELS);
 		this.label16.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label16, "left:70px; top:140px");
 		this.absoluteLayout.addComponent(this.pdfHoanTH, "left:88px; top:104px");
@@ -556,7 +593,7 @@ public class BBGiamPhatView extends XdevView {
 		this.label26.setWidth(100, Unit.PERCENTAGE);
 		this.label26.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label26, "left:71px; top:355px");
-		this.absoluteLayout.addComponent(this.popupDateFieldHoanTHQD2, "left:188px; top:384px");
+		this.absoluteLayout.addComponent(this.pdfQdVphc2, "left:188px; top:384px");
 		this.label27.setWidth(50, Unit.PIXELS);
 		this.label27.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label27, "left:130px; top:390px");
@@ -577,7 +614,7 @@ public class BBGiamPhatView extends XdevView {
 		this.absoluteLayout.addComponent(this.label32, "left:555px; top:455px");
 		this.label33.setWidth(30, Unit.PIXELS);
 		this.label33.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label33, "left:1200px; top:460px");
+		this.absoluteLayout.addComponent(this.label33, "left:1217px; top:454px");
 		this.label34.setWidth(330, Unit.PIXELS);
 		this.label34.setHeight(30, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label34, "left:72px; top:490px");
@@ -586,52 +623,52 @@ public class BBGiamPhatView extends XdevView {
 		this.absoluteLayout.addComponent(this.label35, "left:30px; top:520px");
 		this.label37.setWidth(30, Unit.PIXELS);
 		this.label37.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label37, "left:1200px; top:524px");
+		this.absoluteLayout.addComponent(this.label37, "left:1217px; top:518px");
 		this.label38.setWidth(50, Unit.PIXELS);
 		this.label38.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label38, "left:1200px; top:494px");
+		this.absoluteLayout.addComponent(this.label38, "left:1197px; top:488px");
 		this.label36.setWidth(100, Unit.PERCENTAGE);
 		this.label36.setHeight(150, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label36, "left:72px; top:550px");
 		this.label39.setWidth(200, Unit.PIXELS);
 		this.label39.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label39, "left:900px; top:640px");
+		this.absoluteLayout.addComponent(this.label39, "left:1051px; top:645px");
 		this.label40.setWidth(250, Unit.PIXELS);
 		this.label40.setHeight(30, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label40, "left:832px; top:670px");
+		this.absoluteLayout.addComponent(this.label40, "left:1001px; top:675px");
 		this.lblQuocHieu2.setWidth(350, Unit.PIXELS);
 		this.lblQuocHieu2.setHeight(50, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.lblQuocHieu2, "left:854px; top:706px");
 		this.label41.setWidth(100, Unit.PIXELS);
 		this.label41.setHeight(100, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label41, "left:30px; top:700px");
-		this.cbQdVPHC.setWidth(250, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.cbQdVPHC, "left:400px; top:18px");
-		this.cbQdHoanThiHanh.setWidth(250, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.cbQdHoanThiHanh, "left:450px; top:73px");
-		this.absoluteLayout.addComponent(this.txtQdVPHC, "left:700px; top:0px");
-		this.absoluteLayout.addComponent(this.txtHoanTH, "left:730px; top:80px");
+		this.txtQdVPHC.setWidth(400, Unit.PIXELS);
+		this.txtQdVPHC.setHeight(30, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtQdVPHC, "left:433px; top:20px");
+		this.txtHoanTH.setWidth(800, Unit.PIXELS);
+		this.txtHoanTH.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtHoanTH, "left:450px; top:80px");
 		this.absoluteLayout.addComponent(this.txtDvCSGTId, "left:976px; top:258px");
-		this.cbCanBo.setWidth(270, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.cbCanBo, "left:120px; top:260px");
+		this.cbAuthen.setWidth(270, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.cbAuthen, "left:120px; top:260px");
 		this.txtCapBac.setWidth(150, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.txtCapBac, "left:538px; top:256px");
 		this.txtDvCSGT.setWidth(150, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.txtDvCSGT, "left:803px; top:256px");
-		this.txtNguoiViPham.setWidth(500, Unit.PIXELS);
-		this.txtNguoiViPham.setHeight(25, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.txtNguoiViPham, "left:271px; top:430px");
+		this.txtNgViPham.setWidth(500, Unit.PIXELS);
+		this.txtNgViPham.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtNgViPham, "left:271px; top:430px");
 		this.txtTienDuocGiamSo.setWidth(300, Unit.PIXELS);
 		this.txtTienDuocGiamSo.setHeight(25, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.txtTienDuocGiamSo, "left:200px; top:460px");
-		this.txtTienSauGiamSo.setWidth(600, Unit.PIXELS);
+		this.txtTienSauGiamSo.setWidth(750, Unit.PIXELS);
 		this.txtTienSauGiamSo.setHeight(25, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.txtTienSauGiamSo, "left:411px; top:494px");
 		this.txtTienDuocGiamChu.setWidth(500, Unit.PIXELS);
 		this.txtTienDuocGiamChu.setHeight(25, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.txtTienDuocGiamChu, "left:680px; top:460px");
 		this.txtTienSauGiamChu.setWidth(1000, Unit.PIXELS);
-		this.txtTienSauGiamChu.setHeight(25, Unit.PIXELS);
+		this.txtTienSauGiamChu.setHeight(35, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.txtTienSauGiamChu, "left:145px; top:520px");
 		this.txtLydoGiamMien.setWidth(600, Unit.PIXELS);
 		this.txtLydoGiamMien.setHeight(25, Unit.PIXELS);
@@ -639,79 +676,85 @@ public class BBGiamPhatView extends XdevView {
 		this.txtTvNhanLai.setWidth(600, Unit.PIXELS);
 		this.txtTvNhanLai.setHeight(25, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.txtTvNhanLai, "left:250px; top:575px");
-		this.txtNgViPham.setWidth(600, Unit.PIXELS);
-		this.txtNgViPham.setHeight(25, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.txtNgViPham, "left:250px; top:645px");
-		this.txtToChucThucHien.setWidth(600, Unit.PIXELS);
-		this.txtToChucThucHien.setHeight(25, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.txtToChucThucHien, "left:220px; top:670px");
+		this.txtNgViPham2.setWidth(800, Unit.PIXELS);
+		this.txtNgViPham2.setHeight(35, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtNgViPham2, "left:220px; top:645px");
+		this.txtToChucThucHien.setWidth(800, Unit.PIXELS);
+		this.txtToChucThucHien.setHeight(35, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtToChucThucHien, "left:170px; top:670px");
 		this.txtNguoiRaQd.setWidth(300, Unit.PIXELS);
-		this.txtNguoiRaQd.setHeight(25, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.txtNguoiRaQd, "left:900px; top:770px");
+		this.txtNguoiRaQd.setHeight(40, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtNguoiRaQd, "left:900px; top:780px");
 		this.absoluteLayout.addComponent(this.txtCanBoId, "left:1080px; top:257px");
-		this.txtVphcKy.setWidth(800, Unit.PIXELS);
+		this.txtVphcKy.setWidth(900, Unit.PIXELS);
 		this.txtVphcKy.setHeight(25, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.txtVphcKy, "left:109px; top:54px");
+		this.absoluteLayout.addComponent(this.txtVphcKy, "left:100px; top:54px");
 		this.txtHoanTHKy.setWidth(500, Unit.PIXELS);
 		this.txtHoanTHKy.setHeight(25, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.txtHoanTHKy, "left:350px; top:110px");
 		this.txtCoQuanXN.setWidth(500, Unit.PIXELS);
 		this.txtCoQuanXN.setHeight(25, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.txtCoQuanXN, "left:321px; top:229px");
+		this.txtQdVPHC2.setWidth(550, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtQdVPHC2, "left:700px; top:348px");
+		this.txtVphcKy2.setWidth(550, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtVphcKy2, "left:420px; top:390px");
+		this.txtGqXuPhatVphcSo.setWidth(700, Unit.PIXELS);
+		this.txtGqXuPhatVphcSo.setHeight(25, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtGqXuPhatVphcSo, "left:550px; top:140px");
 		this.gridLayout.setColumns(1);
-		this.gridLayout.setRows(2);
+		this.gridLayout.setRows(3);
+		this.absoluteLayout2.setWidth(100, Unit.PERCENTAGE);
+		this.absoluteLayout2.setHeight(100, Unit.PIXELS);
+		this.gridLayout.addComponent(this.absoluteLayout2, 0, 0);
 		this.absoluteLayoutTitle.setWidth(100, Unit.PERCENTAGE);
 		this.absoluteLayoutTitle.setHeight(250, Unit.PIXELS);
-		this.gridLayout.addComponent(this.absoluteLayoutTitle, 0, 0);
+		this.gridLayout.addComponent(this.absoluteLayoutTitle, 0, 1);
 		this.absoluteLayout.setWidth(100, Unit.PERCENTAGE);
-		this.absoluteLayout.setHeight(800, Unit.PIXELS);
-		this.gridLayout.addComponent(this.absoluteLayout, 0, 1);
+		this.absoluteLayout.setHeight(850, Unit.PIXELS);
+		this.gridLayout.addComponent(this.absoluteLayout, 0, 2);
 		this.gridLayout.setColumnExpandRatio(0, 10.0F);
 		this.gridLayout.setWidth(1280, Unit.PIXELS);
-		this.gridLayout.setHeight(1200, Unit.PIXELS);
+		this.gridLayout.setHeight(-1, Unit.PIXELS);
 		this.setContent(this.gridLayout);
 		this.setWidth(1280, Unit.PIXELS);
 		this.setHeight(-1, Unit.PIXELS);
 	
 		this.cmdPrint.addClickListener(event -> this.cmdPrint_buttonClick(event));
 		this.cmdSave.addClickListener(event -> this.cmdSave_buttonClick(event));
-		this.cbQdVPHC.addValueChangeListener(new Property.ValueChangeListener() {
+		this.pdfCcQdVphc.addValueChangeListener(new Property.ValueChangeListener() {
 			@Override
 			public void valueChange(final Property.ValueChangeEvent event) {
-				BBGiamPhatView.this.cbQdVPHC_valueChange(event);
+				BBGiamPhatView.this.pdfCcQdVphc_valueChange(event);
 			}
 		});
-		this.cbQdHoanThiHanh.addValueChangeListener(new Property.ValueChangeListener() {
+		this.txtQdVPHC.addTextChangeListener(event -> this.txtQdVPHC_textChange(event));
+		this.cbAuthen.addValueChangeListener(new Property.ValueChangeListener() {
 			@Override
 			public void valueChange(final Property.ValueChangeEvent event) {
-				BBGiamPhatView.this.cbQdHoanThiHanh_valueChange(event);
+				BBGiamPhatView.this.cbAuthen_valueChange(event);
 			}
 		});
-		this.cbCanBo.addValueChangeListener(new Property.ValueChangeListener() {
-			@Override
-			public void valueChange(final Property.ValueChangeEvent event) {
-				BBGiamPhatView.this.cbCanBo_valueChange(event);
-			}
-		});
+		this.txtNgViPham.addTextChangeListener(event -> this.txtNgViPham_textChange(event));
+		this.txtVphcKy.addTextChangeListener(event -> this.txtVphcKy_textChange(event));
 	} // </generated-code>
 	// <generated-code name="variables">
 	private XdevButton cmdPrint, cmdSave;
 	private XdevFieldGroup<QdGiamMienTienPhat04> fieldGroup;
-	private XdevComboBox<QdXpvphc02> cbQdHoanThiHanh;
-	private XdevComboBox<AuthUser> cbCanBo;
+	private XdevComboBox<AuthUser> cbAuthen;
+	private XdevAbsoluteLayout absoluteLayout2;
 	private Label lblQuocHieu, label, label2, label3, label4, label5, label7, label6, label8, label9, label10, label11,
 			label12, label13, label14, label15, label16, label17, label18, label19, label20, label21, label22, label23,
 			label24, label25, label26, label27, label28, label29, label30, label31, label32, label33, label34, label35,
 			label37, label38, label36, label39, label40, lblQuocHieu2, label41;
-	private XdevTextField txtCoQuanChuQuan, txtDonVi, txtSoQd, txtAddress, txtQdVPHC, txtHoanTH, txtDvCSGTId, txtCapBac,
-			txtDvCSGT, txtNguoiViPham, txtTienDuocGiamSo, txtTienSauGiamSo, txtTienDuocGiamChu, txtTienSauGiamChu,
-			txtLydoGiamMien, txtTvNhanLai, txtNgViPham, txtToChucThucHien, txtNguoiRaQd, txtCanBoId, txtVphcKy, txtHoanTHKy,
-			txtCoQuanXN;
+	private XdevTextField txtCoQuanChuQuan, txtDonVi, txtSoQd, txtDdhc, txtQdVPHC, txtHoanTH, txtDvCSGTId, txtCapBac,
+			txtDvCSGT, txtNgViPham, txtTienDuocGiamSo, txtTienSauGiamSo, txtTienDuocGiamChu, txtTienSauGiamChu,
+			txtLydoGiamMien, txtTvNhanLai, txtNgViPham2, txtToChucThucHien, txtNguoiRaQd, txtCanBoId, txtVphcKy, txtHoanTHKy,
+			txtCoQuanXN, txtQdVPHC2, txtVphcKy2, txtGqXuPhatVphcSo;
 	private XdevGridLayout form;
-	private PopupDateField pdfNgayTao, pdfCcQdVphc, pdfHoanTH, pdfGqXpVphc, pdfXetDonGM, popupDateFieldHoanTHQD2;
+	private PopupDateField pdfNgayTao, pdfCcQdVphc, pdfHoanTH, pdfGqXpVphc, pdfXetDonGM, pdfQdVphc2;
 	private GridLayout gridLayout;
 	private AbsoluteLayout absoluteLayoutTitle, absoluteLayout;
-	private XdevComboBox<QdXpvphc01> cbQdVPHC;
 	// </generated-code>
 
 }

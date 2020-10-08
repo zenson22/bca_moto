@@ -3,6 +3,8 @@ package com.etc.bca_moto.ui;
 
 import java.util.Random;
 
+import com.etc.bca_moto.authentication.CustomCredential;
+import com.etc.bca_moto.authentication.CustomerAuthentication;
 import com.etc.bca_moto.business.MyAuthenticationProvider;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.server.FontAwesome;
@@ -10,13 +12,10 @@ import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.xdev.res.ApplicationResource;
-import com.xdev.security.authentication.CredentialsUsernamePassword;
-import com.xdev.security.authentication.ui.Authentication;
 import com.xdev.ui.XdevAbsoluteLayout;
 import com.xdev.ui.XdevButton;
 import com.xdev.ui.XdevGridLayout;
@@ -55,7 +54,7 @@ public class LoginView extends XdevView implements com.xdev.security.authenticat
 		}
 		this.txtRandom.setValue(rd);
 	}
-
+	// e19d5cd5af0378da05f63f891c7467af - abcd1234
 	/**
 	 * Event handler delegate method for the {@link XdevButton} {@link #cmdLogin}.
 	 *
@@ -63,10 +62,10 @@ public class LoginView extends XdevView implements com.xdev.security.authenticat
 	 * @eventHandlerDelegate Do NOT delete, used by UI designer!
 	 */
 	private void cmdLogin_buttonClick(final Button.ClickEvent event) {
-		final CredentialsUsernamePassword credentials = CredentialsUsernamePassword.New(getUsername(), getPassword());
+		final CustomCredential credentials = CustomCredential.New(getUsername(), getPassword());
 		final MyAuthenticationProvider authenticatorProvider = MyAuthenticationProvider.getInstance();
 		if (this.txtMaBaoVe.getValue().equals(this.txtRandom.getValue())) {
-			if (!Authentication.tryLogin(credentials, authenticatorProvider)) {
+			if (!CustomerAuthentication.tryLogin(credentials, authenticatorProvider)) {
 				Notification.show("Tài khoản hoặc mật khẩu không chính xác!", Type.ERROR_MESSAGE);
 				setMaBaoMat();
 			}
@@ -93,7 +92,8 @@ public class LoginView extends XdevView implements com.xdev.security.authenticat
 	// <generated-code name="initUI">
 	private void initUI() {
 		this.gridLayout = new XdevGridLayout();
-		this.gridLayoutBanner = new XdevGridLayout();
+		this.absoluteLayoutBanner = new XdevAbsoluteLayout();
+		this.lblBCA = new XdevLabel();
 		this.image = new Image();
 		this.absoluteLayout = new XdevAbsoluteLayout();
 		this.label = new XdevLabel();
@@ -103,11 +103,15 @@ public class LoginView extends XdevView implements com.xdev.security.authenticat
 		this.cmdLogin = new XdevButton();
 		this.txtRandom = new XdevTextField();
 		this.btnRandom = new XdevButton();
-		this.lblBCA = new XdevLabel();
+		this.absoluteLayoutFooter = new XdevAbsoluteLayout();
+		this.lblFooter = new XdevLabel();
 	
-		this.setPrimaryStyleName("v-font-ct");
+		this.setPrimaryStyleName("auth_view_background");
 		this.gridLayout.setMargin(new MarginInfo(false));
-		this.gridLayoutBanner.setMargin(new MarginInfo(true, false, false, false));
+		this.lblBCA.setStyleName("large");
+		this.lblBCA.setValue(
+				"<b style=\"color:#FBC50A;\">BỘ CÔNG AN<br>CỤC CẢNH SÁT GIAO THÔNG</b><br><b style=\"color:#FFF;\"> HỆ THỐNG CƠ SỞ DỮ LIỆU XỬ PHẠT VI PHẠM HÀNH CHÍNH TRONG LĨNH VỰC GIAO THÔNG</b>");
+		this.lblBCA.setContentMode(ContentMode.HTML);
 		this.image.setSource(
 				new ApplicationResource(this.getClass(), "WebContent/WEB-INF/resources/images/image_2019removebg.png"));
 		this.label.setStyleName("h3");
@@ -121,75 +125,73 @@ public class LoginView extends XdevView implements com.xdev.security.authenticat
 		this.cmdLogin.setCaption("ĐĂNG NHẬP");
 		this.cmdLogin.setPrimaryStyleName("v-btnLuu");
 		this.cmdLogin.setClickShortcut(ShortcutAction.KeyCode.ENTER);
-		this.txtRandom.setColumns(5);
 		this.txtRandom.setEnabled(false);
+		this.txtRandom.setPrimaryStyleName("captcha_background");
 		this.btnRandom.setIcon(FontAwesome.REPEAT);
 		this.btnRandom.setCaption("");
 		this.btnRandom.setPrimaryStyleName("v-btnLuu");
-		this.lblBCA.setStyleName("large");
-		this.lblBCA.setValue(
-				"<b style=\"color:#FBC50A;\">BỘ CÔNG AN<br>CỤC CẢNH SÁT GIAO THÔNG</b><br><b> HỆ THỐNG CƠ SỞ DỮ LIỆU XỬ PHẠT VI PHẠM HÀNH CHÍNH TRONG LĨNH VỰC GIAO THÔNG</b>");
-		this.lblBCA.setContentMode(ContentMode.HTML);
+		this.lblFooter.setValue(
+				"<div style=\"font-size: 12px;color:#FFF;text-align:center\"><b>CỤC CẢNH SÁT GIAO THÔNG</b><br> Địa chỉ: 112 Lê Duẩn, Quận Hoàn Kiếm, Hà Nội<br>Fax:84 24 38220885 * Email:tccs-c67@vnn.vn * Đường dây nóng: 0692342608 * Phiên bản 0.55</div>");
+		this.lblFooter.setContentMode(ContentMode.HTML);
 	
-		this.label.setWidth(400, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.label, "left:0px; top:150px");
-		this.txtUsername.setWidth(400, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.txtUsername, "left:1px; top:200px");
-		this.txtPassword.setWidth(400, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.txtPassword, "left:1px; top:285px");
-		this.txtMaBaoVe.setWidth(300, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.txtMaBaoVe, "left:1px; top:340px");
-		this.cmdLogin.setWidth(150, Unit.PIXELS);
-		this.cmdLogin.setHeight(40, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.cmdLogin, "left:124px; top:390px");
-		this.absoluteLayout.addComponent(this.txtRandom, "left:321px; top:340px");
-		this.btnRandom.setWidth(40, Unit.PIXELS);
-		this.btnRandom.setHeight(38, Unit.PIXELS);
-		this.absoluteLayout.addComponent(this.btnRandom, "left:411px; top:340px");
 		this.lblBCA.setWidth(100, Unit.PERCENTAGE);
-		this.absoluteLayout.addComponent(this.lblBCA, "left:0px; top:0px");
-		this.gridLayoutBanner.setColumns(2);
-		this.gridLayoutBanner.setRows(2);
+		this.lblBCA.setHeight(100, Unit.PIXELS);
+		this.absoluteLayoutBanner.addComponent(this.lblBCA, "left:140px; top:20px");
 		this.image.setWidth(110, Unit.PIXELS);
 		this.image.setHeight(120, Unit.PIXELS);
-		this.gridLayoutBanner.addComponent(this.image, 0, 0);
-		this.gridLayoutBanner.setComponentAlignment(this.image, Alignment.TOP_RIGHT);
-		this.absoluteLayout.setWidth(450, Unit.PIXELS);
-		this.absoluteLayout.setHeight(500, Unit.PIXELS);
-		this.gridLayoutBanner.addComponent(this.absoluteLayout, 1, 0);
-		this.gridLayoutBanner.setComponentAlignment(this.absoluteLayout, Alignment.MIDDLE_CENTER);
-		this.gridLayoutBanner.setColumnExpandRatio(1, 10.0F);
-		final CustomComponent gridLayoutBanner_vSpacer = new CustomComponent();
-		gridLayoutBanner_vSpacer.setSizeFull();
-		this.gridLayoutBanner.addComponent(gridLayoutBanner_vSpacer, 0, 1, 1, 1);
-		this.gridLayoutBanner.setRowExpandRatio(1, 1.0F);
+		this.absoluteLayoutBanner.addComponent(this.image, "left:10px; top:20px");
+		this.label.setWidth(400, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.label, "left:37px; top:51px");
+		this.txtUsername.setWidth(400, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtUsername, "left:37px; top:147px");
+		this.txtPassword.setWidth(400, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtPassword, "left:38px; top:216px");
+		this.txtMaBaoVe.setWidth(300, Unit.PIXELS);
+		this.txtMaBaoVe.setHeight(37, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtMaBaoVe, "left:38px; top:266px");
+		this.cmdLogin.setWidth(150, Unit.PIXELS);
+		this.cmdLogin.setHeight(40, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.cmdLogin, "left:160px; top:340px");
+		this.txtRandom.setWidth(80, Unit.PIXELS);
+		this.txtRandom.setHeight(37, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.txtRandom, "left:358px; top:266px");
+		this.btnRandom.setWidth(40, Unit.PIXELS);
+		this.btnRandom.setHeight(38, Unit.PIXELS);
+		this.absoluteLayout.addComponent(this.btnRandom, "left:448px; top:266px");
+		this.lblFooter.setWidth(100, Unit.PERCENTAGE);
+		this.lblFooter.setHeight(100, Unit.PERCENTAGE);
+		this.absoluteLayoutFooter.addComponent(this.lblFooter, "left:1px; top:30px");
 		this.gridLayout.setColumns(1);
-		this.gridLayout.setRows(2);
-		this.gridLayoutBanner.setWidth(65, Unit.PERCENTAGE);
-		this.gridLayoutBanner.setHeight(-1, Unit.PIXELS);
-		this.gridLayout.addComponent(this.gridLayoutBanner, 0, 0);
-		this.gridLayout.setComponentAlignment(this.gridLayoutBanner, Alignment.TOP_CENTER);
+		this.gridLayout.setRows(3);
+		this.absoluteLayoutBanner.setWidth(1100, Unit.PIXELS);
+		this.absoluteLayoutBanner.setHeight(150, Unit.PIXELS);
+		this.gridLayout.addComponent(this.absoluteLayoutBanner, 0, 0);
+		this.gridLayout.setComponentAlignment(this.absoluteLayoutBanner, Alignment.TOP_CENTER);
+		this.absoluteLayout.setWidth(500, Unit.PIXELS);
+		this.absoluteLayout.setHeight(700, Unit.PIXELS);
+		this.gridLayout.addComponent(this.absoluteLayout, 0, 1);
+		this.gridLayout.setComponentAlignment(this.absoluteLayout, Alignment.MIDDLE_CENTER);
+		this.absoluteLayoutFooter.setWidth(600, Unit.PIXELS);
+		this.absoluteLayoutFooter.setHeight(100, Unit.PIXELS);
+		this.gridLayout.addComponent(this.absoluteLayoutFooter, 0, 2);
+		this.gridLayout.setComponentAlignment(this.absoluteLayoutFooter, Alignment.BOTTOM_CENTER);
 		this.gridLayout.setColumnExpandRatio(0, 10.0F);
-		final CustomComponent gridLayout_vSpacer = new CustomComponent();
-		gridLayout_vSpacer.setSizeFull();
-		this.gridLayout.addComponent(gridLayout_vSpacer, 0, 1, 0, 1);
-		this.gridLayout.setRowExpandRatio(1, 1.0F);
-		this.gridLayout.setWidth(100, Unit.PERCENTAGE);
-		this.gridLayout.setHeight(-1, Unit.PIXELS);
+		this.gridLayout.setSizeFull();
 		this.setContent(this.gridLayout);
-		this.setSizeFull();
+		this.setWidth(100, Unit.PERCENTAGE);
+		this.setHeight(-1, Unit.PIXELS);
 	
 		this.cmdLogin.addClickListener(event -> this.cmdLogin_buttonClick(event));
 		this.btnRandom.addClickListener(event -> this.btnRandom_buttonClick(event));
 	} // </generated-code>
 
 	// <generated-code name="variables">
-	private XdevLabel lblBCA, label;
+	private XdevLabel label, lblBCA, lblFooter;
 	private XdevButton cmdLogin, btnRandom;
+	private XdevAbsoluteLayout absoluteLayout, absoluteLayoutBanner, absoluteLayoutFooter;
 	private Image image;
-	private XdevAbsoluteLayout absoluteLayout;
 	private XdevPasswordField txtPassword;
-	private XdevGridLayout gridLayout, gridLayoutBanner;
+	private XdevGridLayout gridLayout;
 	private XdevTextField txtUsername, txtMaBaoVe, txtRandom;
 	// </generated-code>
 

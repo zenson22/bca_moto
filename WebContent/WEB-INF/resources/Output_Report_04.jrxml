@@ -161,117 +161,120 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="94" splitType="Stretch">
+		<band height="107" splitType="Stretch">
 			<staticText>
-				<reportElement x="336" y="17" width="218" height="32" uuid="f5b721ae-9130-46c5-9744-6ac7ee38d144"/>
-				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="9" isBold="true"/>
+				<reportElement x="280" y="41" width="274" height="36" uuid="f5b721ae-9130-46c5-9744-6ac7ee38d144"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="380" y="27" width="150" height="30" uuid="a141cc74-394b-42eb-a468-b83af8982d1a"/>
-				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="10" isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[Độc lập - Tự do - Hạnh phúc]]></text>
+				<text><![CDATA[CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>Độc lập - Tự do - Hạnh phúc]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="336" y="50" width="217" height="30" uuid="c5bb1e34-c589-413a-a62d-01d33710f6c6"/>
+				<reportElement x="304" y="77" width="250" height="30" uuid="c5bb1e34-c589-413a-a62d-01d33710f6c6"/>
 				<textElement markup="html">
-					<font fontName="Times New Roman" isItalic="true"/>
+					<font fontName="Times New Roman" size="11" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DIA_DANH_HC}+" , ngày "+
 $F{NGAY_TAO_QUYET_DINH}.getDate()+
 " tháng "+
 ($F{NGAY_TAO_QUYET_DINH}.getMonth()+01)+
-" năm"+
+" năm "+
 ($F{NGAY_TAO_QUYET_DINH}.getYear()+1900)]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="80" y="18" width="200" height="38" uuid="16069047-2326-444a-a00c-9d1140be4d96"/>
-				<textElement markup="html">
-					<font fontName="Times New Roman"/>
+				<reportElement x="30" y="40" width="200" height="38" uuid="16069047-2326-444a-a00c-9d1140be4d96"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Times New Roman" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CO_QUAN_CHU_QUAN}+"<br>"+$F{DON_VI}+" <br>"+
 "Số:"+$F{SO_QUYET_DINH}+"/QĐ-GMTP"]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="350" y="6" width="204" height="34" uuid="24d8cf7e-40d1-4a7d-9807-547ea51e999c"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" markup="html">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[Mẫu số 04/QĐ-GMTP<br>
+Ban hành kèm theo Thông tư số 07/2019/TT-BCA<br>ngày 20/3/2019
+]]></text>
+			</staticText>
+			<line>
+				<reportElement x="370" y="67" width="90" height="1" uuid="8ae838a4-821f-4893-99ec-b3b47b55b4fb">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="77" splitType="Stretch">
+		<band height="75" splitType="Stretch">
 			<staticText>
-				<reportElement x="80" y="0" width="474" height="42" uuid="20e6bedd-18ee-48b4-b4c6-59db491e055d"/>
+				<reportElement x="30" y="0" width="524" height="44" uuid="20e6bedd-18ee-48b4-b4c6-59db491e055d"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" markup="html">
-					<font fontName="Times New Roman" size="10" isBold="true" isUnderline="false"/>
+					<font fontName="Times New Roman" size="11" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[QUYẾT ĐỊNH<br>Giảm/Miến tiền phạt vi phạm hành chính<br><b>_________________</b>
-				]]></text>
+				<text><![CDATA[QUYẾT ĐỊNH<br>Giảm/Miễn tiền phạt vi phạm hành chính]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="80" y="42" width="474" height="35" uuid="f77c8564-373d-4e60-a750-a4c57363b8e7">
-					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
-				</reportElement>
-				<textElement markup="html">
-					<font fontName="Times New Roman"/>
+				<reportElement x="30" y="45" width="524" height="30" uuid="2860f96d-20bc-4fb5-bff6-1018d7f42dd6"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Times New Roman" size="11"/>
 					<paragraph firstLineIndent="24"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Căn cứ Điều 77 Luật xử lý vi phạm hành chính;"+
-"<br>Căn cứ Quyết định xử phạt vi phạm hành chính số: ....................."+$F{CAN_CU_QD_VPHC_SO}+
-"..................................ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{CAN_CU_QD_VPHC_NGAY})+"&emsp; do ........................................."+ $F{VPHC_KY}+"....................................................ký;<br>"+
+"<br>Căn cứ Quyết định xử phạt vi phạm hành chính số: "+$F{CAN_CU_QD_VPHC_SO}+
+" ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{CAN_CU_QD_VPHC_NGAY})+" do "+ $F{VPHC_KY}+" ký;<br>"+
 "Căn cứ Quyết định hoãn thi hành quyết định phạt tiền "+ 
-"số............................."+$F{CAN_CU_QD_HOAN_TH_SO}+"...............................ngày "+new SimpleDateFormat("dd/MM/yyyy").format( $F{CAN_CU_QD_HOAN_TH_NGAY})+ " &emsp; do.........................................."+$F{HOAN_TH_KY}+"............................ký (nếu có);"+
-"<br>	Căn cứ Quyết định về việc giao quyền xử phạt vi phạm hành chính số ..................................." +
-$F{CAN_CU_QD_GQ_SO}+"......................................................... ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{CAN_CU_QD_GQ_NGAY})+" ................................(nếu có);"+
+"số "+$F{CAN_CU_QD_HOAN_TH_SO}+" ngày "+new SimpleDateFormat("dd/MM/yyyy").format( $F{CAN_CU_QD_HOAN_TH_NGAY})+ " do "+$F{HOAN_TH_KY}+" ký (nếu có);"+
+"<br>	Căn cứ Quyết định về việc giao quyền xử phạt vi phạm hành chính số " +
+$F{CAN_CU_QD_GQ_SO}+" ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{CAN_CU_QD_GQ_NGAY})+" (nếu có);"+
 "<br>	Xét đơn đề nghị giảm/miễn tiền phạt vi phạm hành chính ngày "
 +new SimpleDateFormat("dd/MM/yyyy").format($F{NGAY_XET_DON})+
-"&emsp;của Ông(Bà).........."+$F{TEN_NGUOI_NVP}+"................được(4)......"+$F{CO_QUAN_XN}
-+".......xác nhận;"+
-"<br>	Tôi:..."+$F{TEN_CAN_BO}+".Cấp bậc, chức vụ:.............."+$F{CAP_BAC}+"............Đơn vị:......"+$F{DON_VI}]]></textFieldExpression>
+" của Ông(Bà) "+$F{TEN_NGUOI_NVP}+" được "+$F{CO_QUAN_XN}
++" xác nhận;"+
+"<br>	Tôi: "+$F{TEN_CAN_BO}+"&emsp;Cấp bậc, chức vụ: "+$F{CAP_BAC}+"&emsp; Đơn vị: "+$F{DON_VI}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="230" y="25" width="125" height="1" uuid="59ce0616-510b-479d-a777-88cb0ea45fe9">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+			</line>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="60" splitType="Stretch">
+		<band height="62" splitType="Stretch">
 			<staticText>
-				<reportElement x="80" y="6" width="474" height="24" uuid="dcd9c261-613e-4c53-97c1-bd8d6b657bf6"/>
-				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="10" isBold="true" isUnderline="false"/>
+				<reportElement x="30" y="0" width="524" height="30" uuid="dcd9c261-613e-4c53-97c1-bd8d6b657bf6"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="11" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[QUYẾT ĐỊNH:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="80" y="30" width="474" height="30" isPrintWhenDetailOverflows="true" uuid="eda8857c-664c-4ae7-aee3-f896b67ebf1e"/>
-				<textElement markup="html">
-					<font fontName="Times New Roman"/>
+				<reportElement x="30" y="32" width="524" height="30" isPrintWhenDetailOverflows="true" uuid="eda8857c-664c-4ae7-aee3-f896b67ebf1e"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Times New Roman" size="11"/>
+					<paragraph lineSpacing="Single" firstLineIndent="24"/>
 				</textElement>
-				<textFieldExpression><![CDATA["<b>Điều 1</b> Giảm/Miễn tiền phạt vi phạm hành chính tại Quyết định xử phạt vi phạm hành chính số....................."+$F{CAN_CU_QD_VPHC_SO}+
-"ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{CAN_CU_QD_VPHC_NGAY})+" &emsp;do..........................."+$F{CAN_BO_RA_QD_ID}+".........................ký."+
-"<br>Số tiền phạt mà Ông(Bà) ......"+$F{TEN_NGUOI_NVP}+"........ "+
-"được giảm/miễn là: ....................."+$F{TIEN_PHAT_DUOC_GIAM_BANG_SO}+"...................đồng (Bằng chữ: ..............................."+$F{TIEN_PHAT_DUOC_GIAM_BANG_CHU}+".................................................................)."+
-"<br>Số tiền phạt sau khi giảm/miễn Ông(Bà) phải nộp là:..."+$F{TIEN_PHAT_SAU_GIAM_BANG_SO}+"..đồng "+
-"(Bằng chữ: ..........................."+$F{TIEN_PHAT_SAU_GIAM_BANG_CHU}+"...............).<br>"+
-"Lý do giảm/miễn:..................................................."+ $F{LY_DO_GIAM}+"............................................."+
-"<br>Ông(Bà) được nhận lại(5)......................"+$F{TANG_VAT_NHAN_LAI}+"...........................<br>"+
+				<textFieldExpression><![CDATA["<b>Điều 1</b> Giảm/Miễn tiền phạt vi phạm hành chính tại Quyết định xử phạt vi phạm hành chính số "+$F{CAN_CU_QD_VPHC_SO}+
+" ngày "+new SimpleDateFormat("dd/MM/yyyy").format($F{CAN_CU_QD_VPHC_NGAY})+" do "+$F{TEN_CAN_BO}+" ký."+
+"<br>Số tiền phạt mà Ông(Bà) "+$F{TEN_NGUOI_NVP}+
+"được giảm/miễn là: "+$F{TIEN_PHAT_DUOC_GIAM_BANG_SO}+" đồng (Bằng chữ: "+$F{TIEN_PHAT_DUOC_GIAM_BANG_CHU}+")."+
+"<br>Số tiền phạt sau khi giảm/miễn Ông(Bà) phải nộp là: "+$F{TIEN_PHAT_SAU_GIAM_BANG_SO}+" đồng "+
+"(Bằng chữ: "+$F{TIEN_PHAT_SAU_GIAM_BANG_CHU}+").<br>"+
+"Lý do giảm/miễn: "+ $F{LY_DO_GIAM}+
+"<br>Ông(Bà) được nhận lại: "+$F{TANG_VAT_NHAN_LAI}+".<br>"+
 "<b>Điều 2.</b> Quyết định này có hiệu lực thi hành kể từ ngày ký.<br>"+
-"<b>Điều 3.</b> Quyết định này được:<br>1. Giao cho Ông(Bà).........................."+ $F{TEN_NGUOI_NVP}+"........................ để chấp hành Quyết định."+
-"<br>2. Gửi cho(6)............."+$F{PHOI_HOP_THUC_HIEN_QD}+"...........................để tổ chức thực hiện Quyết định này./.<br><br>"]]></textFieldExpression>
+"<b>Điều 3.</b> Quyết định này được:<br>1. Giao cho Ông(Bà) "+ $F{TEN_NGUOI_NVP}+" để chấp hành Quyết định."+
+"<br>2. Gửi cho "+$F{PHOI_HOP_THUC_HIEN_QD}+" để tổ chức thực hiện Quyết định này./.<br><br>"]]></textFieldExpression>
 			</textField>
 		</band>
-	</detail>
-	<summary>
-		<band height="96" splitType="Stretch">
+		<band height="60">
 			<staticText>
-				<reportElement x="80" y="70" width="474" height="25" uuid="b7658787-ddaa-47c4-8eaf-3c1ada885fdc"/>
-				<textElement textAlignment="Justified">
-					<font fontName="Times New Roman" size="6" isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[(1) Tên cơ quan chủ quản; (2) Tên đơn vị của người ra quyết định; (3) Ghi rõ địa danh hành chính; (4) Ghi rõ tên xã,  phường, thị trấn nơi cá nhân vi phạm cư trú hoặc cơ quan, tổ chức nơi người vi phạm học tập, làm việc đã thực hiện xác nhận; (5) Ghi giấy tờ, tăng vật, phương tiện vi phạm hành chính đã bị tạm giữ theo quy định tại khoản 6 Điều 125 Luật xử lý vi phạm hành chính; (6) Ghi tên cửa cá nhân/tổ chức có trách nhiệm chủ trì tổ chức thi hành Quyết định.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="80" y="0" width="128" height="60" uuid="08b01ca6-3419-4ee0-bea2-c60de12e3ba3"/>
+				<reportElement x="30" y="0" width="178" height="60" uuid="08b01ca6-3419-4ee0-bea2-c60de12e3ba3"/>
 				<textElement markup="html">
-					<font fontName="Times New Roman" size="8"/>
+					<font fontName="Times New Roman" size="11"/>
 				</textElement>
 				<text><![CDATA[<B><i>Nơi nhận:</i></B>	
 <br>
@@ -281,14 +284,14 @@ $F{CAN_CU_QD_GQ_SO}+"......................................................... n
 <br>]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="380" y="0" width="174" height="30" uuid="c7fc82a0-fa83-4d53-8a03-4c9ab89ce0d9"/>
+				<reportElement x="330" y="0" width="224" height="30" uuid="c7fc82a0-fa83-4d53-8a03-4c9ab89ce0d9"/>
 				<textElement textAlignment="Center" markup="html">
-					<font fontName="Times New Roman" isBold="false"/>
+					<font fontName="Times New Roman" size="11" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["<b><style size=\'8'>NGƯỜI RA QUYẾT</style> ĐỊNH</b>"+
 "<br><i>(Ký, đóng dấu, ghi rõ chức vụ, họ tên)</i>"+
-"<br>"+$F{TEN_CAN_BO}]]></textFieldExpression>
+"<br><br><br><br><br><br>"+$F{TEN_CAN_BO}]]></textFieldExpression>
 			</textField>
 		</band>
-	</summary>
+	</detail>
 </jasperReport>
