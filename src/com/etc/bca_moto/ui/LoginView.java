@@ -3,8 +3,6 @@ package com.etc.bca_moto.ui;
 
 import java.util.Random;
 
-import com.etc.bca_moto.authentication.CustomCredential;
-import com.etc.bca_moto.authentication.CustomerAuthentication;
 import com.etc.bca_moto.business.MyAuthenticationProvider;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.server.FontAwesome;
@@ -16,6 +14,8 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.xdev.res.ApplicationResource;
+import com.xdev.security.authentication.CredentialsUsernamePassword;
+import com.xdev.security.authentication.ui.Authentication;
 import com.xdev.ui.XdevAbsoluteLayout;
 import com.xdev.ui.XdevButton;
 import com.xdev.ui.XdevGridLayout;
@@ -62,10 +62,10 @@ public class LoginView extends XdevView implements com.xdev.security.authenticat
 	 * @eventHandlerDelegate Do NOT delete, used by UI designer!
 	 */
 	private void cmdLogin_buttonClick(final Button.ClickEvent event) {
-		final CustomCredential credentials = CustomCredential.New(getUsername(), getPassword());
+		final CredentialsUsernamePassword credentials = CredentialsUsernamePassword.New(getUsername(), getPassword());
 		final MyAuthenticationProvider authenticatorProvider = MyAuthenticationProvider.getInstance();
 		if (this.txtMaBaoVe.getValue().equals(this.txtRandom.getValue())) {
-			if (!CustomerAuthentication.tryLogin(credentials, authenticatorProvider)) {
+			if (!Authentication.tryLogin(credentials, authenticatorProvider)) {
 				Notification.show("Tài khoản hoặc mật khẩu không chính xác!", Type.ERROR_MESSAGE);
 				setMaBaoMat();
 			}

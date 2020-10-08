@@ -5,44 +5,45 @@ import java.util.List;
 import com.xdev.dal.DAOs;
 import com.xdev.security.authentication.AuthenticationFailedException;
 import com.xdev.security.authentication.Authenticator;
+import com.xdev.security.authentication.CredentialsUsernamePassword;
 import com.xdev.security.authentication.jpa.HashStrategy;
 
 /**
  * @author XDEV Software
  */
 public class CustomerJPAAthenticator
-		implements Authenticator<CustomCredential, CustomCredential> {
+		implements Authenticator<CredentialsUsernamePassword, CredentialsUsernamePassword> {
 
-	private final Class<? extends CustomCredential> authenticationEntityType;
+	private final Class<? extends CredentialsUsernamePassword> authenticationEntityType;
 	private HashStrategy hashStrategy = new HashStrategy.MD5();
 
 	/**
 	 *
 	 */
-	public CustomerJPAAthenticator(final Class<? extends CustomCredential> authenticationEntityType) {
+	public CustomerJPAAthenticator(final Class<? extends CredentialsUsernamePassword> authenticationEntityType) {
 		this.authenticationEntityType = authenticationEntityType;
 	}
 
-	public final CustomCredential authenticate(final String username, final String password)
+	public final CredentialsUsernamePassword authenticate(final String username, final String password)
 			throws AuthenticationFailedException {
-		return this.authenticate(CustomCredential.New(username, password));
+		return this.authenticate(CredentialsUsernamePassword.New(username, password));
 	}
 
 	@Override
-	public CustomCredential authenticate(final CustomCredential credentials)
+	public CredentialsUsernamePassword authenticate(final CredentialsUsernamePassword credentials)
 			throws AuthenticationFailedException {
 		return checkCredentials(credentials);
 	}
 
-	protected CustomCredential checkCredentials(final CustomCredential credentials)
+	protected CredentialsUsernamePassword checkCredentials(final CredentialsUsernamePassword credentials)
 			throws AuthenticationFailedException {
-		final byte[] hashedPassword = this.hashStrategy.hashPassword(credentials.password().getBytes());
+		final byte[] hashedPassword = this.hashStrategy.hashPassword(credentials.password());
 		final String passwordHex = bytesToHex(hashedPassword);
-		final List<? extends CustomCredential> entities = DAOs.getByEntityType(this.authenticationEntityType)
+		final List<? extends CredentialsUsernamePassword> entities = DAOs.getByEntityType(this.authenticationEntityType)
 				.findAll();
 		for (final Object object : entities) {
-			final CustomCredential entity = (CustomCredential) object;
-			if (entity.username().equals(credentials.username()) && passwordHex.equalsIgnoreCase((entity.password()))) {
+			final CredentialsUsernamePassword entity = (CredentialsUsernamePassword) object;
+			if (entity.username().equals(credentials.username()) && passwordHex.equalsIgnoreCase(new String(entity.password()))) {
 				return entity;
 			}
 		}
