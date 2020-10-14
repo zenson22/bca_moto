@@ -23,7 +23,7 @@
         <x:constraints zpos="0" top="-192px" left="-810px" width="1280px" height="-1px" />
         <XdevAbsoluteLayout x:name="absoluteLayout2">
             <x:constraints gridx="1" gridy="1" top="0px" left="0px" weighty="0.0" weightx="0.1" width="100%" height="100px" />
-            <XdevButton caption="In" x:name="cmdPrint" primaryStyleName="v-btnPrint">
+            <XdevButton caption="In" x:name="cmdPrint" primaryStyleName="v-btnIn">
                 <x:constraints top="20px" left="450px" weightx="0.0" width="100px" alignment="TOP_CENTER" height="40px" />
                 <x:event>click.buttonClick</x:event>
             </XdevButton>
@@ -35,25 +35,19 @@
         <AbsoluteLayout x:name="absoluteLayoutTitle">
             <x:constraints gridx="1" gridy="2" weighty="0.0" weightx="0.1" width="100%" height="250px" />
             <Label x:name="lblQuocHieu" primaryStyleName="v-label-ct" value="&lt;b&gt;CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM&lt;br&gt; Độc lập - Tự do - Hạnh phúc&lt;/b&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
-                <x:constraints top="40px" left="597px" width="400px" height="50px" />
+                <x:constraints top="50px" left="500px" width="400px" height="50px" />
             </Label>
             <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" x:name="txtCoQuanChuQuan">
-                <x:constraints top="52px" left="28px" width="150px" />
+                <x:constraints top="52px" left="30px" width="350px" />
             </XdevTextField>
             <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" x:name="txtDonVi">
-                <x:constraints top="87px" left="28px" width="150px" />
+                <x:constraints top="87px" left="30px" width="350px" />
             </XdevTextField>
             <XdevTextField columns="5" inputPrompt="............................." styleName="borderless" x:name="txtSoQd">
                 <x:constraints top="122px" left="58px" width="120px" />
             </XdevTextField>
-            <Label x:name="label" value="(1)" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
-                <x:constraints top="57px" left="200px" width="30px" height="30px" />
-            </Label>
-            <Label x:name="label2" value="(2)" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
-                <x:constraints top="92px" left="200px" width="30px" height="30px" />
-            </Label>
             <Label x:name="label3" value="Số:" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
-                <x:constraints top="127px" left="28px" width="30px" height="30px" />
+                <x:constraints top="127px" left="30px" width="30px" height="30px" />
             </Label>
             <Label x:name="label4" primaryStyleName="v-label-ct" value="&lt;b&gt;QUYẾT ĐỊNH&lt;br&gt;Giảm/Miễn tiền phạt vi phạm hành chính&lt;/b&gt;&lt;hr style=&quot;width:100px;text-align:center;margin-top:-3px;&quot;&gt;" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
                 <x:constraints top="165px" left="0px" />
@@ -62,16 +56,16 @@
                 <x:constraints top="127px" left="200px" width="100px" height="30px" />
             </Label>
             <Label x:name="label7" value=" ,ngày" contentMode="com.vaadin.shared.ui.label.ContentMode.HTML">
-                <x:constraints top="115px" left="699px" width="70px" height="30px" />
+                <x:constraints top="125px" left="605px" width="70px" height="30px" />
             </Label>
-            <XdevTextField columns="5" inputPrompt="........................................" styleName="borderless" x:name="txtDdhc">
-                <x:constraints top="109px" left="594px" width="100px" />
+            <XdevTextField columns="5" inputPrompt="........................................" styleName="borderless align-right" x:name="txtDdhc">
+                <x:constraints top="120px" left="450px" width="150px" />
             </XdevTextField>
             <PopupDateField dateFormat="dd/MM/yyyy" x:name="pdfNgayTao">
-                <x:constraints top="109px" left="783px" />
+                <x:constraints top="119px" left="685px" />
             </PopupDateField>
             <XdevGridLayout x:name="form">
-                <x:constraints top="82px" left="399px" width="30px" height="30px" />
+                <x:constraints top="83px" left="334px" width="30px" height="30px" />
                 <XdevFieldGroup x:name="fieldGroup" x:entityType="QdGiamMienTienPhat04">
                     <x:typeArguments>
                         <typeArgument type="QdGiamMienTienPhat04" />

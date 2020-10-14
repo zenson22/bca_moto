@@ -25,7 +25,7 @@
                 <x:constraints top="10px" left="360px" width="80px" />
                 <x:event>click.buttonClick</x:event>
             </Button>
-            <Button icon="FontAwesome.PRINT" caption="In" x:name="btnPrint" primaryStyleName="v-btnPrint">
+            <Button icon="FontAwesome.PRINT" caption="In" x:name="btnPrint" primaryStyleName="v-btnIn">
                 <x:constraints top="10px" left="465px" width="80px" />
                 <x:event>click.buttonClick</x:event>
             </Button>
@@ -152,7 +152,7 @@
             <TextField inputPrompt="......................................................" styleName="borderless" x:name="txtFieldTenCB">
                 <x:constraints top="260px" left="100px" width="150px" height="25px" />
             </TextField>
-            <Button icon="FontAwesome.CARET_LEFT" caption="" x:name="btnNhapSoBB" primaryStyleName="v-btnLeft">
+            <Button icon="FontAwesome.CARET_LEFT" caption="" x:name="btnNhapSoBB" primaryStyleName="v-btnLuu">
                 <x:constraints top="77px" left="170px" width="50px" height="30px" />
                 <x:event>click.buttonClick</x:event>
             </Button>
@@ -251,11 +251,11 @@
                     </x:fields>
                 </XdevFieldGroup>
             </XdevGridLayout>
-            <Button icon="FontAwesome.PLUS_CIRCLE" caption="Chọn hành vi vi phạm" x:name="btnChonHVVP" primaryStyleName="v-btnLeft">
+            <Button icon="FontAwesome.PLUS_CIRCLE" caption="Chọn hành vi vi phạm" x:name="btnChonHVVP" primaryStyleName="v-btnLuu">
                 <x:constraints top="492px" left="600px" width="200px" height="30px" />
                 <x:event>click.buttonClick</x:event>
             </Button>
-            <Button icon="FontAwesome.PLUS_CIRCLE" caption="Chọn TV/PT/GT bị tạm giữ" x:name="btnChonTVPTGT" primaryStyleName="v-btnLeft">
+            <Button icon="FontAwesome.PLUS_CIRCLE" caption="Chọn TV/PT/GT bị tạm giữ" x:name="btnChonTVPTGT" primaryStyleName="v-btnLuu">
                 <x:constraints top="605px" left="500px" width="200px" height="30px" />
                 <x:event>click.buttonClick</x:event>
             </Button>

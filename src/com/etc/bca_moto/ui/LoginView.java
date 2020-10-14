@@ -4,6 +4,7 @@ package com.etc.bca_moto.ui;
 import java.util.Random;
 
 import com.etc.bca_moto.business.MyAuthenticationProvider;
+import com.etc.bca_moto.business.MyAuthorizationConfigurationProvider;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.MarginInfo;
@@ -64,8 +65,10 @@ public class LoginView extends XdevView implements com.xdev.security.authenticat
 	private void cmdLogin_buttonClick(final Button.ClickEvent event) {
 		final CredentialsUsernamePassword credentials = CredentialsUsernamePassword.New(getUsername(), getPassword());
 		final MyAuthenticationProvider authenticatorProvider = MyAuthenticationProvider.getInstance();
+		final MyAuthorizationConfigurationProvider authorizationConfigurationProvider = null;
+				//MyAuthorizationConfigurationProvider.getInstance();
 		if (this.txtMaBaoVe.getValue().equals(this.txtRandom.getValue())) {
-			if (!Authentication.tryLogin(credentials, authenticatorProvider)) {
+			if (!Authentication.tryLogin(credentials, authenticatorProvider,authorizationConfigurationProvider)) {
 				Notification.show("Tài khoản hoặc mật khẩu không chính xác!", Type.ERROR_MESSAGE);
 				setMaBaoMat();
 			}
@@ -139,7 +142,7 @@ public class LoginView extends XdevView implements com.xdev.security.authenticat
 		this.absoluteLayoutBanner.addComponent(this.lblBCA, "left:140px; top:20px");
 		this.image.setWidth(110, Unit.PIXELS);
 		this.image.setHeight(120, Unit.PIXELS);
-		this.absoluteLayoutBanner.addComponent(this.image, "left:10px; top:20px");
+		this.absoluteLayoutBanner.addComponent(this.image, "left:123px; top:0px");
 		this.label.setWidth(400, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label, "left:37px; top:51px");
 		this.txtUsername.setWidth(400, Unit.PIXELS);

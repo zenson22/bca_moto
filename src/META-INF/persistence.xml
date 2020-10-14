@@ -3,10 +3,8 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="BCA_MOTO">
-		<provider>
-			org.hibernate.jpa.HibernatePersistenceProvider
-		</provider>
+	<persistence-unit name="BCA_MOTO" >
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>
 			com.etc.bca_moto.entities.ThongTinNopPhatQdXpvphc02
 		</class>

@@ -225,8 +225,6 @@ public class BBGiamPhatView extends XdevView {
 		this.txtCoQuanChuQuan = new XdevTextField();
 		this.txtDonVi = new XdevTextField();
 		this.txtSoQd = new XdevTextField();
-		this.label = new Label();
-		this.label2 = new Label();
 		this.label3 = new Label();
 		this.label4 = new Label();
 		this.label5 = new Label();
@@ -305,7 +303,7 @@ public class BBGiamPhatView extends XdevView {
 		this.gridLayout.setSpacing(true);
 		this.gridLayout.setMargin(new MarginInfo(true, false, false, false));
 		this.cmdPrint.setCaption("In");
-		this.cmdPrint.setPrimaryStyleName("v-btnPrint");
+		this.cmdPrint.setPrimaryStyleName("v-btnIn");
 		this.cmdSave.setCaption("Lưu");
 		this.cmdSave.setPrimaryStyleName("v-btnLuu");
 		this.lblQuocHieu.setPrimaryStyleName("v-label-ct");
@@ -317,10 +315,6 @@ public class BBGiamPhatView extends XdevView {
 		this.txtDonVi.setStyleName("borderless");
 		this.txtSoQd.setInputPrompt(".............................");
 		this.txtSoQd.setStyleName("borderless");
-		this.label.setValue("(1)");
-		this.label.setContentMode(ContentMode.HTML);
-		this.label2.setValue("(2)");
-		this.label2.setContentMode(ContentMode.HTML);
 		this.label3.setValue("Số:");
 		this.label3.setContentMode(ContentMode.HTML);
 		this.label4.setPrimaryStyleName("v-label-ct");
@@ -332,7 +326,7 @@ public class BBGiamPhatView extends XdevView {
 		this.label7.setValue(" ,ngày");
 		this.label7.setContentMode(ContentMode.HTML);
 		this.txtDdhc.setInputPrompt("........................................");
-		this.txtDdhc.setStyleName("borderless");
+		this.txtDdhc.setStyleName("borderless align-right");
 		this.pdfNgayTao.setDateFormat("dd/MM/yyyy");
 		this.fieldGroup.bind(this.txtCoQuanChuQuan, QdGiamMienTienPhat04_.coQuanChuQuan.getName());
 		this.fieldGroup.bind(this.txtSoQd, QdGiamMienTienPhat04_.soQuyetDinh.getName());
@@ -502,35 +496,29 @@ public class BBGiamPhatView extends XdevView {
 		this.absoluteLayout2.addComponent(this.cmdSave, "left:280px; top:20px");
 		this.lblQuocHieu.setWidth(400, Unit.PIXELS);
 		this.lblQuocHieu.setHeight(50, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.lblQuocHieu, "left:597px; top:40px");
-		this.txtCoQuanChuQuan.setWidth(150, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.txtCoQuanChuQuan, "left:28px; top:52px");
-		this.txtDonVi.setWidth(150, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.txtDonVi, "left:28px; top:87px");
+		this.absoluteLayoutTitle.addComponent(this.lblQuocHieu, "left:500px; top:50px");
+		this.txtCoQuanChuQuan.setWidth(350, Unit.PIXELS);
+		this.absoluteLayoutTitle.addComponent(this.txtCoQuanChuQuan, "left:30px; top:52px");
+		this.txtDonVi.setWidth(350, Unit.PIXELS);
+		this.absoluteLayoutTitle.addComponent(this.txtDonVi, "left:30px; top:87px");
 		this.txtSoQd.setWidth(120, Unit.PIXELS);
 		this.absoluteLayoutTitle.addComponent(this.txtSoQd, "left:58px; top:122px");
-		this.label.setWidth(30, Unit.PIXELS);
-		this.label.setHeight(30, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.label, "left:200px; top:57px");
-		this.label2.setWidth(30, Unit.PIXELS);
-		this.label2.setHeight(30, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.label2, "left:200px; top:92px");
 		this.label3.setWidth(30, Unit.PIXELS);
 		this.label3.setHeight(30, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.label3, "left:28px; top:127px");
+		this.absoluteLayoutTitle.addComponent(this.label3, "left:30px; top:127px");
 		this.absoluteLayoutTitle.addComponent(this.label4, "left:0px; top:165px");
 		this.label5.setWidth(100, Unit.PIXELS);
 		this.label5.setHeight(30, Unit.PIXELS);
 		this.absoluteLayoutTitle.addComponent(this.label5, "left:200px; top:127px");
 		this.label7.setWidth(70, Unit.PIXELS);
 		this.label7.setHeight(30, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.label7, "left:699px; top:115px");
-		this.txtDdhc.setWidth(100, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.txtDdhc, "left:594px; top:109px");
-		this.absoluteLayoutTitle.addComponent(this.pdfNgayTao, "left:783px; top:109px");
+		this.absoluteLayoutTitle.addComponent(this.label7, "left:605px; top:125px");
+		this.txtDdhc.setWidth(150, Unit.PIXELS);
+		this.absoluteLayoutTitle.addComponent(this.txtDdhc, "left:450px; top:120px");
+		this.absoluteLayoutTitle.addComponent(this.pdfNgayTao, "left:685px; top:119px");
 		this.form.setWidth(30, Unit.PIXELS);
 		this.form.setHeight(30, Unit.PIXELS);
-		this.absoluteLayoutTitle.addComponent(this.form, "left:399px; top:82px");
+		this.absoluteLayoutTitle.addComponent(this.form, "left:334px; top:83px");
 		this.label6.setWidth(350, Unit.PIXELS);
 		this.label6.setHeight(50, Unit.PIXELS);
 		this.absoluteLayout.addComponent(this.label6, "left:70px; top:0px");
@@ -743,14 +731,14 @@ public class BBGiamPhatView extends XdevView {
 	private XdevFieldGroup<QdGiamMienTienPhat04> fieldGroup;
 	private XdevComboBox<AuthUser> cbAuthen;
 	private XdevAbsoluteLayout absoluteLayout2;
-	private Label lblQuocHieu, label, label2, label3, label4, label5, label7, label6, label8, label9, label10, label11,
-			label12, label13, label14, label15, label16, label17, label18, label19, label20, label21, label22, label23,
-			label24, label25, label26, label27, label28, label29, label30, label31, label32, label33, label34, label35,
-			label37, label38, label36, label39, label40, lblQuocHieu2, label41;
+	private Label lblQuocHieu, label3, label4, label5, label7, label6, label8, label9, label10, label11, label12, label13,
+			label14, label15, label16, label17, label18, label19, label20, label21, label22, label23, label24, label25,
+			label26, label27, label28, label29, label30, label31, label32, label33, label34, label35, label37, label38,
+			label36, label39, label40, lblQuocHieu2, label41;
 	private XdevTextField txtCoQuanChuQuan, txtDonVi, txtSoQd, txtDdhc, txtQdVPHC, txtHoanTH, txtDvCSGTId, txtCapBac,
 			txtDvCSGT, txtNgViPham, txtTienDuocGiamSo, txtTienSauGiamSo, txtTienDuocGiamChu, txtTienSauGiamChu,
-			txtLydoGiamMien, txtTvNhanLai, txtNgViPham2, txtToChucThucHien, txtNguoiRaQd, txtCanBoId, txtVphcKy, txtHoanTHKy,
-			txtCoQuanXN, txtQdVPHC2, txtVphcKy2, txtGqXuPhatVphcSo;
+			txtLydoGiamMien, txtTvNhanLai, txtNgViPham2, txtToChucThucHien, txtNguoiRaQd, txtCanBoId, txtVphcKy,
+			txtHoanTHKy, txtCoQuanXN, txtQdVPHC2, txtVphcKy2, txtGqXuPhatVphcSo;
 	private XdevGridLayout form;
 	private PopupDateField pdfNgayTao, pdfCcQdVphc, pdfHoanTH, pdfGqXpVphc, pdfXetDonGM, pdfQdVphc2;
 	private GridLayout gridLayout;
